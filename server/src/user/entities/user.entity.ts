@@ -12,6 +12,6 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column({nullable: true})
-  password?: string
+  @Column()
+  password: string
 }

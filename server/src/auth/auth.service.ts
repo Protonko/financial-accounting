@@ -4,6 +4,7 @@ import {compare} from 'bcrypt'
 import {UserService} from '../user/user.service'
 import {User} from '../user/entities/user.entity'
 import {JwtPayload} from '../model/JwtPayload'
+import {LoginUserData} from '../model/LoginUserData'
 
 @Injectable()
 export class AuthService {
@@ -24,7 +25,7 @@ export class AuthService {
     return null
   }
 
-  async login(user: User) {
+  login(user: User): LoginUserData {
     const payload: JwtPayload = {email: user.email, sub: user.id}
     const {password, ...userData} = user
 

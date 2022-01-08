@@ -1,5 +1,5 @@
 import {IsEmail, Matches, MinLength} from 'class-validator'
-import {PASSWORD_REGEXP} from '../../utils/regexps'
+import {PASSWORD_REGEXP} from '../../static/regexps'
 
 export class CreateUserDto {
   @IsEmail(undefined, {message: 'Incorrect email!'})
