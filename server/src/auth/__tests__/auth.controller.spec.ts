@@ -1,15 +1,17 @@
 import {Test, TestingModule} from '@nestjs/testing'
 import {JwtService} from '@nestjs/jwt'
 import {genSalt, hash} from 'bcrypt'
+import {AuthController} from '../auth.controller'
 import {AuthService} from '../auth.service'
 import {UserService} from '../../user/user.service'
-import {LOGIN_USER_DATA, USER, USER_WITHOUT_PASSWORD} from '../../static/mockData'
+import {LOGIN_USER_DATA, REQUEST, REQUEST_WITHOUT_USER, USER} from '../../static/mockData'
 
-describe('AuthService', () => {
-  let service: AuthService
+describe('AuthController', () => {
+  let controller: AuthController
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      controllers: [AuthController],
       providers: [
         AuthService,
         {
@@ -30,18 +32,14 @@ describe('AuthService', () => {
       ],
     }).compile()
 
-    service = module.get(AuthService)
+    controller = module.get(AuthController)
   })
 
-  it('Should login user', () => {
-    expect(service.login(USER)).toEqual(LOGIN_USER_DATA)
+  it('Should create user', () => {
+    expect(controller.login(REQUEST)).toEqual(LOGIN_USER_DATA)
   })
 
-  it('Should validate user', async () => {
-    expect(await service.validateUser('foo@bar.baz', '123456Aa')).toEqual(USER_WITHOUT_PASSWORD)
-  })
-
-  it('validateUser should return null', async () => {
-    expect(await service.validateUser('foo@bar.baz', 'incorrect password')).toBe(null)
+  it('createUser should return undefined', () => {
+    expect(controller.login(REQUEST_WITHOUT_USER)).toBe(undefined)
   })
 })
