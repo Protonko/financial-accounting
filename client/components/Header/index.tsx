@@ -2,7 +2,6 @@ import {Link} from '@mui/material'
 import logo from '@assets/icons/logo.png'
 import {Options} from '@components/Options'
 import {APP_LANG} from '@utils/localization/localization'
-import {APP_THEME} from '@model/app-settings'
 
 export const Header = () => {
   return (
@@ -19,7 +18,7 @@ export const Header = () => {
         </div>
 
         <div className="header__options">
-          <Options lang={APP_LANG.RU} theme={APP_THEME.DARK} />
+          <Options lang={APP_LANG.RU} />
         </div>
       </div>
     </header>

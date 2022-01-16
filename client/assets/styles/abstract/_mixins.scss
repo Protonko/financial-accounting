@@ -35,6 +35,7 @@
 
 @mixin square($value) {
     width: rem($value);
+    min-width: rem($value);
     height: rem($value);
 }
 

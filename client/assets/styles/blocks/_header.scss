@@ -1,5 +1,6 @@
 .header {
     height: rem(62px);
+    transition-duration: $transition-duration-long;
     background-color: var(--background-color);
     box-shadow: 0 rem(4px) rem(40px) rgba(var(--shadow-color), 0.05);
 

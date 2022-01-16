@@ -3,6 +3,8 @@ $black: #000000;
 $shark: #1F2028;
 $midnight: #001A34;
 $silverSand: #C2C3C4;
+$abbey: #4B4C53;
+$athensGray: #E6E9EE;
 
 $background-color: $black;
 $text-color: $white;
@@ -20,18 +22,20 @@ $font-size-extra-large: 36px;
 $background-color: $white;
 $text-color: $black;
 
-body {
+$transition-duration-long: 800ms;
+
+:root {
     --primary-color: #{$black};
     --background-color: #{$white};
     --shadow-color: #{$midnight};
     --text-color: #{$black};
+    --lightGrey: #{$athensGray};
 }
 
-.dark {
-    body {
-        --primary-color: #{$white};
-        --background-color: #{$shark};
-        --shadow-color: #{$silverSand};
-        --text-color: #{$white};
-    }
+[data-theme='DARK'] {
+    --primary-color: #{$white};
+    --background-color: #{$shark};
+    --shadow-color: #{$silverSand};
+    --text-color: #{$white};
+    --lightGrey: #{$abbey};
 }

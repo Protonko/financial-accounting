@@ -5,8 +5,9 @@ html {
 body {
     overflow: hidden;
     margin: 0;
-    background-color: var(--background-color);
+    transition-duration: $transition-duration-long;
     color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 #root {

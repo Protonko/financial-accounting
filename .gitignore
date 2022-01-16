@@ -27,6 +27,7 @@ lerna-debug.log*
 # client
 /client/node_modules
 /client/.next
+/client/public
 /client/coverage
 /client/.next/
 /client/out/

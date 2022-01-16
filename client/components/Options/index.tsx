@@ -9,7 +9,7 @@ interface Props {
   theme: APP_THEME;
 }
 
-export const Options: FC<Props> = ({lang, theme}) => {
+export const Options: FC<Props> = ({lang}) => {
   return (
     <div className="options">
       <ul className="options__list">
@@ -18,7 +18,7 @@ export const Options: FC<Props> = ({lang, theme}) => {
         </li>
 
         <li>
-          <ThemeToggleButton theme={theme} />
+          <ThemeToggleButton />
         </li>
       </ul>
     </div>
