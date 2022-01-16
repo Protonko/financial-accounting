@@ -1,0 +1,37 @@
+$white: #FFFFFF;
+$black: #000000;
+$shark: #1F2028;
+$midnight: #001A34;
+$silverSand: #C2C3C4;
+
+$background-color: $black;
+$text-color: $white;
+
+//fonts
+$font-family: 'Roboto', sans-serif;
+
+$font-size-extra-small: 12px;
+$font-size-small: 14px;
+$font-size-base: 16px;
+$font-size-big: 20px;
+$font-size-large: 30px;
+$font-size-extra-large: 36px;
+
+$background-color: $white;
+$text-color: $black;
+
+body {
+    --primary-color: #{$black};
+    --background-color: #{$white};
+    --shadow-color: #{$midnight};
+    --text-color: #{$black};
+}
+
+.dark {
+    body {
+        --primary-color: #{$white};
+        --background-color: #{$shark};
+        --shadow-color: #{$silverSand};
+        --text-color: #{$white};
+    }
+}

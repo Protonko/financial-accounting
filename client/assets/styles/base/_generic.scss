@@ -1,0 +1,41 @@
+html {
+    -ms-overflow-style: scrollbar;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#root {
+    position: relative;
+}
+
+html,
+body,
+#root,
+.container {
+    height: 100%;
+}
+
+#root {
+    overflow-x: auto;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+img:-moz-broken {
+    opacity: 0;
+}
+
+.container {
+    max-width: rem(1010px);
+    min-width: rem(1010px);
+    margin: 0 auto;
+}
