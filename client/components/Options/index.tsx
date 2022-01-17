@@ -1,20 +1,29 @@
 import type {FC} from 'react'
-import type {APP_THEME} from '@model/app-settings'
 import {APP_LANG} from '@utils/localization/localization'
-import {getLocalizedValue} from '@utils/localization/getLocalizedValue'
 import {ThemeToggleButton} from '@components/ThemeToggleButton'
+import {useLocalization} from '@hooks/useLocalization'
+import Link from 'next/link'
+import {useRouter} from 'next/router'
 
-interface Props {
-  lang: APP_LANG;
-  theme: APP_THEME;
-}
+export const Options: FC = () => {
+  const {asPath} = useRouter()
+  const {lang, getLocalizedValue} = useLocalization()
+  const localeToSwitch = lang === APP_LANG.RU ? APP_LANG.EN : APP_LANG.RU
+  const renderText = () => {
+    if (lang === APP_LANG.RU) {
+      return getLocalizedValue('switchToEnglish')
+    } else {
+      return getLocalizedValue('switchToRussian')
+    }
+  }
 
-export const Options: FC<Props> = ({lang}) => {
   return (
     <div className="options">
       <ul className="options__list">
         <li className="option__item">
-          {getLocalizedValue(lang === APP_LANG.RU ? 'switchToEnglish' : 'switchToRussian', lang)}
+          <Link href={asPath} locale={localeToSwitch}>
+            {renderText()}
+          </Link>
         </li>
 
         <li>

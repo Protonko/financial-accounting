@@ -1,9 +1,11 @@
 import {Link} from '@mui/material'
 import logo from '@assets/icons/logo.png'
 import {Options} from '@components/Options'
-import {APP_LANG} from '@utils/localization/localization'
+import {useLocalization} from '@hooks/useLocalization'
 
 export const Header = () => {
+  const {getLocalizedValue} = useLocalization()
+
   return (
     <header className='header'>
       <div className="container header__container">
@@ -13,12 +15,12 @@ export const Header = () => {
           </Link>
 
           <span className="header__logo-title">
-            Financing Accounting
+            {getLocalizedValue('financingAccounting')}
           </span>
         </div>
 
         <div className="header__options">
-          <Options lang={APP_LANG.RU} />
+          <Options />
         </div>
       </div>
     </header>
