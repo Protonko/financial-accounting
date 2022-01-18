@@ -19,14 +19,16 @@ export const Options: FC = () => {
 
   return (
     <div className="options">
-      <ul className="options__list">
-        <li className="option__item">
+      <ul className="options__list list list--reset">
+        <li className="options__item">
           <Link href={asPath} locale={localeToSwitch}>
-            {renderText()}
+            <a className='options__link'>
+              {renderText()}
+            </a>
           </Link>
         </li>
 
-        <li>
+        <li className="options__item">
           <ThemeToggleButton />
         </li>
       </ul>

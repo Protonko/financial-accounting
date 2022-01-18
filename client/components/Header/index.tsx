@@ -9,15 +9,15 @@ export const Header = () => {
   return (
     <header className='header'>
       <div className="container header__container">
-        <div className='header__logo'>
-          <Link href="/" className="header__logo-link">
-            <img className="header__logo-image" src={logo.src}  alt='Logo'/>
-          </Link>
+        <Link href="/" className="header__logo">
+          <div className='header__logo-image'>
+            <img className="header__logo-image-pic" src={logo.src}  alt='Logo'/>
+          </div>
 
           <span className="header__logo-title">
             {getLocalizedValue('financingAccounting')}
           </span>
-        </div>
+        </Link>
 
         <div className="header__options">
           <Options />

@@ -26,16 +26,16 @@ $transition-duration-long: 800ms;
 
 :root {
     --primary-color: #{$black};
+    --secondary-color: #{$white};
     --background-color: #{$white};
-    --shadow-color: #{$midnight};
     --text-color: #{$black};
     --lightGrey: #{$athensGray};
 }
 
 [data-theme='DARK'] {
     --primary-color: #{$white};
+    --secondary-color: #{$black};
     --background-color: #{$shark};
-    --shadow-color: #{$silverSand};
     --text-color: #{$white};
     --lightGrey: #{$abbey};
 }

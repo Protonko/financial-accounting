@@ -1,0 +1,28 @@
+.options {
+    $verticalGutter: 30px;
+
+    &__list {
+        @include margin-horizontal(-$verticalGutter / 2);
+
+        display: flex;
+        align-items: center;
+    }
+
+    &__item {
+        @include margin-horizontal($verticalGutter / 2);
+
+        &:not(:last-child) {
+            padding-right: rem($verticalGutter / 2);
+            border-right: rem(1px) solid var(--text-color);
+        }
+
+        &:last-child {
+            margin-left: 0;
+        }
+    }
+
+    &__link {
+        color: var(--text-color);
+        text-decoration: none;
+    }
+}
