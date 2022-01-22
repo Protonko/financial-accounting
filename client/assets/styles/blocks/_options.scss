@@ -1,18 +1,20 @@
+@use "sass:math";
+
 .options {
     $verticalGutter: 30px;
 
     &__list {
-        @include margin-horizontal(-$verticalGutter / 2);
+        @include margin-horizontal(math.div(-$verticalGutter, 2));
 
         display: flex;
         align-items: center;
     }
 
     &__item {
-        @include margin-horizontal($verticalGutter / 2);
+        @include margin-horizontal(math.div($verticalGutter, 2));
 
         &:not(:last-child) {
-            padding-right: rem($verticalGutter / 2);
+            padding-right: rem(math.div($verticalGutter, 2));
             border-right: rem(1px) solid var(--text-color);
         }
 

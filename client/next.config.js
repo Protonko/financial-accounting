@@ -1,6 +1,8 @@
 const path = require('path')
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
-module.exports = {
+module.exports = withPWA({
   reactStrictMode: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'assets/styles')],
@@ -18,4 +20,8 @@ module.exports = {
 
     return config;
   },
-}
+  pwa: {
+    dest: 'public',
+    runtimeCaching,
+  },
+})
