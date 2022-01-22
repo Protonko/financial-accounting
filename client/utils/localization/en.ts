@@ -8,4 +8,6 @@ export const localizationEn: Localization = {
   email: 'Email',
   password: 'Password',
   logIn: 'Log in',
+  registration: 'Registration',
+  signUp: 'Sign up',
 }

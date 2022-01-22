@@ -9,12 +9,12 @@ const Auth: NextPage = () => {
   return (
     <AuthLayout>
       <div className="auth">
-        <h1 className="auth__title">{getLocalizedValue('login')}</h1>
+        <h1 className="auth__title">{getLocalizedValue('registration')}</h1>
 
         <AuthForm
           loginFieldName={getLocalizedValue('login')}
           passwordFieldName={getLocalizedValue('password')}
-          buttonName={getLocalizedValue('logIn')}
+          buttonName={getLocalizedValue('signUp')}
           onSubmit={() => {}}
         />
       </div>

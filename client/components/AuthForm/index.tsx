@@ -1,10 +1,21 @@
+import type {FC} from 'react'
 import {ButtonUnstyled, FilledInput, FormControlLabel} from '@mui/material'
-import Router from 'next/router'
-import {useLocalization} from '@hooks/useLocalization'
 
-export const AuthForm = () => {
-  const {getLocalizedValue} = useLocalization()
+interface Props {
+  loginFieldName: string,
+  passwordFieldName: string,
+  buttonName: string,
+  onSubmit: () => void,
+  renderAdditionalLink?: () => void,
+}
 
+export const AuthForm: FC<Props> = ({
+  loginFieldName,
+  passwordFieldName,
+  buttonName,
+  onSubmit,
+  renderAdditionalLink,
+}) => {
   return (
     <form className="auth-form">
       <FormControlLabel
@@ -12,12 +23,12 @@ export const AuthForm = () => {
         control={
           <FilledInput
             className="auth-form__input input"
-            placeholder={getLocalizedValue('email')}
+            placeholder={loginFieldName}
             disableUnderline={true}
           />
         }
         labelPlacement="top"
-        label={getLocalizedValue('email')}
+        label={loginFieldName}
       />
 
       <FormControlLabel
@@ -26,20 +37,24 @@ export const AuthForm = () => {
           <FilledInput
             className="auth-form__input input"
             type="password"
-            placeholder={getLocalizedValue('password')}
+            placeholder={passwordFieldName}
             disableUnderline={true}
           />
         }
         labelPlacement="top"
-        label={getLocalizedValue('password')}
+        label={passwordFieldName}
       />
 
       <ButtonUnstyled
         className="auth-form__button button button--uppercase"
-        onClick={() => Router.push('/')}
+        onClick={onSubmit}
       >
-        {getLocalizedValue('logIn')}
+        {buttonName}
       </ButtonUnstyled>
+
+      <div className="auth-form__link">
+
+      </div>
     </form>
   )
 }

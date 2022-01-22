@@ -11,5 +11,7 @@ export type LocalizationKeys =
   | 'email'
   | 'password'
   | 'logIn'
+  | 'registration'
+  | 'signUp'
 
 export type Localization = Record<LocalizationKeys, string>
