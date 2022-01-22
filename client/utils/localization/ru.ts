@@ -10,4 +10,6 @@ export const localizationRu: Localization = {
   logIn: 'Войти',
   registration: 'Регистрация',
   signUp: 'Зарегистрироваться',
+  dontHaveAnAccountQuestion: 'Нет аккаунта?',
+  alreadyHaveAnAccountQuestion: 'Уже есть аккаунт?',
 }

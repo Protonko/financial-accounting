@@ -4,7 +4,29 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../assets/styles/Home.module.css'
 
-const Home: NextPage = () => {
+interface Props {
+  data: any
+}
+
+export const getStaticProps = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+  const data = await response.json()
+
+  if (!data) {
+    return {
+      notFound: true
+    }
+  }
+
+  return {
+    props: {
+      data,
+    }
+  }
+}
+
+const Home: NextPage<Props> = ({data}) => {
+  console.log(data)
   return (
     <div className={styles.container}>
       <Head>

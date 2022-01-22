@@ -1,0 +1,10 @@
+.link {
+    font-size: rem($font-size-base);
+    transition-duration: $transition-duration;
+    transition-property: color;
+    color: var(--brand-color);
+
+    &:hover {
+        color: var(--brand-light-color);
+    }
+}

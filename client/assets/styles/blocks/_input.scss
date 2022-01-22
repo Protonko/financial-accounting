@@ -2,6 +2,10 @@
     border-radius: rem(8px);
     background-color: var(--input-color);
 
+    &:hover {
+        background-color: var(--light-grey);
+    }
+
     input {
         font-size: rem($font-size-base);
         padding: rem(24px) rem(32px);

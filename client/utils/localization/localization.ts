@@ -13,5 +13,7 @@ export type LocalizationKeys =
   | 'logIn'
   | 'registration'
   | 'signUp'
+  | 'dontHaveAnAccountQuestion'
+  | 'alreadyHaveAnAccountQuestion'
 
 export type Localization = Record<LocalizationKeys, string>

@@ -17,7 +17,7 @@ export const AuthForm: FC<Props> = ({
   renderAdditionalLink,
 }) => {
   return (
-    <form className="auth-form">
+    <form className="auth-form" onSubmit={onSubmit}>
       <FormControlLabel
         className="auth-form__label"
         control={
@@ -47,7 +47,7 @@ export const AuthForm: FC<Props> = ({
 
       <ButtonUnstyled
         className="auth-form__button button button--uppercase"
-        onClick={onSubmit}
+        type="submit"
       >
         {buttonName}
       </ButtonUnstyled>

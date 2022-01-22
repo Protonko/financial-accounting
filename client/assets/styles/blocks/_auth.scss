@@ -4,4 +4,15 @@
     &__title {
         margin-bottom: rem(40px);
     }
+
+    &__additional-text {
+        display: block;
+        width: rem(390px);
+        margin: rem(24px) auto 0;
+        text-align: right;
+
+        &-link {
+            margin-left: rem(8px);
+        }
+    }
 }

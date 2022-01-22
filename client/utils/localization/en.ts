@@ -10,4 +10,6 @@ export const localizationEn: Localization = {
   logIn: 'Log in',
   registration: 'Registration',
   signUp: 'Sign up',
+  dontHaveAnAccountQuestion: 'Don`t have an account?',
+  alreadyHaveAnAccountQuestion: 'Already have an account?',
 }
