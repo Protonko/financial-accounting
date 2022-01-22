@@ -1,0 +1,8 @@
+.main {
+    flex-grow: 1;
+
+    &--auth {
+        display: flex;
+        align-items: center;
+    }
+}

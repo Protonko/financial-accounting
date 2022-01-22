@@ -5,7 +5,12 @@
 @import './base/generic';
 @import './base/typography';
 
+@import './blocks/main';
+@import './blocks/input';
+@import './blocks/button';
 @import './blocks/list';
 @import './blocks/theme-toggle-button';
 @import './blocks/header';
 @import './blocks/options';
+@import './blocks/auth-form';
+@import './blocks/auth';

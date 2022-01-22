@@ -1,0 +1,10 @@
+.input {
+    border-radius: rem(8px);
+    background-color: var(--input-color);
+
+    input {
+        font-size: rem($font-size-base);
+        padding: rem(24px) rem(32px);
+        color: var(--primary-color);
+    }
+}

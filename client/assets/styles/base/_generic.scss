@@ -40,3 +40,10 @@ img:-moz-broken {
     min-width: rem(1010px);
     margin: 0 auto;
 }
+
+#__next {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100%;
+}

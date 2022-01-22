@@ -1,0 +1,19 @@
+.button {
+    font-size: rem($font-size-base);
+    padding: rem(24px);
+    transition-duration: $transition-duration;
+    transition-property: background-color;
+    cursor: pointer;
+    color: var(--secondary-color);
+    border: none;
+    border-radius: rem(8px);
+    background-color: var(--brand-color);
+
+    &:hover {
+        background-color: var(--brand-light-color);
+    }
+
+    &--uppercase {
+        text-transform: uppercase;
+    }
+}

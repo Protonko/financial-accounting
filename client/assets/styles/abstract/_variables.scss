@@ -5,9 +5,13 @@ $midnight: #001A34;
 $silverSand: #C2C3C4;
 $abbey: #4B4C53;
 $athensGray: #E6E9EE;
-
-$background-color: $black;
-$text-color: $white;
+$alabaster: #F7F7F7;
+$tuna: #2E3039;
+$tropicalRainForest: #006957;
+$deepTeal: #01322A;
+$turquoise: #34D0B6;
+$riptide: #8AEDDD;
+$persianGreen: #00A287;
 
 //fonts
 $font-family: 'Roboto', sans-serif;
@@ -23,19 +27,28 @@ $background-color: $white;
 $text-color: $black;
 
 $transition-duration-long: 800ms;
+$transition-duration: 400ms;
+
+$header-height: 72px;
 
 :root {
-    --primary-color: #{$black};
+    --primary-color: #{$deepTeal};
     --secondary-color: #{$white};
     --background-color: #{$white};
-    --text-color: #{$black};
+    --text-color: #{$deepTeal};
     --lightGrey: #{$athensGray};
+    --input-color: #{$alabaster};
+    --brand-color: #{$tropicalRainForest};
+    --brand-light-color: #{$persianGreen};
 }
 
 [data-theme='DARK'] {
     --primary-color: #{$white};
-    --secondary-color: #{$black};
+    --secondary-color: #{$deepTeal};
     --background-color: #{$shark};
     --text-color: #{$white};
     --lightGrey: #{$abbey};
+    --input-color: #{$tuna};
+    --brand-color: #{$turquoise};
+    --brand-light-color: #{$riptide};
 }

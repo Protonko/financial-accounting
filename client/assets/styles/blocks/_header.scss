@@ -1,7 +1,7 @@
 .header {
     @include padding-vertical(10px);
 
-    height: rem(72px);
+    height: rem($header-height);
     transition-duration: $transition-duration-long;
     background-color: var(--background-color);
 

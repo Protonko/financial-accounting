@@ -1,16 +1,18 @@
-import {NextPage} from 'next'
-import Router, {useRouter} from 'next/router'
-import {Button} from '@mui/material'
+import type {NextPage} from 'next'
 import {AuthLayout} from '@layouts/AuthLayout'
+import {useLocalization} from '@hooks/useLocalization'
+import {AuthForm} from '@components/AuthForm'
 
 const Auth: NextPage = () => {
-  const router = useRouter()
+  const {getLocalizedValue} = useLocalization()
 
-  console.log(router)
   return (
     <AuthLayout>
-      <h1>Auth</h1>
-      <Button onClick={() => Router.push('/')}>Go back</Button>
+      <div className="auth">
+        <h1 className="auth__title">{getLocalizedValue('login')}</h1>
+
+        <AuthForm />
+      </div>
     </AuthLayout>
   )
 }
