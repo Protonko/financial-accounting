@@ -12,4 +12,7 @@ export const localizationEn: Localization = {
   signUp: 'Sign up',
   dontHaveAnAccountQuestion: 'Don`t have an account?',
   alreadyHaveAnAccountQuestion: 'Already have an account?',
+  incorrectEmailAddress: 'Incorrect email address',
+  fieldIsRequired: 'Field is required',
+  minimumPasswordLength: 'Minimum password length is {} characters',
 }

@@ -13,8 +13,6 @@ const Auth: NextPage = () => {
         <h1 className="auth__title">{getLocalizedValue('registration')}</h1>
 
         <AuthForm
-          loginFieldName={getLocalizedValue('login')}
-          passwordFieldName={getLocalizedValue('password')}
           buttonName={getLocalizedValue('signUp')}
           onSubmit={() => {}}
         />

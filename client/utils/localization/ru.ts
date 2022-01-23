@@ -12,4 +12,7 @@ export const localizationRu: Localization = {
   signUp: 'Зарегистрироваться',
   dontHaveAnAccountQuestion: 'Нет аккаунта?',
   alreadyHaveAnAccountQuestion: 'Уже есть аккаунт?',
+  incorrectEmailAddress: 'Неверный формат email',
+  fieldIsRequired: 'Поле не должно быть пустым',
+  minimumPasswordLength: 'Минимальная длина пароля - {} символов',
 }

@@ -1,21 +1,38 @@
 import type {FC} from 'react'
+import * as yup from 'yup'
+import {useFormik} from 'formik'
 import {ButtonUnstyled, FilledInput, FormControlLabel} from '@mui/material'
+import {useLocalization} from '@hooks/useLocalization'
+import {insertValueToString} from '@utils/insertValueToString'
 
 interface Props {
-  loginFieldName: string,
-  passwordFieldName: string,
   buttonName: string,
   onSubmit: () => void,
-  renderAdditionalLink?: () => void,
 }
 
 export const AuthForm: FC<Props> = ({
-  loginFieldName,
-  passwordFieldName,
   buttonName,
   onSubmit,
-  renderAdditionalLink,
 }) => {
+  const {getLocalizedValue} = useLocalization()
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: yup.object({
+      email: yup
+        .string()
+        .email(getLocalizedValue('incorrectEmailAddress'))
+        .required(getLocalizedValue('fieldIsRequired')),
+      password: yup
+        .string()
+        .min(6, insertValueToString(getLocalizedValue('minimumPasswordLength'), '6'))
+        .required(getLocalizedValue('fieldIsRequired')),
+    }),
+    onSubmit: ({email, password}) => onSubmit(),
+  })
+
   return (
     <form className="auth-form" onSubmit={onSubmit}>
       <FormControlLabel
@@ -23,12 +40,13 @@ export const AuthForm: FC<Props> = ({
         control={
           <FilledInput
             className="auth-form__input input"
-            placeholder={loginFieldName}
+            placeholder={getLocalizedValue('email')}
             disableUnderline={true}
+            value={formik.values['email']}
           />
         }
         labelPlacement="top"
-        label={loginFieldName}
+        label={getLocalizedValue('email')}
       />
 
       <FormControlLabel
@@ -37,12 +55,13 @@ export const AuthForm: FC<Props> = ({
           <FilledInput
             className="auth-form__input input"
             type="password"
-            placeholder={passwordFieldName}
+            placeholder={getLocalizedValue('password')}
             disableUnderline={true}
+            value={formik.values['password']}
           />
         }
         labelPlacement="top"
-        label={passwordFieldName}
+        label={getLocalizedValue('password')}
       />
 
       <ButtonUnstyled
@@ -51,10 +70,6 @@ export const AuthForm: FC<Props> = ({
       >
         {buttonName}
       </ButtonUnstyled>
-
-      <div className="auth-form__link">
-
-      </div>
     </form>
   )
 }
