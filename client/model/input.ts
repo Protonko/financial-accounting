@@ -1,0 +1,10 @@
+export type InputTypes =
+  | 'number'
+  | 'card'
+  | 'email'
+  | 'file'
+  | 'hidden'
+  | 'money'
+  | 'password'
+  | 'tel'
+  | 'text'

@@ -1,19 +1,21 @@
-import type {FC} from 'react'
+import {useState, ChangeEvent, FC} from 'react'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
-import {ButtonUnstyled, FilledInput, FormControlLabel} from '@mui/material'
+import {ButtonUnstyled} from '@mui/material'
 import {useLocalization} from '@hooks/useLocalization'
 import {insertValueToString} from '@utils/insertValueToString'
+import {Input} from '@components/Input'
 
 interface Props {
   buttonName: string,
-  onSubmit: () => void,
+  onSubmit: (email: string, password: string) => void,
 }
 
 export const AuthForm: FC<Props> = ({
   buttonName,
   onSubmit,
 }) => {
+  const [errorMessage, setErrorMessage] = useState<string>()
   const {getLocalizedValue} = useLocalization()
   const formik = useFormik({
     initialValues: {
@@ -30,38 +32,44 @@ export const AuthForm: FC<Props> = ({
         .min(6, insertValueToString(getLocalizedValue('minimumPasswordLength'), '6'))
         .required(getLocalizedValue('fieldIsRequired')),
     }),
-    onSubmit: ({email, password}) => onSubmit(),
+    onSubmit: ({email, password}) => onSubmit(email, password),
   })
 
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (errorMessage) {
+      setErrorMessage(undefined)
+    }
+
+    formik.handleChange(event)
+  }
+
   return (
-    <form className="auth-form" onSubmit={onSubmit}>
-      <FormControlLabel
-        className="auth-form__label"
-        control={
-          <FilledInput
-            className="auth-form__input input"
-            placeholder={getLocalizedValue('email')}
-            disableUnderline={true}
-            value={formik.values['email']}
-          />
-        }
-        labelPlacement="top"
+    <form className="auth-form" onSubmit={formik.handleSubmit}>
+      <Input
+        className="auth-form__input"
+        name="email"
         label={getLocalizedValue('email')}
+        placeholder={getLocalizedValue('email')}
+        value={formik.values['email']}
+        onChange={onChange}
+        error={
+          ((formik.touched['email'] && formik.errors['email']) || errorMessage) ??
+          undefined
+        }
       />
 
-      <FormControlLabel
-        className="auth-form__label"
-        control={
-          <FilledInput
-            className="auth-form__input input"
-            type="password"
-            placeholder={getLocalizedValue('password')}
-            disableUnderline={true}
-            value={formik.values['password']}
-          />
-        }
-        labelPlacement="top"
+      <Input
+        className="auth-form__input"
+        name="password"
+        type="password"
         label={getLocalizedValue('password')}
+        placeholder={getLocalizedValue('password')}
+        value={formik.values['password']}
+        onChange={onChange}
+        error={
+          ((formik.touched['password'] && formik.errors['password']) || errorMessage) ??
+          undefined
+        }
       />
 
       <ButtonUnstyled
