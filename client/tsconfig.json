@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "experimentalDecorators": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,7 +24,9 @@
       "@model/*": ["model/*"],
       "@utils/*": ["utils/*"],
       "@hooks/*": ["hooks/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["store/*"],
+      "@services/*": ["services/*"],
+      "@config/*": ["config/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
