@@ -1,9 +1,9 @@
 import type {FC} from 'react'
+import Link from 'next/link'
+import {useRouter} from 'next/router'
 import {APP_LANG} from '@utils/localization/localization'
 import {ThemeToggleButton} from '@components/ThemeToggleButton'
 import {useLocalization} from '@hooks/useLocalization'
-import Link from 'next/link'
-import {useRouter} from 'next/router'
 
 export const Options: FC = () => {
   const {asPath} = useRouter()

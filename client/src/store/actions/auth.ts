@@ -1,6 +1,5 @@
 import type {AnyAction} from 'redux'
-import type {AuthBody} from '@model/auth'
-import {UserData} from '@model/auth'
+import type {AuthBody, UserData} from '@model/auth'
 
 export enum AUTH_ACTION_TYPES {
   LOGIN = 'LOGIN',

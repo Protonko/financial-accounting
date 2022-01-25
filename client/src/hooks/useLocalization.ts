@@ -1,6 +1,6 @@
+import {useRouter} from 'next/router'
 import {APP_LANG, LocalizationKeys} from '@utils/localization/localization'
 import {getLocalizedValue} from '@utils/localization/getLocalizedValue'
-import {useRouter} from 'next/router'
 
 export const useLocalization = () => {
   const {locale, defaultLocale} = useRouter()
