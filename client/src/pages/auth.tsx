@@ -1,11 +1,18 @@
 import type {NextPage} from 'next'
 import Link from 'next/Link'
+import {useDispatch} from 'react-redux'
+import {login} from '@store/actions/auth'
 import {AuthLayout} from '@layouts/AuthLayout'
 import {useLocalization} from '@hooks/useLocalization'
 import {AuthForm} from '@components/AuthForm'
 
 const Auth: NextPage = () => {
+  const dispatch = useDispatch()
   const {getLocalizedValue} = useLocalization()
+
+  const onSubmit = (email: string, password: string) => {
+    dispatch(login({email, password}))
+  }
 
   return (
     <AuthLayout>
@@ -14,7 +21,7 @@ const Auth: NextPage = () => {
 
         <AuthForm
           buttonName={getLocalizedValue('logIn')}
-          onSubmit={() => {}}
+          onSubmit={onSubmit}
         />
 
         <span className="auth__additional-text">
