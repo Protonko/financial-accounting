@@ -3,6 +3,6 @@ import {ApiService} from '@services/ApiService'
 
 export class UserApiService {
   static login(body: AuthBody) {
-    return ApiService.post<AuthBody, UserData>('/user/login', body)
+    return ApiService.post<AuthBody, UserData>('auth/login', body)
   }
 }

@@ -2,7 +2,7 @@ import {ajax, AjaxResponse, AjaxConfig} from 'rxjs/ajax'
 import {map, Observable, throwError} from 'rxjs'
 
 export class ApiService {
-  private static baseUrl = 'http://localhost:3001/' // TODO: move to .env
+  private static baseUrl = 'http://localhost:3000/' // TODO: move to .env
 
   private static createAjaxConfig<T>(path: string, method: string, body?: T): AjaxConfig {
     const url = new URL(ApiService.baseUrl + path).toString()
@@ -11,16 +11,15 @@ export class ApiService {
       url,
       method,
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      withCredentials: true,
       body,
     }
   }
 
   private static handleResult<T>(result: Observable<AjaxResponse<T>>) {
     return result.pipe(
-      map(response => response.response),
+      map(response => response),
     )
   }
 
@@ -35,6 +34,7 @@ export class ApiService {
 
   static post<T, U>(url: string, body: T) {
     try {
+      console.log(ApiService.createAjaxConfig(url, 'POST', body))
       const result = ajax<U>(ApiService.createAjaxConfig(url, 'POST', body))
       return ApiService.handleResult(result)
     } catch (error) {
