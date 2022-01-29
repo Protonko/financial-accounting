@@ -1,6 +1,6 @@
 import {ajax, AjaxResponse, AjaxConfig} from 'rxjs/ajax'
 import {map, Observable, throwError} from 'rxjs'
-import {REST_METHOD} from '@model/rest-method'
+import {REST_METHOD} from 'model'
 
 export class ApiService {
   private static baseUrl = 'http://localhost:3000/' // TODO: move to .env

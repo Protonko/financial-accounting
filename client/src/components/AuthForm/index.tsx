@@ -2,9 +2,9 @@ import {useState, ChangeEvent, FC} from 'react'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
 import {ButtonUnstyled} from '@mui/material'
-import {useLocalization} from '@hooks/useLocalization'
-import {insertValueToString} from '@utils/insertValueToString'
-import {Input} from '@components/Input'
+import {useLocalization} from 'hooks'
+import {insertValueToString} from 'utils'
+import {Input} from 'components'
 
 interface Props {
   buttonName: string,

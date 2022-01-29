@@ -1,7 +1,7 @@
 import {useTheme} from 'next-themes'
 import Sun from '@assets/icons/sun.svg'
 import Crescent from '@assets/icons/crescent.svg'
-import {APP_THEME} from '@model/app-settings'
+import {APP_THEME} from 'model'
 
 export const ThemeToggleButton = () => {
   const {theme, setTheme} = useTheme()

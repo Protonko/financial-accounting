@@ -1,5 +1,5 @@
 import type {FC, ChangeEvent} from 'react'
-import type {InputTypes} from '@model/input'
+import type {InputTypes} from 'model'
 import classNames from 'classnames'
 import {FilledInput, FormControlLabel} from '@mui/material'
 

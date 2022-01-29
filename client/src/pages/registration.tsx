@@ -1,8 +1,8 @@
 import type {NextPage} from 'next'
-import {AuthLayout} from '@layouts/AuthLayout'
-import {useLocalization} from '@hooks/useLocalization'
-import {AuthForm} from '@components/AuthForm'
 import Link from 'next/link'
+import {AuthLayout} from 'layouts'
+import {useLocalization} from 'hooks'
+import {AuthForm} from 'components'
 
 const Auth: NextPage = () => {
   const {getLocalizedValue} = useLocalization()

@@ -1,7 +1,7 @@
 import {Link} from '@mui/material'
 import logo from '@assets/icons/logo.png'
-import {Options} from '@components/Options'
-import {useLocalization} from '@hooks/useLocalization'
+import {Options} from 'components'
+import {useLocalization} from 'hooks'
 
 export const Header = () => {
   const {getLocalizedValue} = useLocalization()

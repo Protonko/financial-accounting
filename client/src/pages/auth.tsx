@@ -1,10 +1,10 @@
 import type {NextPage} from 'next'
 import Link from 'next/Link'
 import {useDispatch} from 'react-redux'
-import {login} from '@store/actions/auth'
-import {AuthLayout} from '@layouts/AuthLayout'
-import {useLocalization} from '@hooks/useLocalization'
-import {AuthForm} from '@components/AuthForm'
+import {login} from 'store/actions'
+import {AuthLayout} from 'layouts'
+import {useLocalization} from 'hooks'
+import {AuthForm} from 'components'
 
 const Auth: NextPage = () => {
   const dispatch = useDispatch()
