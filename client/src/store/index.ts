@@ -1,6 +1,7 @@
-import {createStore, applyMiddleware, compose} from 'redux'
-import {createEpicMiddleware} from 'redux-observable';
-import {rootReducer} from './reducers'
+import {createStore, applyMiddleware, compose, Store} from 'redux'
+import {createWrapper} from 'next-redux-wrapper'
+import {createEpicMiddleware} from 'redux-observable'
+import {reducer, RootState} from './reducers'
 import {rootEpic} from '@store/epic'
 
 declare global {
@@ -9,17 +10,23 @@ declare global {
   }
 }
 
-const epicMiddleware = createEpicMiddleware();
-let composeEnhancers = compose
+const makeStore = () => {
+  let composeEnhancers = compose
+  const epicMiddleware = createEpicMiddleware()
 
-if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
-  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+  if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  }
+
+  const store = createStore(
+    reducer,
+    {},
+    compose(applyMiddleware(epicMiddleware), composeEnhancers()),
+  )
+
+  epicMiddleware.run(rootEpic)
+
+  return store
 }
 
-export const store = createStore(
-  rootReducer,
-  {},
-  compose(applyMiddleware(epicMiddleware), composeEnhancers()),
-)
-
-epicMiddleware.run(rootEpic);
+export const storeWrapper = createWrapper<Store<RootState, any>>(makeStore, {debug: true})

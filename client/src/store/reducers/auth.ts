@@ -1,4 +1,4 @@
-import {AllAuthActions, AUTH_ACTION_TYPES} from '@store/actions/auth'
+import {AllAuthActions, AUTH_ACTION_TYPES} from 'store/actions/model'
 
 export interface InitialState {
   accessToken: null | string,

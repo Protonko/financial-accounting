@@ -3,30 +3,23 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '@assets/styles/Home.module.css'
+import {storeWrapper} from 'store'
+import {setUserDataAction} from 'store/actions'
 
 interface Props {
   data: any
 }
 
-export const getStaticProps = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-  const data = await response.json()
-
-  if (!data) {
-    return {
-      notFound: true
-    }
-  }
+export const getStaticProps = storeWrapper.getStaticProps((store) => async ({preview}) => {
+  store.dispatch(setUserDataAction({email: '123', accessToken: '4242'}))
 
   return {
-    props: {
-      data,
-    }
+    props: {}
   }
-}
+})
 
-const Home: NextPage<Props> = ({data}) => {
-  console.log(data)
+const Home: NextPage<Props> = (props) => {
+  console.log(props)
   return (
     <div className={styles.container}>
       <Head>

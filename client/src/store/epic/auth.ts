@@ -1,14 +1,11 @@
 import {combineEpics, Epic, ofType} from 'redux-observable'
 import {Observable, switchMap, of, catchError} from 'rxjs'
 import {
-  AUTH_ACTION_TYPES,
   errorLoginAction,
-  setUserDataAction,
-  LoginAction,
-  ErrorLoginAction,
-  SetUserDataAction
+  setUserDataAction
 } from '@store/actions/auth'
 import {UserApiService} from '@services/UserApiService'
+import {AUTH_ACTION_TYPES, ErrorLoginAction, LoginAction, SetUserDataAction} from '@store/actions/model/auth'
 
 export class AuthEpicFactory {
   constructor() {}
