@@ -18,7 +18,8 @@ const reducers = (
     case AUTH_ACTION_TYPES.SET_USER_DATA:
       return {
         ...state,
-        ...action.payload,
+        email: action.payload.email,
+        accessToken: action.payload.access_token,
       }
 
     default:

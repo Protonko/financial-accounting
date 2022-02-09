@@ -1,5 +1,6 @@
 import {combineEpics, Epic, ofType} from 'redux-observable'
 import {Observable, switchMap, of, catchError} from 'rxjs'
+import {setCookie} from 'nookies'
 import {
   errorLoginAction,
   setUserDataAction
@@ -20,7 +21,10 @@ export class AuthEpicFactory {
       switchMap(action =>
         UserApiService.login(action.payload)
           .pipe(
-            switchMap(data => of(setUserDataAction(data))),
+            switchMap(data => {
+              setCookie(null, 'token', data.access_token, {path: '/', maxAge: 2592000})
+              return of(setUserDataAction(data))
+            }),
             catchError(error => of(errorLoginAction(error.message)))
           )
       )

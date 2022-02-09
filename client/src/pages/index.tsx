@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
+import {useEffect} from 'react'
 import styles from '@assets/styles/Home.module.css'
 import {storeWrapper} from 'store'
 import {setUserDataAction} from 'store/actions'
@@ -10,16 +12,23 @@ interface Props {
   data: any
 }
 
-export const getStaticProps = storeWrapper.getStaticProps((store) => async ({preview}) => {
-  store.dispatch(setUserDataAction({email: '123', accessToken: '4242'}))
+export const getServerSideProps = storeWrapper.getServerSideProps((store) => async ({preview}) => {
+  // store.dispatch(setUserDataAction({email: '123', accessToken: '4242'}))
 
+  console.log(store)
   return {
-    props: {}
+    props: store.getState()
   }
 })
 
 const Home: NextPage<Props> = (props) => {
-  console.log(props)
+  console.log('PROPS', props)
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/auth')
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
