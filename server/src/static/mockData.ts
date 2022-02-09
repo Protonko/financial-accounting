@@ -55,4 +55,6 @@ export const REQUEST_WITHOUT_USER: Express.Request = {
 export const JWT_PAYLOAD: JwtPayload = {
   sub: 1,
   email: 'foo@bar.baz',
+  exp: 1644458335,
+  iat: 1644422335,
 }
