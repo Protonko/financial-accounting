@@ -2,39 +2,20 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import {useRouter} from 'next/router'
-import {useEffect} from 'react'
 import styles from '@assets/styles/Home.module.css'
 import {storeWrapper} from 'store'
-import {UserApiService} from '@services/UserApiService'
-import {firstValueFrom} from 'rxjs'
+import {getUserInfoData} from '@store/actions'
+import {END} from 'redux-saga'
 
-interface Props {
-  data: any
-}
-
-export const getServerSideProps = storeWrapper.getServerSideProps((store) => async () => {
-  const data = await firstValueFrom(UserApiService.getUserInfo())
-  console.log('DDD', data)
-
-  setTimeout(() => {
-    console.log(store.getState())
-  }, 2000)
-
-
-  return {
-    props: {}
-  }
+export const getServerSideProps = storeWrapper.getServerSideProps(async ({ store }) => {
+  console.log("START", store.getState())
+  store.dispatch(getUserInfoData());
+  store.dispatch(END);
+  await (store as any).sagaTask.toPromise();
+  console.log("END", store.getState())
 })
 
-const Home: NextPage<Props> = (props) => {
-  console.log('PROPS', props)
-  const router = useRouter()
-
-  useEffect(() => {
-    router.push('/auth')
-  }, [])
-
+const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>

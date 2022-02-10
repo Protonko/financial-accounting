@@ -1,8 +1,12 @@
 import {createStore, applyMiddleware, compose, Store} from 'redux'
+import createSagaMiddleware, {Task} from 'redux-saga';
 import {createWrapper} from 'next-redux-wrapper'
-import {createEpicMiddleware} from 'redux-observable'
+import {rootWatcher} from '@store/sagas'
 import {rootReducer, RootState} from './reducers'
-import {rootEpic} from '@store/epic'
+
+export interface SagaStore extends Store {
+  sagaTask?: Task;
+}
 
 declare global {
   interface Window {
@@ -12,21 +16,23 @@ declare global {
 
 const makeStore = () => {
   let composeEnhancers = compose
-  const epicMiddleware = createEpicMiddleware()
+  const sagaMiddleware = createSagaMiddleware();
 
   if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   }
 
-  const store = createStore(
+
+
+  const store: SagaStore = createStore(
     rootReducer,
     {},
-    compose(applyMiddleware(epicMiddleware), composeEnhancers()),
+    compose(applyMiddleware(sagaMiddleware), composeEnhancers()),
   )
 
-  epicMiddleware.run(rootEpic)
+  store.sagaTask = sagaMiddleware.run(rootWatcher);
 
   return store
 }
 
-export const storeWrapper = createWrapper<Store<RootState, any>>(makeStore, {debug: true})
+export const storeWrapper = createWrapper<Store<RootState>>(makeStore, {debug: true})

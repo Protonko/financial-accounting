@@ -2,6 +2,7 @@ import {Link} from '@mui/material'
 import logo from '@assets/icons/logo.png'
 import {Options} from 'components'
 import {useLocalization} from 'hooks'
+import {useEffect} from 'react'
 
 export const Header = () => {
   const {getLocalizedValue} = useLocalization()

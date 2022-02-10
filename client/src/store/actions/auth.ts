@@ -19,15 +19,15 @@ export const signUp = (payload: AuthBody): SignUpAction => ({
 })
 
 export const getUserInfoData = (): GetUserInfoAction => ({
-  type: AUTH_ACTION_TYPES.GET_SESSION_INFO,
+  type: AUTH_ACTION_TYPES.GET_USER_INFO,
 })
 
-export const setUserDataAction = (payload: UserData): SetUserDataAction => ({
+export const setUserData = (payload: UserData): SetUserDataAction => ({
   type: AUTH_ACTION_TYPES.SET_USER_DATA,
   payload,
 })
 
-export const errorLoginAction = (payload: string): ErrorLoginAction => ({
+export const errorLogin = (payload: string): ErrorLoginAction => ({
   type: AUTH_ACTION_TYPES.ERROR_LOGIN,
   payload,
 })

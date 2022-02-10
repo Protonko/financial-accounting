@@ -20,8 +20,8 @@ const reducers = (
   switch (action.type) {
     case HYDRATE:
       return {
-        ...state
-        // ...action.payload.auth,
+        ...state,
+        ...action.payload.auth,
       }
 
     case AUTH_ACTION_TYPES.SET_USER_DATA:

@@ -5,7 +5,7 @@ import type {AuthBody, UserData} from '@model/auth'
 export enum AUTH_ACTION_TYPES {
   LOGIN = 'LOGIN',
   SIGN_UP = 'SIGN_UP',
-  GET_SESSION_INFO = 'GET_SESSION_INFO',
+  GET_USER_INFO = 'GET_USER_INFO',
   SET_USER_DATA = 'SET_USER_DATA',
   ERROR_LOGIN = 'ERROR_LOGIN',
 }
@@ -21,7 +21,7 @@ export interface SignUpAction extends AnyAction {
 }
 
 export interface GetUserInfoAction extends AnyAction {
-  type: AUTH_ACTION_TYPES.GET_SESSION_INFO,
+  type: AUTH_ACTION_TYPES.GET_USER_INFO,
 }
 
 export interface SetUserDataAction extends AnyAction {
