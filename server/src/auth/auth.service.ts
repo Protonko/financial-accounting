@@ -33,10 +33,7 @@ export class AuthService {
 
     response.cookie('access_token', token, {httpOnly: true});
 
-    return {
-      ...userData,
-      access_token: this.jwtService.sign(payload),
-    }
+    return userData
   }
 
   async getInfo(token: string) {

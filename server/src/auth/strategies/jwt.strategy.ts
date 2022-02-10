@@ -1,4 +1,4 @@
-import type {Request} from 'express'
+import type {Request, Response} from 'express'
 import type {JwtPayload} from '../../model/JwtPayload'
 import {Strategy} from 'passport-jwt'
 import {PassportStrategy} from '@nestjs/passport'

@@ -3,6 +3,7 @@ import {User} from '../user/entities/user.entity'
 import {UserWithoutPassword} from '../model/UserWithoutPassword'
 import {LoginUserData} from '../model/LoginUserData'
 import {JwtPayload} from '../model/JwtPayload'
+import {Response} from 'express'
 
 export const CREATE_USER_DTO: CreateUserDto = {
   email: 'foo@bar.baz',
@@ -24,7 +25,6 @@ export const USER: User = {
 }
 
 export const LOGIN_USER_DATA: LoginUserData = {
-  access_token: 'token.123',
   email: 'foo@bar.baz',
   fullName: 'Foo Bar Baz',
   id: 1,
