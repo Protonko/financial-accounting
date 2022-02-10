@@ -6,18 +6,24 @@ import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import styles from '@assets/styles/Home.module.css'
 import {storeWrapper} from 'store'
-import {setUserDataAction} from 'store/actions'
+import {UserApiService} from '@services/UserApiService'
+import {firstValueFrom} from 'rxjs'
 
 interface Props {
   data: any
 }
 
-export const getServerSideProps = storeWrapper.getServerSideProps((store) => async ({preview}) => {
-  // store.dispatch(setUserDataAction({email: '123', accessToken: '4242'}))
+export const getServerSideProps = storeWrapper.getServerSideProps((store) => async () => {
+  const data = await firstValueFrom(UserApiService.getUserInfo())
+  console.log('DDD', data)
 
-  console.log(store)
+  setTimeout(() => {
+    console.log(store.getState())
+  }, 2000)
+
+
   return {
-    props: store.getState()
+    props: {}
   }
 })
 

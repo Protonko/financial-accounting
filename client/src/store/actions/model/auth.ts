@@ -1,9 +1,11 @@
-import {AnyAction} from 'redux'
-import {AuthBody, UserData} from '@model/auth'
+import type {AnyAction} from 'redux'
+import type {HydrateAction} from '@store/actions/model/hydrate'
+import type {AuthBody, UserData} from '@model/auth'
 
 export enum AUTH_ACTION_TYPES {
   LOGIN = 'LOGIN',
   SIGN_UP = 'SIGN_UP',
+  GET_SESSION_INFO = 'GET_SESSION_INFO',
   SET_USER_DATA = 'SET_USER_DATA',
   ERROR_LOGIN = 'ERROR_LOGIN',
 }
@@ -16,6 +18,10 @@ export interface LoginAction extends AnyAction {
 export interface SignUpAction extends AnyAction {
   type: AUTH_ACTION_TYPES.SIGN_UP
   payload: AuthBody
+}
+
+export interface GetUserInfoAction extends AnyAction {
+  type: AUTH_ACTION_TYPES.GET_SESSION_INFO,
 }
 
 export interface SetUserDataAction extends AnyAction {
@@ -33,3 +39,5 @@ export type AllAuthActions =
   | SignUpAction
   | SetUserDataAction
   | ErrorLoginAction
+  | HydrateAction
+

@@ -5,17 +5,21 @@ import {REST_METHOD} from 'model'
 export class ApiService {
   private static baseUrl = 'http://localhost:3000/' // TODO: move to .env
 
-  private static createAjaxConfig<T>(path: string, method: string, body?: T): AjaxConfig {
+  private static async fetchData<T extends BodyInit>(path: string, method: string, body?: T) {
     const url = new URL(ApiService.baseUrl + path).toString()
-
-    return {
-      url,
+    const options: RequestInit = {
       method,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3001', // TODO: move to .env
       },
+      credentials: 'include',
       body,
     }
+
+    const response = await fetch(url, options)
+
+    return response.json()
   }
 
   private static handleResult<T>(result: Observable<AjaxResponse<T>>) {
@@ -24,9 +28,10 @@ export class ApiService {
     )
   }
 
-  static get<T>(url: string) {
+  static async get<T>(url: string) {
     try {
-      const result = ajax<T>(ApiService.createAjaxConfig(url, REST_METHOD.GET))
+      const response = await ApiService.fetchData(url, 'GET')
+      const d = await result.json()
       return ApiService.handleResult(result)
     } catch (error) {
       return throwError(error)
@@ -35,7 +40,7 @@ export class ApiService {
 
   static post<T, U>(url: string, body: T) {
     try {
-      const result = ajax<U>(ApiService.createAjaxConfig(url, REST_METHOD.POST, body))
+      const result = ajax<U>(ApiService.fetchData(url, REST_METHOD.POST, body))
       return ApiService.handleResult(result)
     } catch (error) {
       console.log(error)
@@ -45,7 +50,7 @@ export class ApiService {
 
   static put<T, U>(url: string, body: T) {
     try {
-      const result = ajax<U>(ApiService.createAjaxConfig(url, REST_METHOD.PUT, body))
+      const result = ajax<U>(ApiService.fetchData(url, REST_METHOD.PUT, body))
       return ApiService.handleResult(result)
     } catch (error) {
       return throwError(error)
@@ -54,7 +59,7 @@ export class ApiService {
 
   static patch<T, U>(url: string, body: T) {
     try {
-      const result = ajax<U>(ApiService.createAjaxConfig(url, REST_METHOD.PATCH, body))
+      const result = ajax<U>(ApiService.fetchData(url, REST_METHOD.PATCH, body))
       return ApiService.handleResult(result)
     } catch (error) {
       return throwError(error)
@@ -63,7 +68,7 @@ export class ApiService {
 
   static delete<T>(url: string) {
     try {
-      const result = ajax<T>(ApiService.createAjaxConfig(url, REST_METHOD.DELETE))
+      const result = ajax<T>(ApiService.fetchData(url, REST_METHOD.DELETE))
       return ApiService.handleResult(result)
     } catch (error) {
       return throwError(error)

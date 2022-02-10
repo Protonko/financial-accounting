@@ -1,7 +1,7 @@
 import {createStore, applyMiddleware, compose, Store} from 'redux'
 import {createWrapper} from 'next-redux-wrapper'
 import {createEpicMiddleware} from 'redux-observable'
-import {reducer, RootState} from './reducers'
+import {rootReducer, RootState} from './reducers'
 import {rootEpic} from '@store/epic'
 
 declare global {
@@ -19,7 +19,7 @@ const makeStore = () => {
   }
 
   const store = createStore(
-    reducer,
+    rootReducer,
     {},
     compose(applyMiddleware(epicMiddleware), composeEnhancers()),
   )

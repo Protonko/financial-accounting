@@ -2,6 +2,7 @@ import type {AuthBody, UserData} from 'model'
 import {
   AUTH_ACTION_TYPES,
   ErrorLoginAction,
+  GetUserInfoAction,
   LoginAction,
   SetUserDataAction,
   SignUpAction
@@ -15,6 +16,10 @@ export const login = (payload: AuthBody): LoginAction => ({
 export const signUp = (payload: AuthBody): SignUpAction => ({
   type: AUTH_ACTION_TYPES.SIGN_UP,
   payload,
+})
+
+export const getUserInfoData = (): GetUserInfoAction => ({
+  type: AUTH_ACTION_TYPES.GET_SESSION_INFO,
 })
 
 export const setUserDataAction = (payload: UserData): SetUserDataAction => ({
