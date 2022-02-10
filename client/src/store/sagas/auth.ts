@@ -1,7 +1,7 @@
 import type {SagaIterator} from 'redux-saga'
 import type {UserData} from '@model/auth'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
-import {AUTH_ACTION_TYPES, LoginAction} from '@store/actions/model'
+import {AUTH_ACTION_TYPES, GetUserInfoAction, LoginAction} from '@store/actions/model'
 import {errorLogin, setUserData} from '@store/actions'
 import {UserApiService} from '@services/UserApiService'
 
@@ -28,10 +28,12 @@ export class AuthSagaFactory {
     yield takeEvery(AUTH_ACTION_TYPES.LOGIN, AuthSagaFactory.loginWorker)
   }
 
-  private static *getUserInfoWorker(): SagaIterator | Generator {
+  private static *getUserInfoWorker({payload}: GetUserInfoAction): SagaIterator | Generator {
     try {
+      const cookie = payload ? {'cookie': payload} : undefined
       const userData: UserData = yield call(
         UserApiService.getUserInfo,
+        cookie
       )
       yield put(setUserData(userData))
     } catch (error) {

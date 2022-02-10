@@ -6,12 +6,15 @@ import styles from '@assets/styles/Home.module.css'
 import {storeWrapper} from 'store'
 import {getUserInfoData} from '@store/actions'
 import {END} from 'redux-saga'
+import {CookieHandlerSSR} from '@utils/CookieHandlerSSR'
 
-export const getServerSideProps = storeWrapper.getServerSideProps(async ({ store }) => {
-  console.log("START", store.getState())
-  store.dispatch(getUserInfoData());
-  store.dispatch(END);
-  await (store as any).sagaTask.toPromise();
+export const getServerSideProps = storeWrapper.getServerSideProps(async ({ store, req, res }) => {
+  const cookieHandler = new CookieHandlerSSR(req)
+  const accessToken = cookieHandler.setCookie('access_token', cookieHandler.getCookie('access_token'), {HttpOnly: true})
+
+  store.dispatch(getUserInfoData(accessToken))
+  store.dispatch(END)
+  await (store as any).sagaTask.toPromise()
   console.log("END", store.getState())
 })
 

@@ -18,8 +18,9 @@ export const signUp = (payload: AuthBody): SignUpAction => ({
   payload,
 })
 
-export const getUserInfoData = (): GetUserInfoAction => ({
+export const getUserInfoData = (payload?: string): GetUserInfoAction => ({
   type: AUTH_ACTION_TYPES.GET_USER_INFO,
+  payload,
 })
 
 export const setUserData = (payload: UserData): SetUserDataAction => ({

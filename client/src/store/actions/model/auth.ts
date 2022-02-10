@@ -22,6 +22,7 @@ export interface SignUpAction extends AnyAction {
 
 export interface GetUserInfoAction extends AnyAction {
   type: AUTH_ACTION_TYPES.GET_USER_INFO,
+  payload?: string,
 }
 
 export interface SetUserDataAction extends AnyAction {

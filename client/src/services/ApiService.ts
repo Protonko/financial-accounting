@@ -24,8 +24,8 @@ export class ApiService {
     })
   }
 
-  static async get<T>(url: string) {
-    return ApiService.handleResult(ApiService.api.get<T>(url))
+  static async get<T>(url: string, extraHeaders?: Record<string, string>) {
+    return ApiService.handleResult(ApiService.api.get<T>(url, {headers: extraHeaders}))
   }
 
   static post<T, U>(url: string, body: T) {
