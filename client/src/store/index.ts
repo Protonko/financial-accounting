@@ -22,8 +22,6 @@ const makeStore = () => {
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   }
 
-
-
   const store: SagaStore = createStore(
     rootReducer,
     {},

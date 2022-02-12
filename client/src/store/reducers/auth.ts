@@ -2,19 +2,12 @@ import {AllAuthActions, AUTH_ACTION_TYPES} from 'store/actions/model'
 import {HYDRATE} from 'next-redux-wrapper'
 
 export interface InitialState {
-  id: null | string,
-  email: null | string,
-  fullName: null | string,
+  id?: null | string,
+  email?: null | string,
 }
 
-export const initialState = {
-  id: null,
-  email: null,
-  fullName: null,
-} as InitialState
-
 const reducers = (
-  state = initialState,
+  state= {},
   action: AllAuthActions,
 ): InitialState => {
   switch (action.type) {
@@ -31,7 +24,13 @@ const reducers = (
       }
 
     case AUTH_ACTION_TYPES.ERROR_LOGIN:
-      return initialState
+      return {
+        id: null,
+        email: null,
+      }
+
+    case AUTH_ACTION_TYPES.RESET_AUTH_DATA:
+      return {}
 
     default:
       return state

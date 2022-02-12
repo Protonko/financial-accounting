@@ -14,11 +14,15 @@ export class ApiService {
 
   private static handleResult = <T>(
     promise: Promise<AxiosResponse<T>>,
-  ): Promise<T | AxiosResponse> => {
+  ): Promise<T | string> => {
     return new Promise((resolve, reject) => {
       promise
-        .then((response) => { // TODO: 401 / 403
-          resolve(response.data)
+        .then((response) => {
+          if (response.status >= 200 && response.status <= 300) {
+            resolve(response.data)
+          } else {
+            reject(response.statusText)
+          }
         })
         .catch((error: AxiosError) => reject(error.response))
     })

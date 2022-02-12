@@ -4,6 +4,7 @@ import {
   ErrorLoginAction,
   GetUserInfoAction,
   LoginAction,
+  ResetAuthDataAction,
   SetUserDataAction,
   SignUpAction
 } from './model'
@@ -18,7 +19,7 @@ export const signUp = (payload: AuthBody): SignUpAction => ({
   payload,
 })
 
-export const getUserInfoData = (payload?: string): GetUserInfoAction => ({
+export const getUserInfo = (payload?: string): GetUserInfoAction => ({
   type: AUTH_ACTION_TYPES.GET_USER_INFO,
   payload,
 })
@@ -26,6 +27,10 @@ export const getUserInfoData = (payload?: string): GetUserInfoAction => ({
 export const setUserData = (payload: UserData): SetUserDataAction => ({
   type: AUTH_ACTION_TYPES.SET_USER_DATA,
   payload,
+})
+
+export const resetAuthData = (): ResetAuthDataAction => ({
+  type: AUTH_ACTION_TYPES.RESET_AUTH_DATA,
 })
 
 export const errorLogin = (payload: string): ErrorLoginAction => ({

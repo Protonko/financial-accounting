@@ -1,6 +1,5 @@
 import type {NextPage} from 'next'
 import Link from 'next/Link'
-import {login} from 'store/actions'
 import {AuthLayout} from 'layouts'
 import {useLocalization, useActions} from 'hooks'
 import {AuthForm} from 'components'

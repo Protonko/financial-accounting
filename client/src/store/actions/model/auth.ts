@@ -8,6 +8,7 @@ export enum AUTH_ACTION_TYPES {
   GET_USER_INFO = 'GET_USER_INFO',
   SET_USER_DATA = 'SET_USER_DATA',
   ERROR_LOGIN = 'ERROR_LOGIN',
+  RESET_AUTH_DATA = 'RESET_AUTH_DATA',
 }
 
 export interface LoginAction extends AnyAction {
@@ -35,10 +36,15 @@ export interface ErrorLoginAction extends AnyAction {
   payload: string
 }
 
+export interface ResetAuthDataAction extends AnyAction {
+  type: AUTH_ACTION_TYPES.RESET_AUTH_DATA
+}
+
 export type AllAuthActions =
   | LoginAction
   | SignUpAction
   | SetUserDataAction
   | ErrorLoginAction
+  | ResetAuthDataAction
   | HydrateAction
 

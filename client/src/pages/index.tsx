@@ -2,20 +2,19 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from '@assets/styles/Home.module.css'
-import {storeWrapper} from 'store'
-import {getUserInfoData} from '@store/actions'
 import {END} from 'redux-saga'
+import styles from '@assets/styles/Home.module.css'
+import {SagaStore, storeWrapper} from 'store'
+import {getUserInfo} from '@store/actions'
 import {CookieHandlerSSR} from '@utils/CookieHandlerSSR'
 
-export const getServerSideProps = storeWrapper.getServerSideProps(async ({ store, req, res }) => {
+export const getServerSideProps = storeWrapper.getServerSideProps(async ({ store, req }) => {
   const cookieHandler = new CookieHandlerSSR(req)
   const accessToken = cookieHandler.setCookie('access_token', cookieHandler.getCookie('access_token'), {HttpOnly: true})
 
-  store.dispatch(getUserInfoData(accessToken))
+  store.dispatch(getUserInfo(accessToken))
   store.dispatch(END)
-  await (store as any).sagaTask.toPromise()
-  console.log("END", store.getState())
+  await (store as SagaStore).sagaTask?.toPromise()
 })
 
 const Home: NextPage = () => {

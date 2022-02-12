@@ -1,8 +1,7 @@
-import {Link} from '@mui/material'
+import Link from 'next/Link'
 import logo from '@assets/icons/logo.png'
 import {Options} from 'components'
 import {useLocalization} from 'hooks'
-import {useEffect} from 'react'
 
 export const Header = () => {
   const {getLocalizedValue} = useLocalization()
@@ -10,14 +9,16 @@ export const Header = () => {
   return (
     <header className='header'>
       <div className="container header__container">
-        <Link href="/" className="header__logo">
-          <div className='header__logo-image'>
-            <img className="header__logo-image-pic" src={logo.src}  alt='Logo'/>
-          </div>
+        <Link href="/">
+          <a className='header__logo'>
+            <div className='header__logo-image'>
+              <img className="header__logo-image-pic" src={logo.src}  alt='Logo'/>
+            </div>
 
-          <span className="header__logo-title">
+            <span className="header__logo-title">
             {getLocalizedValue('financingAccounting')}
           </span>
+          </a>
         </Link>
 
         <div className="header__options">
