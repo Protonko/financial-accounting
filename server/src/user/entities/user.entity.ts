@@ -6,9 +6,6 @@ export class User {
   @Column({})
   email: string
 
-  @Column()
-  fullName: string
-
   @PrimaryGeneratedColumn()
   id: number
 
