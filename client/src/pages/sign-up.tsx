@@ -1,11 +1,16 @@
 import type {NextPage} from 'next'
 import Link from 'next/link'
 import {AuthLayout} from 'layouts'
-import {useLocalization} from 'hooks'
+import {useActions, useLocalization} from 'hooks'
 import {AuthForm} from 'components'
 
-const Auth: NextPage = () => {
+const SignUp: NextPage = () => {
+  const {signUp} = useActions()
   const {getLocalizedValue} = useLocalization()
+
+  const onSubmit = (email: string, password: string) => {
+    signUp({email, password})
+  }
 
   return (
     <AuthLayout>
@@ -14,7 +19,7 @@ const Auth: NextPage = () => {
 
         <AuthForm
           buttonName={getLocalizedValue('signUp')}
-          onSubmit={() => {}}
+          onSubmit={onSubmit}
         />
 
         <span className="auth__additional-text">
@@ -30,4 +35,4 @@ const Auth: NextPage = () => {
   )
 }
 
-export default Auth
+export default SignUp

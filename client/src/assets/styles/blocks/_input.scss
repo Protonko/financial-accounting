@@ -6,8 +6,6 @@
     }
 
     &__label {
-        @include margin-horizontal(0);
-
         align-items: flex-start;
         width: 100%;
     }

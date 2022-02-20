@@ -1,13 +1,13 @@
 import type {SagaIterator} from 'redux-saga'
 import type {UserData} from '@model/auth'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
-import {AUTH_ACTION_TYPES, GetUserInfoAction, LoginAction} from '@store/actions/model'
+import {AUTH_ACTION_TYPES, GetUserInfoAction, LoginAction, SignUpAction} from '@store/actions/model'
 import {errorLogin, setUserData} from '@store/actions'
 import {UserApiService} from '@services/UserApiService'
 
 export class AuthSagaFactory {
   static create() {
-    return [AuthSagaFactory.loginWatcher(), AuthSagaFactory.getUserInfoWatcher()]
+    return [AuthSagaFactory.loginWatcher(), AuthSagaFactory.getUserInfoWatcher(), AuthSagaFactory.signUpWatcher()]
   }
 
   private static *loginWorker({payload}: LoginAction): SagaIterator | Generator {
@@ -26,6 +26,28 @@ export class AuthSagaFactory {
 
   private static *loginWatcher() {
     yield takeEvery(AUTH_ACTION_TYPES.LOGIN, AuthSagaFactory.loginWorker)
+  }
+
+  private static *signUpWorker({payload}: SignUpAction) {
+    try {
+      const userData: UserData = yield call(
+          UserApiService.create,
+          payload,
+      )
+      yield call(
+          UserApiService.login,
+          payload,
+      )
+      yield put(setUserData(userData))
+    } catch (error) {
+      if (error instanceof Error) {
+        yield put(errorLogin(error.message))
+      }
+    }
+  }
+
+  private static *signUpWatcher() {
+    yield takeEvery(AUTH_ACTION_TYPES.SIGN_UP, AuthSagaFactory.signUpWorker)
   }
 
   private static *getUserInfoWorker({payload}: GetUserInfoAction): SagaIterator | Generator {

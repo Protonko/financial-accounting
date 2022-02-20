@@ -24,7 +24,7 @@ const Auth: NextPage = () => {
 
         <span className="auth__additional-text">
           {getLocalizedValue('dontHaveAnAccountQuestion')}
-          <Link href="/registration">
+          <Link href="/sign-up">
             <a className="auth__additional-text-link link">
               {getLocalizedValue('signUp')}
             </a>

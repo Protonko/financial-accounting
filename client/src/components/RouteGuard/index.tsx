@@ -13,12 +13,13 @@ export const RouteGuard: FC = ({children}) => {
   const preventAccess = () => setHasAccess(false)
 
   const checkAuth = (path: string) => {
-    const authPath = '/auth'
+    const authPaths = ['auth', 'sign-up']
     const authorized = !!(id && email)
+    const slug = path.split('/').slice(-1)[0]
 
-    if (authorized && path.includes(authPath)) {
+    if (authorized && authPaths.includes(slug)) {
       router.push('/')
-    } else if (!authorized && !path.includes(authPath)) {
+    } else if (!authorized && !authPaths.includes(slug)) {
       router.push('/auth')
     } else {
       setHasAccess(true)
