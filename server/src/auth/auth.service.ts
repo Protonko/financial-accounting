@@ -16,7 +16,7 @@ export class AuthService {
 
   async validateUser(email: string, password: string) {
     const user = await this.usersService.getByEmail(email)
-    const isPasswordMatch = user && await compare(password, user.password)
+    const isPasswordMatch = user && (await compare(password, user.password))
 
     if (isPasswordMatch) {
       const {password, ...result} = user
@@ -31,7 +31,7 @@ export class AuthService {
     const {password, ...userData} = user
     const token = this.jwtService.sign(payload)
 
-    response.cookie('access_token', token, {httpOnly: true});
+    response.cookie('access_token', token, {httpOnly: true})
 
     return userData
   }

@@ -17,12 +17,11 @@ export class UserController {
   @Post('login')
   login(
     @Req() request: Express.Request,
-    @Res({passthrough: true}) response: Response
+    @Res({passthrough: true}) response: Response,
   ) {
     return request.user && this.authService.login(request.user, response)
   }
 
-  @UseGuards(LocalAuthGuard)
   @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto)

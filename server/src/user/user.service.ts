@@ -1,4 +1,4 @@
-import {Injectable} from '@nestjs/common'
+import {ConflictException, Injectable} from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 import {hash, genSalt} from 'bcrypt'
@@ -15,7 +15,14 @@ export class UserService {
   async create(createUserDto: CreateUserDto) {
     const salt = await genSalt()
     const hashedPassword = await hash(createUserDto.password, salt)
-    const {password, ...user} = await this.userRepository.save({...createUserDto, password: hashedPassword})
+    if (await this.getByEmail(createUserDto.email)) {
+      throw new ConflictException(`User ${createUserDto.email} already exist`)
+    }
+
+    const {password, ...user} = await this.userRepository.save({
+      ...createUserDto,
+      password: hashedPassword,
+    })
 
     return user
   }
