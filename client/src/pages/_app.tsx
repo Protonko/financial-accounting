@@ -3,15 +3,17 @@ import {ThemeProvider} from 'next-themes'
 import '@assets/styles/style.scss'
 import {APP_THEME} from 'model'
 import {storeWrapper} from 'store'
-import {RouteGuard} from '@components/RouteGuard'
+import {ErrorBoundary, RouteGuard} from 'components';
 
 const App = ({Component, pageProps}: AppProps) => {
   return (
-    <ThemeProvider themes={Object.values(APP_THEME)}>
-      <RouteGuard>
-        <Component {...pageProps} />
-      </RouteGuard>
-    </ThemeProvider>
+    <ErrorBoundary>
+        <ThemeProvider themes={Object.values(APP_THEME)}>
+            <RouteGuard>
+                <Component {...pageProps} />
+            </RouteGuard>
+        </ThemeProvider>
+    </ErrorBoundary>
   )
 }
 

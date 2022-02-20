@@ -7,7 +7,7 @@ export interface InitialState {
 }
 
 const reducers = (
-  state= {},
+  state: InitialState = {},
   action: AllAuthActions,
 ): InitialState => {
   switch (action.type) {
