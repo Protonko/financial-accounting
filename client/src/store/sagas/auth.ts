@@ -2,8 +2,9 @@ import type {SagaIterator} from 'redux-saga'
 import type {UserData} from '@model/auth'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
 import {AUTH_ACTION_TYPES, GetUserInfoAction, LoginAction, SignUpAction} from '@store/actions/model'
-import {errorLogin, setUserData} from '@store/actions'
+import {callError, setUserData} from '@store/actions'
 import {UserApiService} from '@services/UserApiService'
+import {getError} from '@utils/getError';
 
 export class AuthSagaFactory {
   static create() {
@@ -18,9 +19,7 @@ export class AuthSagaFactory {
       )
       yield put(setUserData(userData))
     } catch (error) {
-      if (error instanceof Error) {
-        yield put(errorLogin(error.message))
-      }
+      yield put(callError(getError(error)))
     }
   }
 
@@ -40,9 +39,7 @@ export class AuthSagaFactory {
       )
       yield put(setUserData(userData))
     } catch (error) {
-      if (error instanceof Error) {
-        yield put(errorLogin(error.message))
-      }
+      yield put(callError(getError(error)))
     }
   }
 
@@ -59,9 +56,7 @@ export class AuthSagaFactory {
       )
       yield put(setUserData(userData))
     } catch (error) {
-      if (error instanceof Error) {
-        yield put(errorLogin(error.message))
-      }
+      yield put(callError(getError(error)))
     }
   }
 

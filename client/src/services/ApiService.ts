@@ -32,7 +32,7 @@ export class ApiService {
     return ApiService.handleResult(ApiService.api.get<T>(url, {headers: extraHeaders}))
   }
 
-  static post<T, U>(url: string, body: T) {
+  static post<T, U>(url: string, body?: T) {
     return ApiService.handleResult(ApiService.api.post<U, AxiosResponse<U>, T>(url, body))
   }
 

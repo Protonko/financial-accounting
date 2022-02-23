@@ -1,8 +1,15 @@
+import type {AxiosResponse} from 'axios';
 import {
     ERROR_ACTION_TYPES,
+    CallErrorAction,
     HideErrorNotificationAction,
     ShowErrorNotificationAction,
 } from './model'
+
+export const callError = (payload: Error | AxiosResponse<Error>): CallErrorAction => ({
+    type: ERROR_ACTION_TYPES.CALL_ERROR,
+    payload,
+})
 
 export const showErrorNotification = (payload: string): ShowErrorNotificationAction => ({
     type: ERROR_ACTION_TYPES.SHOW_ERROR_NOTIFICATION,
