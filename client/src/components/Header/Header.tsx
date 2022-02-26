@@ -1,9 +1,14 @@
+import type {FC} from 'react'
 import Link from 'next/Link'
 import logo from '@assets/icons/logo.png'
 import {Options} from 'components'
 import {useLocalization} from 'hooks'
 
-export const Header = () => {
+interface Props {
+  renderTabs?: () => void,
+}
+
+export const Header: FC<Props> = ({renderTabs}) => {
   const {getLocalizedValue} = useLocalization()
 
   return (
@@ -20,6 +25,8 @@ export const Header = () => {
           </span>
           </a>
         </Link>
+
+        {renderTabs?.()}
 
         <div className="header__options">
           <Options />

@@ -18,7 +18,8 @@ export const RouteGuard: FC = ({children}) => {
     const slug = path.split('/').slice(-1)[0]
 
     if (authorized && authPaths.includes(slug)) {
-      router.push('/')
+      const destinationPath = router.pathname.includes('auth') ? 'expenses' : router.asPath
+      router.push(destinationPath)
     } else if (!authorized && !authPaths.includes(slug)) {
       router.push('/auth')
     } else {

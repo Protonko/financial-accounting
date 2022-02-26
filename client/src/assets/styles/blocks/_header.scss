@@ -3,6 +3,7 @@
 
     height: rem($header-height);
     transition-duration: $transition-duration-long;
+    transition-property: background-color;
     background-color: var(--background-color);
 
     &__container {

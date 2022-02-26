@@ -1,0 +1,18 @@
+.tabs {
+  &__button {
+    color: var(--text-color);
+
+    // Reset MUI animations
+    * {
+      display: none;
+    }
+  }
+
+  [role=tablist] {
+    &+ .tabs__indicator {
+      height: rem(3px);
+      border-radius: rem(8px);
+      background-color: var(--brand-color);
+    }
+  }
+}

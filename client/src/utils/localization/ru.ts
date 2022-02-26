@@ -15,4 +15,7 @@ export const localizationRu: Localization = {
   incorrectEmailAddress: 'Неверный формат email',
   fieldIsRequired: 'Поле не должно быть пустым',
   minimumPasswordLength: 'Минимальная длина пароля - {} символов',
+  expenses: 'Расходы',
+  categories: 'Категории',
+  reports: 'Отчеты',
 }

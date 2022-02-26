@@ -18,5 +18,8 @@ export type LocalizationKeys =
   | 'incorrectEmailAddress'
   | 'fieldIsRequired'
   | 'minimumPasswordLength'
+  | 'expenses'
+  | 'categories'
+  | 'reports'
 
 export type Localization = Record<LocalizationKeys, string>

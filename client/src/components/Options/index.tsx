@@ -1,11 +1,11 @@
-import type {FC} from 'react'
+import {memo, FC} from 'react';
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {APP_LANG} from 'utils'
 import {ThemeToggleButton} from 'components'
 import {useLocalization} from 'hooks'
 
-export const Options: FC = () => {
+export const Options: FC = memo(() => {
   const {asPath} = useRouter()
   const {lang, getLocalizedValue} = useLocalization()
   const localeToSwitch = lang === APP_LANG.RU ? APP_LANG.EN : APP_LANG.RU
@@ -34,4 +34,6 @@ export const Options: FC = () => {
       </ul>
     </div>
   )
-}
+})
+
+Options.displayName = 'Options'

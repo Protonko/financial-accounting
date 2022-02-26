@@ -15,4 +15,7 @@ export const localizationEn: Localization = {
   incorrectEmailAddress: 'Incorrect email address',
   fieldIsRequired: 'Field is required',
   minimumPasswordLength: 'Minimum password length is {} characters',
+  expenses: 'Expenses',
+  categories: 'Categories',
+  reports: 'Reports',
 }
