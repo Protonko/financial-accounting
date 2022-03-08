@@ -1,0 +1,19 @@
+.key {
+  &--long {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    padding: 0 0 25% 0;
+  }
+
+  &__content {
+    font-size: rem($font-size-extra-large);
+  }
+
+  &__icon {
+    $icon-size: $font-size-extra-large;
+
+    width: rem($icon-size);
+    min-width: rem($icon-size);
+    color: var(--secondary-color);
+  }
+}

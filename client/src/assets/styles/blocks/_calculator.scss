@@ -1,0 +1,7 @@
+.calculator {
+  &__input {
+    .input__label {
+      @include margin-horizontal(0);
+    }
+  }
+}

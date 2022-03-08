@@ -10,8 +10,9 @@ interface Props {
   placeholder: string,
   type?: InputTypes,
   className?: string,
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void,
-  error?: boolean | string
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void,
+  error?: boolean | string,
+  readOnly?: boolean,
 }
 
 export const Input: FC<Props> = ({
@@ -23,6 +24,7 @@ export const Input: FC<Props> = ({
   className,
   onChange,
   error,
+  readOnly,
 }) => {
   const inputClassNames = classNames([
     'input',
@@ -47,6 +49,7 @@ export const Input: FC<Props> = ({
         className="input__label"
         control={
           <FilledInput
+            readOnly={readOnly}
             name={name}
             className="input__area"
             type={type}

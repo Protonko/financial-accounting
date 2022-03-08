@@ -1,0 +1,10 @@
+.keypad {
+  display: grid;
+  overflow: hidden;
+  border-radius: rem(5px);
+  width: 100%;
+  column-gap: rem(2px);
+  row-gap: rem(2px);
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}

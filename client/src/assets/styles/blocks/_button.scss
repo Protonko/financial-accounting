@@ -16,4 +16,21 @@
     &--uppercase {
         text-transform: uppercase;
     }
+
+    &--square{
+        position: relative;
+        padding: 0 0 100% 0;
+        border-radius: 0;
+    }
+    &--square & {
+        &__content {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: rem(10px);
+        }
+    }
 }

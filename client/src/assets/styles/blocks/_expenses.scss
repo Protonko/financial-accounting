@@ -1,0 +1,17 @@
+.expenses {
+  &__row {
+    display: flex;
+  }
+
+  &__col {
+    gap: rem(20px);
+
+    &--sm {
+      flex-basis: 40%;
+    }
+
+    &--lg {
+      flex-basis: 60%;
+    }
+  }
+}

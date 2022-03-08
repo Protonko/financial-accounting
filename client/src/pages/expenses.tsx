@@ -1,10 +1,10 @@
 import type {NextPage} from 'next'
 import {END} from 'redux-saga'
-import styles from '@assets/styles/Home.module.css'
 import {SagaStore, storeWrapper} from 'store'
 import {getUserInfo} from '@store/actions'
 import {CookieHandlerSSR} from 'utils'
 import {MainLayout} from 'layouts'
+import {Calculator} from 'components';
 
 export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req}) => {
   const cookieHandler = new CookieHandlerSSR(req)
@@ -18,8 +18,15 @@ export const getServerSideProps = storeWrapper.getServerSideProps(async ({store,
 const Expenses: NextPage = () => {
   return (
     <MainLayout>
-      <div className={styles.container}>
-        expenses
+      <div className="expenses">
+        <div className="expenses__row">
+          <div className="expenses__col expenses__col--sm">
+            <Calculator />
+          </div>
+          <div className="expenses__col expenses__col--lg">
+
+          </div>
+        </div>
       </div>
     </MainLayout>
   )
