@@ -7,7 +7,8 @@ import {
   HttpStatus,
   Param,
   Post,
-  Put, UseGuards,
+  Put,
+  UseGuards,
 } from '@nestjs/common'
 import {CreateSpendingDto} from './dto/create-spending.dto'
 import {UpdateSpendingDto} from './dto/update-spending.dto'
