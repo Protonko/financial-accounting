@@ -1,4 +1,4 @@
-import {useState, FC, useEffect} from 'react'
+import {useState, FC} from 'react'
 import {Input, Keypad} from 'components'
 
 const calculatorOperations: Record<string, (prevValue: number, nextValue: number) => number> = {

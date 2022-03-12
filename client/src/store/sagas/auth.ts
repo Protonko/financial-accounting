@@ -1,10 +1,10 @@
 import type {SagaIterator} from 'redux-saga'
-import type {UserData} from '@model/auth'
+import type {UserData} from 'model'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
 import {AUTH_ACTION_TYPES, GetUserInfoAction, LoginAction, SignUpAction} from '@store/actions/model'
 import {callError, setUserData} from '@store/actions'
-import {UserApiService} from '@services/UserApiService'
-import {getError} from '@utils/getError';
+import {UserApiService} from 'services'
+import {getError} from 'utils';
 
 export class AuthSagaFactory {
   static create() {

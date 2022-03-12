@@ -5,13 +5,13 @@ export interface Tab {
   value: string
 }
 
-export interface Props<T extends string> {
+export interface TabsProps<T extends string> {
   setValue: (value: T) => void,
   tabs: Tab[]
   value: T,
 }
 
-export const Tabs = <T extends string>({setValue, tabs, value}: Props<T>) => {
+export const Tabs = <T extends string>({setValue, tabs, value}: TabsProps<T>) => {
   return (
     <TabsMui
       className="tabs"

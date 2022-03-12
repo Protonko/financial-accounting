@@ -1,6 +1,7 @@
 export * from './insertValueToString'
 export * from './localization/localization'
 export * from './CookieHandlerSSR'
+export * from './getError'
 export {getLocalizedValue} from './localization/getLocalizedValue'
 export {localizationEn} from './localization/en'
 export {localizationRu} from './localization/ru'

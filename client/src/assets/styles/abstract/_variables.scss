@@ -24,6 +24,9 @@ $font-size-big: 20px;
 $font-size-large: 30px;
 $font-size-extra-large: 36px;
 
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
 $background-color: $white;
 $text-color: $black;
 
@@ -38,7 +41,7 @@ $header-height: 72px;
     --background-color: #{$white};
     --text-color: #{$deepTeal};
     --light-grey: #{$athensGray};
-    --input-color: #{$alabaster};
+    --grey-color: #{$alabaster};
     --brand-color: #{$tropicalRainForest};
     --brand-light-color: #{$persianGreen};
 }
@@ -49,7 +52,7 @@ $header-height: 72px;
     --background-color: #{$shark};
     --text-color: #{$white};
     --light-grey: #{$abbey};
-    --input-color: #{$tuna};
+    --grey-color: #{$tuna};
     --brand-color: #{$turquoise};
     --brand-light-color: #{$riptide};
 }
