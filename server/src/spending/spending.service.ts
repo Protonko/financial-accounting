@@ -12,7 +12,10 @@ export class SpendingService {
   ) {}
 
   getAll() {
-    return [{amount: 1, category: {id: 1, type: 'AAA', title: 'aaa'}, id: 2, date: '12345'}]
+    return [
+      {amount: 1, category: {id: 1, type: 'AAA', title: 'aaa'}, id: 2, date: '12345'},
+      {amount: 1000, category: {id: 1, type: 'SHOPPING_CART', title: 'Магазины'}, id: 3, date: '01.01.01'},
+    ]
   }
 
   getById(id: string) {
