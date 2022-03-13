@@ -8,14 +8,16 @@ export const SpendingList = () => {
 
   const renderSpending = (spending: Spending) => {
     return (
-      <SpendingComponent
-        amount={spending.amount}
-        category={spending.category.title}
-        comment={spending.comment}
-        date={spending.date}
-        icon={spending.category.type}
-        key={spending.id}
-      />
+      <li className="expenses__item">
+        <SpendingComponent
+          amount={spending.amount}
+          category={spending.category.title}
+          comment={spending.comment}
+          date={spending.date}
+          icon={spending.category.type}
+          key={spending.id}
+        />
+      </li>
     )
   }
 

@@ -1,7 +1,13 @@
 .calculator {
   &__input {
-    .input__label {
-      @include margin-horizontal(0);
+    .input {
+      &__label {
+        @include margin-horizontal(0);
+      }
+
+      &__area {
+        margin-top: 0;
+      }
     }
   }
 }

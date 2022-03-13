@@ -35,6 +35,15 @@
       &--bold {
         font-weight: $font-weight-bold;
       }
+      
+      &--price {
+        text-align: right;
+      }
     }
+  }
+
+  &__image {
+    display: flex;
+    align-items: center;
   }
 }

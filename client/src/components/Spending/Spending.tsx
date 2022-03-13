@@ -1,4 +1,5 @@
 import type {FC} from 'react'
+import {useCategoriesIcons} from '@hooks/useCategoriesIcons';
 
 interface Props {
   amount: number,
@@ -15,12 +16,14 @@ export const Spending: FC<Props> = ({
   date,
   icon,
 }) => {
+  const getIcon = useCategoriesIcons()
+
   return (
     <article className="spending">
       <div className="spending__row spending__row--space-between">
         <div className="spending__col">
           <div className="spending__image">
-            {icon}
+            {getIcon(icon)}
           </div>
 
           <div className="spending__data">
@@ -31,7 +34,7 @@ export const Spending: FC<Props> = ({
 
         <div className="spending__col">
           <div className="spending__data">
-            <span className="spending__data-text">{amount}</span>
+            <span className="spending__data-text spending__data-text--price">{amount}</span>
             <span className="spending__data-text">{date}</span>
           </div>
         </div>

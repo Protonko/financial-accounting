@@ -1,0 +1,11 @@
+.icon {
+  @include square(35px);
+
+  &--shopping-cart {
+    color: $persianGreen;
+  }
+
+  &--question-mark {
+    color: $burntSienna;
+  }
+}

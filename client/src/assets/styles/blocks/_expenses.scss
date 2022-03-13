@@ -1,6 +1,13 @@
 .expenses {
   &__row {
     display: flex;
+    gap: rem(20px);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10px);
   }
 
   &__col {
