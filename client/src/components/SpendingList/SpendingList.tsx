@@ -8,7 +8,7 @@ export const SpendingList = () => {
 
   const renderSpending = (spending: Spending) => {
     return (
-      <li className="expenses__item" key={spending.id}>
+      <li className="spending-list__item" key={spending.id}>
         <SpendingComponent
           amount={spending.amount}
           category={spending.category.title}
@@ -22,7 +22,7 @@ export const SpendingList = () => {
 
   if (spending) {
     return (
-      <ul className="expenses__list list list--reset">
+      <ul className="spending-list list list--reset">
         {spending.map(renderSpending)}
       </ul>
     )

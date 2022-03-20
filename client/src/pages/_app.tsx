@@ -3,14 +3,14 @@ import {ThemeProvider} from 'next-themes'
 import '@assets/styles/style.scss'
 import {APP_THEME} from 'model'
 import {storeWrapper} from 'store'
-import {ErrorBoundary, RouteGuard} from 'components';
+import {ErrorBoundary, RouteGuard} from 'components'
 
 const App = ({Component, pageProps}: AppProps) => {
   return (
     <ErrorBoundary>
         <ThemeProvider themes={Object.values(APP_THEME)}>
             <RouteGuard>
-                <Component {...pageProps} />
+              <Component {...pageProps} />
             </RouteGuard>
         </ThemeProvider>
     </ErrorBoundary>

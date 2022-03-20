@@ -2,12 +2,10 @@
   &__row {
     display: flex;
     gap: rem(20px);
-  }
 
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: rem(10px);
+    &:nth-child(1n) {
+      margin-bottom: rem(40px);
+    }
   }
 
   &__col {
@@ -19,6 +17,22 @@
 
     &--lg {
       flex-basis: 60%;
+    }
+  }
+
+  &__categories {
+    margin-top: rem(20px);
+  }
+
+  &__input {
+    .input {
+      &__label {
+        @include margin-horizontal(0);
+      }
+
+      &__area {
+        margin-top: 0;
+      }
     }
   }
 }

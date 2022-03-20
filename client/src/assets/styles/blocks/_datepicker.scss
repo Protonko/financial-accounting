@@ -1,0 +1,26 @@
+.datepicker {
+  width: 100%;
+  border: none;
+
+  & > div {
+    background-color: var(--grey-color);
+
+    &:hover {
+      background-color: var(--light-grey);
+    }
+  }
+
+  & fieldset {
+    border: none;
+  }
+
+  & input {
+    font-size: rem($font-size-base);
+    padding: rem(24px) rem(32px);
+    color: var(--primary-color);
+  }
+
+  & button {
+    color: var(--primary-color);
+  }
+}
