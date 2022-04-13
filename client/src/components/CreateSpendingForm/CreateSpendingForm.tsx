@@ -9,7 +9,7 @@ interface SpendingState {
 }
 
 export const CreateSpendingForm = () => {
-  const {lang} = useLocalization()
+  const {lang, getLocalizedValue} = useLocalization()
   const [spending, setSpending] = useState<SpendingState>({
     amount: '0',
     comment: '',
@@ -35,7 +35,7 @@ export const CreateSpendingForm = () => {
           onChange={handleInputChange}
           label=""
           name="comment"
-          placeholder="Comment"
+          placeholder={getLocalizedValue('comment')}
           className="expenses__input"
         />
         <DatePicker value={spending.date} name="date" setValue={handleChange} lang={lang} />

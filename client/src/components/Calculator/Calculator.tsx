@@ -53,6 +53,20 @@ export const Calculator: FC<Props> = memo(({displayValue, name, setDisplayValue}
     setWaitingForOperand(true)
   }
 
+  const clear = () => {
+    const currentDisplayValue = displayValue.substring(0, displayValue.length - 1)
+
+    if (!currentDisplayValue) {
+      setValue('')
+      setOperator(undefined)
+      setWaitingForOperand(false)
+      setDisplayValue('0', name)
+      return
+    }
+
+    setDisplayValue(currentDisplayValue, name)
+  }
+
   const calculateValue = (value: string) => {
     if (Number.isInteger(+value)) {
       enterNumber(parseInt(value, 10))
@@ -61,7 +75,7 @@ export const Calculator: FC<Props> = memo(({displayValue, name, setDisplayValue}
     } else if (value === '.') {
       enterDot()
     } else if (value === 'Backspace') {
-      setDisplayValue(displayValue.substring(0, displayValue.length - 1) || '0', name)
+      clear()
     }
   }
 

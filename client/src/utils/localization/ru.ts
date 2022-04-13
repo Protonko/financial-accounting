@@ -18,4 +18,5 @@ export const localizationRu: Localization = {
   expenses: 'Расходы',
   categories: 'Категории',
   reports: 'Отчеты',
+  comment: 'Комментарий',
 }
