@@ -4,8 +4,7 @@ import {SagaStore, storeWrapper} from 'store'
 import {getUserInfo, loadSpending} from '@store/actions'
 import {CookieHandlerSSR} from 'utils'
 import {MainLayout} from 'layouts'
-import {SpendingList, Calculator, Input, DatePicker} from 'components'
-import {useLocalization} from '@hooks/useLocalization';
+import {SpendingList, CreateSpendingForm} from 'components'
 
 export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req}) => {
   const cookieHandler = new CookieHandlerSSR(req)
@@ -18,22 +17,11 @@ export const getServerSideProps = storeWrapper.getServerSideProps(async ({store,
 })
 
 const Expenses: NextPage = () => {
-  const {lang} = useLocalization()
-
   return (
     <MainLayout>
       <div className="expenses">
         <div className="expenses__row">
-          <div className="expenses__col expenses__col--sm">
-            <Calculator />
-          </div>
-          <div className="expenses__col expenses__col--lg">
-            <Input value="" label="" name="comment" placeholder="Comment" className="expenses__input" />
-            <DatePicker value="" setValue={() => {}} lang={lang} />
-            <div className="expenses__categories">
-              Categories
-            </div>
-          </div>
+          <CreateSpendingForm />
         </div>
 
         <div className="expenses__row">

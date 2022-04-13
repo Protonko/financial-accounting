@@ -1,5 +1,5 @@
-import type {FC, ChangeEvent} from 'react'
 import type {InputTypes} from 'model'
+import {memo, FC, ChangeEvent} from 'react'
 import classNames from 'classnames'
 import {FilledInput, FormControlLabel} from '@mui/material'
 
@@ -15,7 +15,7 @@ interface Props {
   readOnly?: boolean,
 }
 
-export const Input: FC<Props> = ({
+export const Input: FC<Props> = memo(({
   value,
   name,
   label,
@@ -66,4 +66,6 @@ export const Input: FC<Props> = ({
       {renderErrorMessage()}
     </div>
   )
-}
+})
+
+Input.displayName = 'Input'

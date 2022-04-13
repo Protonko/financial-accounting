@@ -3,7 +3,7 @@ import {Key} from './Key'
 import {ClearButton} from './ClearButton'
 
 interface Props {
-  setValue: (value: string) => void,
+    setValue: (value: string) => void,
 }
 
 export const Keypad: FC<Props> = ({setValue}) => {

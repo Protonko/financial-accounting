@@ -1,0 +1,20 @@
+.create-spending-form {
+  display: flex;
+  gap: rem(20px);
+
+  &__col {
+    gap: rem(20px);
+
+    &--sm {
+      flex-basis: 40%;
+    }
+
+    &--lg {
+      flex-basis: 60%;
+    }
+  }
+
+  &__categories {
+    margin-top: rem(20px);
+  }
+}

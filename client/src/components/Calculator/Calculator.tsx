@@ -1,5 +1,11 @@
-import {useState, FC} from 'react'
+import {useState, memo, FC} from 'react'
 import {Input, Keypad} from 'components'
+
+interface Props {
+  displayValue: string,
+  name: string,
+  setDisplayValue: (displayValue: string, name: string) => void,
+}
 
 const calculatorOperations: Record<string, (prevValue: number, nextValue: number) => number> = {
   '/': (prevValue, nextValue) => prevValue / nextValue,
@@ -9,24 +15,23 @@ const calculatorOperations: Record<string, (prevValue: number, nextValue: number
   '=': (prevValue, nextValue) => nextValue
 }
 
-export const Calculator: FC = () => {
+export const Calculator: FC<Props> = memo(({displayValue, name, setDisplayValue}) => {
   const [value, setValue] = useState('')
-  const [displayValue, setDisplayValue] = useState('0')
   const [operator, setOperator] = useState<string>()
   const [waitingForOperand, setWaitingForOperand] = useState(false)
 
   const enterNumber = (number: number) => {
     if (waitingForOperand) {
-      setDisplayValue(number.toString())
+      setDisplayValue(number.toString(), name)
       setWaitingForOperand(false)
     } else {
-      setDisplayValue(prevValue => prevValue === '0' ? number.toString() : prevValue + number)
+      setDisplayValue(displayValue === '0' ? number.toString() : displayValue + number, name)
     }
   }
 
   const enterDot = () => {
     if (!(/\./).test(displayValue)) {
-      setDisplayValue(displayValue + '.')
+      setDisplayValue(displayValue + '.', name)
       setWaitingForOperand(false)
     }
   }
@@ -41,7 +46,7 @@ export const Calculator: FC = () => {
       const newValue = calculatorOperations[operator](currentValue, inputValue).toString()
 
       setValue(newValue)
-      setDisplayValue(newValue)
+      setDisplayValue(newValue, name)
     }
 
     setOperator(nextOperator)
@@ -56,7 +61,7 @@ export const Calculator: FC = () => {
     } else if (value === '.') {
       enterDot()
     } else if (value === 'Backspace') {
-      setDisplayValue(prevValue => prevValue.substring(0, prevValue.length - 1) || '0')
+      setDisplayValue(displayValue.substring(0, displayValue.length - 1) || '0', name)
     }
   }
 
@@ -66,7 +71,7 @@ export const Calculator: FC = () => {
         className="calculator__input"
         label=""
         value={displayValue}
-        name="calculator"
+        name={name}
         placeholder=""
         readOnly={true}
       />
@@ -74,4 +79,6 @@ export const Calculator: FC = () => {
       <Keypad setValue={calculateValue} />
     </div>
   )
-}
+})
+
+Calculator.displayName = 'Calculator'
