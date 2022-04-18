@@ -1,12 +1,20 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
+import {Category} from '../../category/entities/category'
 
 @Entity('spending')
 export class Spending {
   @Column()
   amount: number
 
-  @Column()
-  category: string
+  @ManyToOne(() => Category)
+  @JoinColumn()
+  category: Category
 
   @Column()
   date: string

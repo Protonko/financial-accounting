@@ -1,33 +1,26 @@
 import {Module} from '@nestjs/common'
-import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm'
-import {config} from 'dotenv'
+import {TypeOrmModule} from '@nestjs/typeorm'
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
 import {SpendingModule} from './spending/spending.module'
-import {Spending} from './spending/entities/spending'
 import {UserModule} from './user/user.module'
-import {User} from './user/entities/user.entity'
 import {AuthModule} from './auth/auth.module'
-
-const typeOrmConfig: TypeOrmModuleOptions = {
-  type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: config().parsed.DATABASE_USER,
-  password: config().parsed.DATABASE_PASSWORD,
-  database: config().parsed.DATABASE_NAME,
-  entities: [Spending, User],
-  synchronize: true,
-}
+import {CategoryModule} from './category/category.module'
+import {Connection} from 'typeorm'
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig),
+    TypeOrmModule.forRoot(),
     SpendingModule,
     UserModule,
     AuthModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly connection: Connection) {
+    connection.runMigrations()
+  }
+}

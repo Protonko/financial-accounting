@@ -1,7 +1,7 @@
 import {Module} from '@nestjs/common'
+import {TypeOrmModule} from '@nestjs/typeorm'
 import {SpendingService} from './spending.service'
 import {SpendingController} from './spending.controller'
-import {TypeOrmModule} from '@nestjs/typeorm'
 import {Spending} from './entities/spending'
 
 @Module({
