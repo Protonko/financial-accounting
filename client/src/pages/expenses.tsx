@@ -1,7 +1,7 @@
 import type {NextPage} from 'next'
 import {END} from 'redux-saga'
 import {SagaStore, storeWrapper} from 'store'
-import {getUserInfo, loadSpending} from '@store/actions'
+import {getUserInfo, loadCategories, loadSpending} from '@store/actions'
 import {CookieHandlerSSR} from 'utils'
 import {MainLayout} from 'layouts'
 import {SpendingList, CreateSpendingForm} from 'components'
@@ -12,6 +12,7 @@ export const getServerSideProps = storeWrapper.getServerSideProps(async ({store,
 
   store.dispatch(getUserInfo(accessToken))
   store.dispatch(loadSpending({page: 0, accessToken}))
+  store.dispatch(loadCategories(accessToken))
   store.dispatch(END)
   await (store as SagaStore).sagaTask?.toPromise()
 })

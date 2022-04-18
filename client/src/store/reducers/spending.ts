@@ -3,7 +3,7 @@ import {HYDRATE} from 'next-redux-wrapper';
 import {AllSpendingActions, SPENDING_ACTION_TYPES} from 'store/actions/model';
 
 export interface InitialState {
-  spending?: Spending[] | null,
+  spending?: Spending[],
 }
 
 export const initialState: InitialState = {}

@@ -1,4 +1,5 @@
 export * from './auth'
+export * from './categories'
 export * from './error'
 export * from './spending'
 export * from './hydrate'
