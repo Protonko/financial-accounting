@@ -12,7 +12,7 @@ export class SpendingService {
   ) {}
 
   getAll() {
-    return this.spendingRepository.find()
+    return this.spendingRepository.find({relations: ['category']})
   }
 
   getById(id: string) {
