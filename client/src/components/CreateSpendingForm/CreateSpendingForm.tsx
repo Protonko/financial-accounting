@@ -1,19 +1,21 @@
 import {useCallback, useState, ChangeEvent} from 'react'
 import {useLocalization} from 'hooks'
-import {DatePicker, Calculator, Input} from 'components'
+import {DatePicker, Calculator, Input, CategoriesList} from 'components'
 
 interface SpendingState {
   amount: string,
-  comment: string,
+  description: string,
   date: string,
+  categoryId?: number,
 }
 
 export const CreateSpendingForm = () => {
   const {lang, getLocalizedValue} = useLocalization()
   const [spending, setSpending] = useState<SpendingState>({
     amount: '0',
-    comment: '',
+    description: '',
     date: new Date().toISOString(),
+    categoryId: undefined,
   })
 
   const handleChange = useCallback((value: string, name: string) => {
@@ -24,6 +26,14 @@ export const CreateSpendingForm = () => {
     setSpending(prev => ({...prev, [event.target.name]: event.target.value}))
   }, [])
 
+  const handleSelectCategory = useCallback((category: string) => {
+    const categoryId = parseInt(category)
+
+    if (!isNaN(+categoryId)) {
+      setSpending(prev => ({...prev, categoryId}))
+    }
+  }, [])
+
   return (
     <form className="create-spending-form">
       <div className="create-spending-form__col create-spending-form__col--sm">
@@ -31,16 +41,16 @@ export const CreateSpendingForm = () => {
       </div>
       <div className="create-spending-form__col create-spending-form__col--lg">
         <Input
-          value={spending.comment}
+          value={spending.description}
           onChange={handleInputChange}
           label=""
-          name="comment"
+          name="description"
           placeholder={getLocalizedValue('comment')}
           className="expenses__input"
         />
         <DatePicker value={spending.date} name="date" setValue={handleChange} lang={lang} />
         <div className="create-spending-form__categories">
-          Categories
+          <CategoriesList selectedCategory={spending.categoryId} onSelectCategory={handleSelectCategory} />
         </div>
       </div>
     </form>

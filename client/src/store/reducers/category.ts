@@ -3,10 +3,12 @@ import {HYDRATE} from 'next-redux-wrapper'
 import {CATEGORY_ACTION_TYPES} from 'store/actions/model'
 
 export interface InitialState {
-  categories?: Category[]
+  categories: Category[] | null
 }
 
-export const initialState: InitialState = {}
+export const initialState: InitialState = {
+  categories: null,
+}
 
 const reducer = (state = initialState, action: any): InitialState => {
   switch (action.type) {
@@ -19,7 +21,7 @@ const reducer = (state = initialState, action: any): InitialState => {
     case CATEGORY_ACTION_TYPES.LOAD_CATEGORIES:
       return {
         ...state,
-        categories: undefined,
+        categories: null,
       }
 
     case CATEGORY_ACTION_TYPES.SET_CATEGORIES_DATA:

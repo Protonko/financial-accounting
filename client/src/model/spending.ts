@@ -3,7 +3,7 @@ import type {Category} from './category'
 export interface Spending {
   amount: number,
   category: Category,
-  comment?: string,
+  description?: string,
   date: string,
   id: number,
 }

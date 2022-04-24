@@ -1,12 +1,14 @@
-import type {Spending} from 'model';
-import {HYDRATE} from 'next-redux-wrapper';
-import {AllSpendingActions, SPENDING_ACTION_TYPES} from 'store/actions/model';
+import type {Spending} from 'model'
+import {HYDRATE} from 'next-redux-wrapper'
+import {AllSpendingActions, SPENDING_ACTION_TYPES} from 'store/actions/model'
 
 export interface InitialState {
-  spending?: Spending[],
+  spending: Spending[] | null,
 }
 
-export const initialState: InitialState = {}
+export const initialState: InitialState = {
+  spending: null
+}
 
 const reducers = (state = initialState, action: AllSpendingActions): InitialState => {
   switch (action.type) {

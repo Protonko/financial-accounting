@@ -1,0 +1,28 @@
+.category {
+  display: flex;
+  align-items: center;
+  gap: rem(15px);
+  padding: rem(10px);
+  transition-duration: $transition-duration;
+  cursor: pointer;
+  border: rem(1px) solid transparent;
+  border-radius: rem(5px);
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    border-color: var(--brand-light-color);
+  }
+
+  &--selected {
+    border-color: var(--brand-color);
+  }
+
+  [aria-checked="true"] {
+    background-color: red;
+  }
+}

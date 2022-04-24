@@ -1,5 +1,5 @@
-import type {RootState} from 'store/reducers'
-import type {Spending} from 'model'
+import type {RootState} from '@store/reducers'
+import type {Spending} from '@model/index'
 import {useSelector} from 'react-redux'
 import {Spending as SpendingComponent} from 'components'
 
@@ -12,7 +12,7 @@ export const SpendingList = () => {
         <SpendingComponent
           amount={spending.amount}
           category={spending.category.title}
-          comment={spending.comment}
+          comment={spending.description}
           date={spending.date}
           icon={spending.category.type}
         />

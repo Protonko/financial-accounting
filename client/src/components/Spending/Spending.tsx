@@ -1,5 +1,5 @@
 import type {FC} from 'react'
-import {useCategoriesIcons} from '@hooks/useCategoriesIcons';
+import {useCategoriesIcons} from 'hooks'
 
 interface Props {
   amount: number,
