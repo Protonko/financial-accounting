@@ -1,23 +1,29 @@
-import {useCallback, useState, ChangeEvent, useMemo} from 'react'
+import type {RootState} from '@store/reducers'
+import {useCallback, useState, ChangeEvent, useMemo, FormEventHandler} from 'react'
+import {useSelector} from 'react-redux'
 import {ButtonUnstyled} from '@mui/material'
-import {useLocalization} from 'hooks'
+import {ICONS_MAP, useActions, useLocalization} from 'hooks'
 import {DatePicker, Calculator, Input, CategoriesList} from 'components'
 
 interface SpendingState {
   amount: string,
   description: string,
   date: string,
-  categoryId?: number,
+  category?: number,
+}
+
+const initialState: SpendingState = {
+  amount: '0',
+  description: '',
+  date: new Date().toISOString(),
+  category: undefined,
 }
 
 export const CreateSpendingForm = () => {
   const {localization, lang} = useLocalization()
-  const [spending, setSpending] = useState<SpendingState>({
-    amount: '0',
-    description: '',
-    date: new Date().toISOString(),
-    categoryId: undefined,
-  })
+  const {createSpending} = useActions()
+  const {categories} = useSelector((state: RootState) => state.categories)
+  const [spending, setSpending] = useState<SpendingState>(initialState)
 
   const handleChange = useCallback((value: string, name: string) => {
     setSpending(prev => ({...prev, [name]: value}))
@@ -27,18 +33,30 @@ export const CreateSpendingForm = () => {
     setSpending(prev => ({...prev, [event.target.name]: event.target.value}))
   }, [])
 
-  const handleSelectCategory = useCallback((category: string) => {
-    const categoryId = parseInt(category)
+  const handleSelectCategory = useCallback((categoryId: string) => {
+    const category = parseInt(categoryId)
 
     if (!isNaN(+categoryId)) {
-      setSpending(prev => ({...prev, categoryId}))
+      setSpending(prev => ({...prev, category}))
     }
   }, [])
 
-  const canSubmit = useMemo(() => parseFloat(spending.amount) && spending.categoryId, [spending.amount, spending.categoryId])
+  const canSubmit = useMemo(() => {
+    const categoryType = categories?.find(category => category.id === spending.category)?.type
+    return parseFloat(spending.amount) && categoryType && ICONS_MAP.has(categoryType)
+  }, [categories, spending.amount, spending.category])
+
+  const handleSubmit: FormEventHandler = event => {
+    event.preventDefault()
+
+    if (canSubmit) {
+      createSpending({...spending, amount: parseFloat(spending.amount), category: {id: spending.category!}})
+      setSpending(initialState)
+    }
+  }
 
   return (
-    <form className="create-spending-form">
+    <form className="create-spending-form" onSubmit={handleSubmit}>
       <div className="create-spending-form__col create-spending-form__col--sm">
         <Calculator displayValue={spending.amount} name="amount" setDisplayValue={handleChange} />
 
@@ -61,7 +79,7 @@ export const CreateSpendingForm = () => {
         />
         <DatePicker value={spending.date} name="date" setValue={handleChange} lang={lang} />
         <div className="create-spending-form__categories">
-          <CategoriesList selectedCategory={spending.categoryId} onSelectCategory={handleSelectCategory} />
+          <CategoriesList selectedCategory={spending.category} onSelectCategory={handleSelectCategory} />
         </div>
       </div>
     </form>

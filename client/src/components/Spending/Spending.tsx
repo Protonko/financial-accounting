@@ -1,5 +1,6 @@
 import type {FC} from 'react'
 import {useCategoriesIcons} from 'hooks'
+import {useEffect} from 'react';
 
 interface Props {
   amount: number,

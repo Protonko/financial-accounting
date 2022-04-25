@@ -23,6 +23,11 @@ const reducers = (state = initialState, action: AllSpendingActions): InitialStat
         spending: action.payload,
       }
 
+    case SPENDING_ACTION_TYPES.SPENDING_CREATED:
+      return {
+        spending: [...(state.spending ?? []), action.payload]
+      }
+
     default:
       return state
 
