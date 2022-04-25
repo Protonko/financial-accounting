@@ -13,4 +13,8 @@ export class CategoryService {
   getAll() {
     return this.categoryRepository.find()
   }
+
+  getById(id: number) {
+    return this.categoryRepository.findOne(id)
+  }
 }

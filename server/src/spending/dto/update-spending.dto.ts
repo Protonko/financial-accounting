@@ -5,5 +5,4 @@ export class UpdateSpendingDto {
   readonly category: Category
   readonly date: string
   readonly description: string
-  readonly title: string
 }

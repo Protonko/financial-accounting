@@ -24,7 +24,4 @@ export class Spending {
 
   @PrimaryGeneratedColumn()
   id: number
-
-  @Column()
-  title: string
 }
