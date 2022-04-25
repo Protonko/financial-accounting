@@ -1,5 +1,6 @@
 export interface Category {
   id: number,
-  title: string,
+  titleRus: string,
+  titleEng: string,
   type: string,
 }

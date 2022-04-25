@@ -3,6 +3,8 @@ import type {RootState} from 'store/reducers'
 import type {Category} from 'model'
 import {useSelector} from 'react-redux'
 import {Category as CategoryComponent} from 'components'
+import {useLocalization} from 'hooks'
+import {APP_LANG} from 'utils'
 
 interface Props {
   onSelectCategory: (categoryId: string) => void,
@@ -11,6 +13,7 @@ interface Props {
 
 export const CategoriesList: FC<Props> = ({onSelectCategory, selectedCategory}) => {
   const {categories} = useSelector((state: RootState) => state.categories)
+  const {lang} = useLocalization()
 
   const selectCategory: MouseEventHandler<HTMLUListElement> = event => {
     const id = (event.target as HTMLUListElement).closest('.category')?.id
@@ -25,7 +28,12 @@ export const CategoriesList: FC<Props> = ({onSelectCategory, selectedCategory}) 
 
     return (
       <li className="categories-list__item" key={category.id}>
-        <CategoryComponent {...category} id={componentId} isSelectedCategory={selectedCategory === category.id} />
+        <CategoryComponent
+          type={category.type}
+          title={lang === APP_LANG.RU ? category.titleRus : category.titleEng}
+          id={componentId}
+          isSelectedCategory={selectedCategory === category.id}
+        />
       </li>
     )
   }

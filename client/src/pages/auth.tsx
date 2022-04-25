@@ -6,7 +6,7 @@ import {AuthForm} from 'components'
 
 const Auth: NextPage = () => {
   const {login} = useActions()
-  const {getLocalizedValue} = useLocalization()
+  const {localization} = useLocalization()
 
   const onSubmit = (email: string, password: string) => {
     login({email, password})
@@ -15,18 +15,18 @@ const Auth: NextPage = () => {
   return (
     <AuthLayout>
       <div className="auth">
-        <h1 className="auth__title">{getLocalizedValue('login')}</h1>
+        <h1 className="auth__title">{localization.login}</h1>
 
         <AuthForm
-          buttonName={getLocalizedValue('logIn')}
+          buttonName={localization.logIn}
           onSubmit={onSubmit}
         />
 
         <span className="auth__additional-text">
-          {getLocalizedValue('dontHaveAnAccountQuestion')}
+          {localization.dontHaveAnAccountQuestion}
           <Link href="/sign-up">
             <a className="auth__additional-text-link link">
-              {getLocalizedValue('signUp')}
+              {localization.signUp}
             </a>
           </Link>
         </span>

@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const Header: FC<Props> = ({renderTabs}) => {
-  const {getLocalizedValue} = useLocalization()
+  const {localization} = useLocalization()
 
   return (
     <header className='header'>
@@ -21,7 +21,7 @@ export const Header: FC<Props> = ({renderTabs}) => {
             </div>
 
             <span className="header__logo-title">
-            {getLocalizedValue('financingAccounting')}
+            {localization.financingAccounting}
           </span>
           </a>
         </Link>

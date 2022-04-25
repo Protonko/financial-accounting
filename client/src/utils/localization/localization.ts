@@ -22,5 +22,6 @@ export type LocalizationKeys =
   | 'categories'
   | 'reports'
   | 'comment'
+  | 'create'
 
 export type Localization = Record<LocalizationKeys, string>

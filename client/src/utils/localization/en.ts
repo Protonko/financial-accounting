@@ -19,4 +19,5 @@ export const localizationEn: Localization = {
   categories: 'Categories',
   reports: 'Reports',
   comment: 'Comment',
+  create: 'Create',
 }

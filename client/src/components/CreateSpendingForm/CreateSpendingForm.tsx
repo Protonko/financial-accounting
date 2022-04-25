@@ -1,4 +1,5 @@
-import {useCallback, useState, ChangeEvent} from 'react'
+import {useCallback, useState, ChangeEvent, useMemo} from 'react'
+import {ButtonUnstyled} from '@mui/material'
 import {useLocalization} from 'hooks'
 import {DatePicker, Calculator, Input, CategoriesList} from 'components'
 
@@ -10,7 +11,7 @@ interface SpendingState {
 }
 
 export const CreateSpendingForm = () => {
-  const {lang, getLocalizedValue} = useLocalization()
+  const {localization, lang} = useLocalization()
   const [spending, setSpending] = useState<SpendingState>({
     amount: '0',
     description: '',
@@ -34,10 +35,20 @@ export const CreateSpendingForm = () => {
     }
   }, [])
 
+  const canSubmit = useMemo(() => parseFloat(spending.amount) && spending.categoryId, [spending.amount, spending.categoryId])
+
   return (
     <form className="create-spending-form">
       <div className="create-spending-form__col create-spending-form__col--sm">
         <Calculator displayValue={spending.amount} name="amount" setDisplayValue={handleChange} />
+
+        <ButtonUnstyled
+          className="create-spending-form__button button button--light button--uppercase"
+          type="submit"
+          disabled={!canSubmit}
+        >
+          {localization.create}
+        </ButtonUnstyled>
       </div>
       <div className="create-spending-form__col create-spending-form__col--lg">
         <Input
@@ -45,7 +56,7 @@ export const CreateSpendingForm = () => {
           onChange={handleInputChange}
           label=""
           name="description"
-          placeholder={getLocalizedValue('comment')}
+          placeholder={localization.comment}
           className="expenses__input"
         />
         <DatePicker value={spending.date} name="date" setValue={handleChange} lang={lang} />

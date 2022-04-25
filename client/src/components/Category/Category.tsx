@@ -1,10 +1,11 @@
-import type {Category as ICategory} from 'model'
 import {memo, FC} from 'react'
 import classNames from 'classnames'
 import {useCategoriesIcons} from 'hooks'
 
-interface Props extends Omit<ICategory, 'id'> {
+interface Props {
   id: string,
+  type: string,
+  title: string
   isSelectedCategory: boolean,
 }
 

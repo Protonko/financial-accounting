@@ -16,7 +16,7 @@ export const AuthForm: FC<Props> = ({
   onSubmit,
 }) => {
   const [errorMessage, setErrorMessage] = useState<string>()
-  const {getLocalizedValue} = useLocalization()
+  const {localization} = useLocalization()
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -25,12 +25,12 @@ export const AuthForm: FC<Props> = ({
     validationSchema: yup.object({
       email: yup
         .string()
-        .email(getLocalizedValue('incorrectEmailAddress'))
-        .required(getLocalizedValue('fieldIsRequired')),
+        .email(localization.incorrectEmailAddress)
+        .required(localization.fieldIsRequired),
       password: yup
         .string()
-        .min(6, insertValueToString(getLocalizedValue('minimumPasswordLength'), '6'))
-        .required(getLocalizedValue('fieldIsRequired')),
+        .min(6, insertValueToString(localization.minimumPasswordLength, '6'))
+        .required(localization.fieldIsRequired),
     }),
     onSubmit: ({email, password}) => onSubmit(email, password),
   })
@@ -48,8 +48,8 @@ export const AuthForm: FC<Props> = ({
       <Input
         className="auth-form__input"
         name="email"
-        label={getLocalizedValue('email')}
-        placeholder={getLocalizedValue('email')}
+        label={localization.email}
+        placeholder={localization.email}
         value={formik.values['email']}
         onChange={onChange}
         error={
@@ -62,8 +62,8 @@ export const AuthForm: FC<Props> = ({
         className="auth-form__input"
         name="password"
         type="password"
-        label={getLocalizedValue('password')}
-        placeholder={getLocalizedValue('password')}
+        label={localization.password}
+        placeholder={localization.password}
         value={formik.values['password']}
         onChange={onChange}
         error={

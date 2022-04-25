@@ -7,13 +7,13 @@ import {useLocalization} from 'hooks'
 
 export const Options: FC = memo(() => {
   const {asPath} = useRouter()
-  const {lang, getLocalizedValue} = useLocalization()
+  const {lang, localization} = useLocalization()
   const localeToSwitch = lang === APP_LANG.RU ? APP_LANG.EN : APP_LANG.RU
   const renderText = () => {
     if (lang === APP_LANG.RU) {
-      return getLocalizedValue('switchToEnglish')
+      return localization.switchToEnglish
     } else {
-      return getLocalizedValue('switchToRussian')
+      return localization.switchToRussian
     }
   }
 
