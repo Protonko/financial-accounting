@@ -9,7 +9,7 @@ import {JwtStrategy} from './strategies/jwt.strategy'
 
 export const JWT_MODULE_OPTIONS = {
   secret: config().parsed.JWT_SECRET_KEY,
-  signOptions: {expiresIn: '10h'}
+  signOptions: {expiresIn: '10h'},
 }
 
 @Module({

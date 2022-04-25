@@ -13,8 +13,8 @@ describe('JwtStrategy', () => {
         {
           provide: UserService,
           useValue: {
-            getById: jest.fn(async () => USER)
-          }
+            getById: jest.fn(async () => USER),
+          },
         },
       ],
     }).compile()
@@ -23,6 +23,9 @@ describe('JwtStrategy', () => {
   })
 
   it('Should validate', async () => {
-    expect(await jwtStrategy.validate(JWT_PAYLOAD)).toEqual({id: JWT_PAYLOAD.sub, email: JWT_PAYLOAD.email})
+    expect(await jwtStrategy.validate(JWT_PAYLOAD)).toEqual({
+      id: JWT_PAYLOAD.sub,
+      email: JWT_PAYLOAD.email,
+    })
   })
 })

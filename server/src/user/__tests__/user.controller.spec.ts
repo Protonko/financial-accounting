@@ -21,12 +21,12 @@ describe('UserController', () => {
       ],
     }).compile()
 
-    repositoryMock = module.get(getRepositoryToken(User));
+    repositoryMock = module.get(getRepositoryToken(User))
     controller = module.get<UserController>(UserController)
   })
 
   it('Should create user', () => {
-    repositoryMock.save.mockReturnValue(USER_WITHOUT_PASSWORD);
+    repositoryMock.save.mockReturnValue(USER_WITHOUT_PASSWORD)
     expect(controller.create(CREATE_USER_DTO)).toBeDefined()
   })
 })

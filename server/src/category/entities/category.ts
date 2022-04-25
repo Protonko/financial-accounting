@@ -6,7 +6,10 @@ export class Category {
   id: number
 
   @Column()
-  title: string
+  titleRus: string
+
+  @Column()
+  titleEng: string
 
   @Column()
   type: string

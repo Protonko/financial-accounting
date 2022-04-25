@@ -13,8 +13,8 @@ describe('LocalStrategy', () => {
         {
           provide: AuthService,
           useValue: {
-            validateUser: jest.fn(async () => USER_WITHOUT_PASSWORD)
-          }
+            validateUser: jest.fn(async () => USER_WITHOUT_PASSWORD),
+          },
         },
       ],
     }).compile()
@@ -23,6 +23,8 @@ describe('LocalStrategy', () => {
   })
 
   it('Should validate', async () => {
-    expect(await localStrategy.validate('foo@bar.baz', '123456Aa')).toEqual(USER_WITHOUT_PASSWORD)
+    expect(await localStrategy.validate('foo@bar.baz', '123456Aa')).toEqual(
+      USER_WITHOUT_PASSWORD,
+    )
   })
 })

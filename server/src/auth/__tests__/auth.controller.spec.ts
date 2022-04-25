@@ -4,7 +4,12 @@ import {genSalt, hash} from 'bcrypt'
 import {AuthController} from '../auth.controller'
 import {AuthService} from '../auth.service'
 import {UserService} from '../../user/user.service'
-import {LOGIN_USER_DATA, REQUEST, REQUEST_WITHOUT_USER, USER} from '../../static/mockData'
+import {
+  LOGIN_USER_DATA,
+  REQUEST,
+  REQUEST_WITHOUT_USER,
+  USER,
+} from '../../static/mockData'
 
 describe('AuthController', () => {
   let controller: AuthController
@@ -20,14 +25,14 @@ describe('AuthController', () => {
             getByEmail: jest.fn(async () => ({
               ...USER,
               password: await hash(USER.password, await genSalt()),
-            }))
-          }
+            })),
+          },
         },
         {
           provide: JwtService,
           useValue: {
             sign: jest.fn(() => 'token.123'),
-          }
+          },
         },
       ],
     }).compile()

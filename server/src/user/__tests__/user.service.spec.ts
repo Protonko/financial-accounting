@@ -19,22 +19,22 @@ describe('UserService', () => {
       ],
     }).compile()
 
-    repositoryMock = module.get(getRepositoryToken(User));
+    repositoryMock = module.get(getRepositoryToken(User))
     service = module.get<UserService>(UserService)
   })
 
   it('Should create user', () => {
-    repositoryMock.save.mockReturnValue(USER_WITHOUT_PASSWORD);
+    repositoryMock.save.mockReturnValue(USER_WITHOUT_PASSWORD)
     expect(service.create(CREATE_USER_DTO)).toBeDefined()
   })
 
   it('Should return user by id', () => {
-    repositoryMock.findOne.mockReturnValue(USER_WITHOUT_PASSWORD);
+    repositoryMock.findOne.mockReturnValue(USER_WITHOUT_PASSWORD)
     expect(service.getById(1)).toBeDefined()
   })
 
   it('Should return user by email', () => {
-    repositoryMock.findOne.mockReturnValue(USER_WITHOUT_PASSWORD);
+    repositoryMock.findOne.mockReturnValue(USER_WITHOUT_PASSWORD)
     expect(service.getByEmail('foo@bar.baz')).toBeDefined()
   })
 })

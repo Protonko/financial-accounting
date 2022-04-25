@@ -1,4 +1,4 @@
-import {Category} from '../../category/entities/category';
+import {Category} from '../../category/entities/category'
 
 export class UpdateSpendingDto {
   readonly amount: number
