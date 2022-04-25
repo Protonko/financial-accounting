@@ -11,7 +11,6 @@ export const HeaderTabs: FC = () => {
 
   const tabs: Tab[] = [
     {label: localization.expenses, value: TABS.EXPENSES},
-    {label: localization.categories, value: TABS.CATEGORIES},
     {label: localization.reports, value: TABS.REPORTS},
   ]
 
