@@ -1,13 +1,22 @@
 import type {Spending} from 'model'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
-import {callError, setSpendingData, spendingCreated} from 'store/actions'
-import {CreateSpendingAction, LoadSpendingAction, SPENDING_ACTION_TYPES} from 'store/actions/model'
+import {callError, setSpendingData, spendingCreated, spendingDeleted} from 'store/actions'
+import {
+  CreateSpendingAction,
+  DeleteSpendingAction,
+  LoadSpendingAction,
+  SPENDING_ACTION_TYPES,
+} from 'store/actions/model'
 import {getError} from 'utils'
 import {SpendingApiService} from 'services'
 
 export class SpendingSagaFactory {
   static create() {
-    return [SpendingSagaFactory.loadSpendingWatcher(), SpendingSagaFactory.createSpendingWatcher()]
+    return [
+      SpendingSagaFactory.loadSpendingWatcher(),
+      SpendingSagaFactory.createSpendingWatcher(),
+      SpendingSagaFactory.deleteSpendingWatcher(),
+    ]
   }
 
   private static *loadSpendingWorker({payload}: LoadSpendingAction) {
@@ -42,5 +51,21 @@ export class SpendingSagaFactory {
 
   private static *createSpendingWatcher() {
     yield takeEvery(SPENDING_ACTION_TYPES.CREATE_SPENDING, SpendingSagaFactory.createSpendingWorker)
+  }
+
+  private static *deleteSpendingWorker({payload}: DeleteSpendingAction) {
+    try {
+      const id: number = yield call(
+        SpendingApiService.deleteSpending,
+        payload,
+      )
+      yield put(spendingDeleted(id))
+    } catch (error) {
+      yield put(callError(getError(error)))
+    }
+  }
+
+  private static *deleteSpendingWatcher() {
+    yield takeEvery(SPENDING_ACTION_TYPES.DELETE_SPENDING, SpendingSagaFactory.deleteSpendingWorker)
   }
 }

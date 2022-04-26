@@ -1,6 +1,8 @@
 import type {FC} from 'react'
-import {useCategoriesIcons} from 'hooks'
-import {useEffect} from 'react';
+import {Menu, MenuItem} from '@mui/material'
+import {usePopupState, bindTrigger, bindMenu} from 'material-ui-popup-state/hooks'
+import ThreeDots from '@assets/icons/three-dots.svg'
+import {useActions, useCategoriesIcons, useLocalization} from 'hooks'
 
 interface Props {
   amount: number,
@@ -8,6 +10,7 @@ interface Props {
   comment?: string,
   date: string,
   icon: string,
+  id: number,
 }
 
 export const Spending: FC<Props> = ({
@@ -16,11 +19,28 @@ export const Spending: FC<Props> = ({
   comment,
   date,
   icon,
+  id,
 }) => {
   const getIcon = useCategoriesIcons()
+  const popupState = usePopupState({ variant: 'popover', popupId: 'demoMenu' })
+  const {localization} = useLocalization()
+  const {deleteSpending: deleteSpendingAction} = useActions()
+
+  const deleteSpending = () => {
+    deleteSpendingAction(id)
+    popupState.close()
+  }
 
   return (
     <article className="spending">
+      <div className="spending__options">
+        <ThreeDots className="spending__options-icon" {...bindTrigger(popupState)} />
+        <Menu {...bindMenu(popupState)}>
+          <MenuItem onClick={popupState.close}>{localization.edit}</MenuItem>
+          <MenuItem onClick={deleteSpending}>{localization.delete}</MenuItem>
+        </Menu>
+      </div>
+
       <div className="spending__row spending__row--space-between">
         <div className="spending__col">
           <div className="spending__image">

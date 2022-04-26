@@ -28,6 +28,14 @@ const reducers = (state = initialState, action: AllSpendingActions): InitialStat
         spending: [...(state.spending ?? []), action.payload]
       }
 
+    case SPENDING_ACTION_TYPES.SPENDING_DELETED: {
+      const updatedSpending = (state.spending ?? []).filter(({id}) => id !== action.payload)
+      return {
+        ...state,
+        spending: updatedSpending,
+      }
+    }
+
     default:
       return state
 

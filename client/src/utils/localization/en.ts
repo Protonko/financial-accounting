@@ -20,4 +20,6 @@ export const localizationEn: Localization = {
   reports: 'Reports',
   comment: 'Comment',
   create: 'Create',
+  edit: 'Edit',
+  delete: 'Delete',
 }

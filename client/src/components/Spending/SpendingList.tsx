@@ -21,6 +21,7 @@ export const SpendingList = () => {
           comment={spending.description}
           date={date}
           icon={spending.category.type}
+          id={spending.id}
         />
       </li>
     )

@@ -7,6 +7,8 @@ export enum SPENDING_ACTION_TYPES {
   SET_SPENDING_DATA = 'SET_SPENDING_DATA',
   CREATE_SPENDING = 'CREATE_SPENDING',
   SPENDING_CREATED = 'SPENDING_CREATED',
+  DELETE_SPENDING = 'DELETE_SPENDING',
+  SPENDING_DELETED = 'SPENDING_DELETED',
 }
 
 export interface LoadSpendingAction extends AnyAction {
@@ -29,9 +31,21 @@ export interface SpendingCreatedAction extends AnyAction {
   payload: Spending,
 }
 
+export interface DeleteSpendingAction extends AnyAction {
+  type: SPENDING_ACTION_TYPES.DELETE_SPENDING,
+  payload: number,
+}
+
+export interface SpendingDeletedAction extends AnyAction {
+  type: SPENDING_ACTION_TYPES.SPENDING_DELETED,
+  payload: number,
+}
+
 export type AllSpendingActions =
   | LoadSpendingAction
   | SetSpendingDataAction
   | CreateSpendingAction
   | SpendingCreatedAction
+  | DeleteSpendingAction
+  | SpendingDeletedAction
   | HydrateAction

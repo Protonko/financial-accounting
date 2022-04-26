@@ -20,4 +20,6 @@ export const localizationRu: Localization = {
   reports: 'Отчеты',
   comment: 'Комментарий',
   create: 'Создать',
+  edit: 'Редактировать',
+  delete: 'Удалить',
 }
