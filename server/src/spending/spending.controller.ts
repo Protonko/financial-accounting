@@ -41,7 +41,7 @@ export class SpendingController {
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   deleteById(@Param('id') id: string) {
-    return id
+    return this.spendingService.deleteById(id)
   }
 
   @UseGuards(JwtAuthGuard)

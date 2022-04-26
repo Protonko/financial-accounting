@@ -21,6 +21,11 @@ export class SpendingService {
     return id
   }
 
+  async deleteById(id: string) {
+    await this.spendingRepository.delete(id)
+    return id
+  }
+
   async create(createSpendingDto: CreateSpendingDto) {
     const categoryId = createSpendingDto.category.id
     const category = await this.categoryService.getById(categoryId)
