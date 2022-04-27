@@ -1,4 +1,8 @@
-import {BadRequestException, Injectable} from '@nestjs/common'
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common'
 import {CreateSpendingDto} from './dto/create-spending.dto'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
@@ -13,28 +17,41 @@ export class SpendingService {
     private readonly categoryService: CategoryService,
   ) {}
 
-  getAll() {
-    return this.spendingRepository.find({relations: ['category']})
+  private getById(id: string) {
+    return this.spendingRepository.findOne(id)
   }
 
-  getById(id: string) {
-    return id
+  getAllByUserId(userId: number) {
+    return this.spendingRepository.find({
+      where: {userId},
+      relations: ['category'],
+    })
   }
 
-  async deleteById(id: string) {
+  async deleteById(id: string, userId: number) {
+    const spending = await this.getById(id)
+
+    if (spending.userId !== userId) {
+      throw new ForbiddenException()
+    }
+
     await this.spendingRepository.delete(id)
     return id
   }
 
-  async create(createSpendingDto: CreateSpendingDto) {
-    const categoryId = createSpendingDto.category.id
-    const category = await this.categoryService.getById(categoryId)
+  async create(createSpendingDto: CreateSpendingDto, userId: number) {
+    const category = await this.categoryService.getById(
+      createSpendingDto.categoryId,
+    )
 
-    if (!categoryId || !category) {
+    if (!category) {
       throw new BadRequestException('Incorrect category id.')
     }
 
-    const {id} = await this.spendingRepository.save(createSpendingDto)
+    const {id} = await this.spendingRepository.save({
+      ...createSpendingDto,
+      userId,
+    })
     return this.spendingRepository.findOne(id, {relations: ['category']})
   }
 }
