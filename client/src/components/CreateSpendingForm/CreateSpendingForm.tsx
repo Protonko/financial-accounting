@@ -50,7 +50,7 @@ export const CreateSpendingForm = () => {
     event.preventDefault()
 
     if (canSubmit) {
-      createSpending({...spending, amount: parseFloat(spending.amount), category: {id: spending.category!}})
+      createSpending({...spending, amount: parseFloat(spending.amount), categoryId: spending.category!})
       setSpending(initialState)
     }
   }

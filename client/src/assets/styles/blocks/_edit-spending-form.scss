@@ -1,0 +1,31 @@
+.edit-spending-form {
+  height: 100%;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: rem(20px);
+
+    &-text {
+      display: block;
+      margin-bottom: rem(5px);
+    }
+  }
+
+  &__input {
+    & > label {
+      align-items: flex-start;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    margin-top: rem(20px);
+  }
+}

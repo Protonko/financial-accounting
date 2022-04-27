@@ -17,7 +17,13 @@ export interface CreateSpendingBody {
   amount: number,
   description: string,
   date: string,
-  category: {
-    id: number,
-  },
+  categoryId: number,
+}
+
+export interface UpdateSpendingBody {
+  id: number,
+  amount: number,
+  description: string,
+  date: string,
+  categoryId: number,
 }

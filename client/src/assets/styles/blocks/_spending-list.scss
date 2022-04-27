@@ -3,4 +3,11 @@
   grid-template-columns: 1fr 1fr;
   gap: rem(10px);
   width: 100%;
+
+  &__modal {
+    &-box {
+      width: rem(500px);
+      height: rem(600px);
+    }
+  }
 }

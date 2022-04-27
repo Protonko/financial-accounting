@@ -9,6 +9,7 @@
 @import 'blocks/main';
 @import 'blocks/tabs';
 @import 'blocks/input';
+@import 'blocks/select';
 @import 'blocks/datepicker';
 @import 'blocks/link';
 @import 'blocks/button';
@@ -17,6 +18,7 @@
 @import 'blocks/category';
 @import 'blocks/categories-list';
 @import 'blocks/spending';
+@import 'blocks/edit-spending-form';
 @import 'blocks/create-spending-form';
 @import 'blocks/spending-list';
 @import 'blocks/header';
@@ -25,5 +27,6 @@
 @import 'blocks/keypad';
 @import 'blocks/calculator';
 @import 'blocks/expenses';
+@import 'blocks/modal';
 @import 'blocks/auth-form';
 @import 'blocks/auth';

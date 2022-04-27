@@ -1,4 +1,4 @@
-import type {FC} from 'react'
+import {memo, FC} from 'react'
 import {Menu, MenuItem} from '@mui/material'
 import {usePopupState, bindTrigger, bindMenu} from 'material-ui-popup-state/hooks'
 import ThreeDots from '@assets/icons/three-dots.svg'
@@ -11,15 +11,17 @@ interface Props {
   date: string,
   icon: string,
   id: number,
+  onEdit: (id: number) => void,
 }
 
-export const Spending: FC<Props> = ({
+export const Spending: FC<Props> = memo(({
   amount,
   category,
   comment,
   date,
   icon,
   id,
+  onEdit,
 }) => {
   const getIcon = useCategoriesIcons()
   const popupState = usePopupState({ variant: 'popover', popupId: 'demoMenu' })
@@ -31,12 +33,17 @@ export const Spending: FC<Props> = ({
     popupState.close()
   }
 
+  const editSpending = () => {
+    onEdit(id)
+    popupState.close()
+  }
+
   return (
     <article className="spending">
       <div className="spending__options">
         <ThreeDots className="spending__options-icon" {...bindTrigger(popupState)} />
         <Menu {...bindMenu(popupState)}>
-          <MenuItem onClick={popupState.close}>{localization.edit}</MenuItem>
+          <MenuItem onClick={editSpending}>{localization.edit}</MenuItem>
           <MenuItem onClick={deleteSpending}>{localization.delete}</MenuItem>
         </Menu>
       </div>
@@ -62,4 +69,6 @@ export const Spending: FC<Props> = ({
       </div>
     </article>
   )
-}
+})
+
+Spending.displayName = 'Spending'

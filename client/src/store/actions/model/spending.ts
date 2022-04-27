@@ -1,5 +1,5 @@
 import type {AnyAction} from 'redux'
-import type {CreateSpendingBody, Spending, SpendingFilters} from 'model'
+import type {CreateSpendingBody, Spending, SpendingFilters, UpdateSpendingBody} from 'model'
 import type {HydrateAction} from './hydrate'
 
 export enum SPENDING_ACTION_TYPES {
@@ -9,6 +9,8 @@ export enum SPENDING_ACTION_TYPES {
   SPENDING_CREATED = 'SPENDING_CREATED',
   DELETE_SPENDING = 'DELETE_SPENDING',
   SPENDING_DELETED = 'SPENDING_DELETED',
+  EDIT_SPENDING = 'EDIT_SPENDING',
+  SPENDING_EDITED = 'SPENDING_EDITED',
 }
 
 export interface LoadSpendingAction extends AnyAction {
@@ -41,6 +43,16 @@ export interface SpendingDeletedAction extends AnyAction {
   payload: number,
 }
 
+export interface EditSpendingAction extends AnyAction {
+  type: SPENDING_ACTION_TYPES.EDIT_SPENDING,
+  payload: UpdateSpendingBody,
+}
+
+export interface SpendingEditedAction extends AnyAction {
+  type: SPENDING_ACTION_TYPES.SPENDING_EDITED,
+  payload: Spending,
+}
+
 export type AllSpendingActions =
   | LoadSpendingAction
   | SetSpendingDataAction
@@ -48,4 +60,6 @@ export type AllSpendingActions =
   | SpendingCreatedAction
   | DeleteSpendingAction
   | SpendingDeletedAction
+  | EditSpendingAction
+  | SpendingEditedAction
   | HydrateAction

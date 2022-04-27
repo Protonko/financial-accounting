@@ -36,6 +36,21 @@ const reducers = (state = initialState, action: AllSpendingActions): InitialStat
       }
     }
 
+    case SPENDING_ACTION_TYPES.SPENDING_EDITED: {
+      const updatedSpending = (state.spending ?? []).map(spending => {
+        if (spending.id === action.payload.id) {
+          return action.payload
+        } else {
+          return spending
+        }
+      })
+
+      return {
+        ...state,
+        spending: updatedSpending,
+      }
+    }
+
     default:
       return state
 

@@ -22,4 +22,7 @@ export const localizationEn: Localization = {
   create: 'Create',
   edit: 'Edit',
   delete: 'Delete',
+  amount: 'Amount',
+  date: 'Date',
+  category: 'Category',
 }

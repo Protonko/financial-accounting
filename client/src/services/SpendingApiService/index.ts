@@ -1,4 +1,4 @@
-import type {Spending, CreateSpendingBody} from 'model'
+import type {Spending, CreateSpendingBody, UpdateSpendingBody} from 'model'
 import {ApiService} from 'services'
 
 export class SpendingApiService {
@@ -12,5 +12,9 @@ export class SpendingApiService {
 
   static deleteSpending(id: number) {
     return ApiService.delete<number>(`spending/${id}`)
+  }
+
+  static editSpending(body: UpdateSpendingBody) {
+    return ApiService.put<UpdateSpendingBody, Spending>(`spending/${body.id}`, body)
   }
 }

@@ -1,4 +1,4 @@
-import type {CreateSpendingBody, Spending, SpendingFilters} from 'model'
+import type {CreateSpendingBody, Spending, SpendingFilters, UpdateSpendingBody} from 'model'
 import {
   SPENDING_ACTION_TYPES,
   CreateSpendingAction,
@@ -7,6 +7,8 @@ import {
   SetSpendingDataAction,
   SpendingCreatedAction,
   SpendingDeletedAction,
+  EditSpendingAction,
+  SpendingEditedAction,
 } from './model'
 
 export const loadSpending = (payload: SpendingFilters): LoadSpendingAction => ({
@@ -36,5 +38,15 @@ export const deleteSpending = (payload: number): DeleteSpendingAction => ({
 
 export const spendingDeleted = (payload: number): SpendingDeletedAction => ({
   type: SPENDING_ACTION_TYPES.SPENDING_DELETED,
+  payload,
+})
+
+export const editSpending = (payload: UpdateSpendingBody): EditSpendingAction => ({
+  type: SPENDING_ACTION_TYPES.EDIT_SPENDING,
+  payload,
+})
+
+export const spendingEdited = (payload: Spending): SpendingEditedAction => ({
+  type: SPENDING_ACTION_TYPES.SPENDING_EDITED,
   payload,
 })

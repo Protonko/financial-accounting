@@ -1,9 +1,10 @@
 import type {Spending} from 'model'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
-import {callError, setSpendingData, spendingCreated, spendingDeleted} from 'store/actions'
+import {callError, setSpendingData, spendingCreated, spendingDeleted, spendingEdited} from 'store/actions'
 import {
   CreateSpendingAction,
   DeleteSpendingAction,
+  EditSpendingAction,
   LoadSpendingAction,
   SPENDING_ACTION_TYPES,
 } from 'store/actions/model'
@@ -16,6 +17,7 @@ export class SpendingSagaFactory {
       SpendingSagaFactory.loadSpendingWatcher(),
       SpendingSagaFactory.createSpendingWatcher(),
       SpendingSagaFactory.deleteSpendingWatcher(),
+      SpendingSagaFactory.editSpendingWatcher(),
     ]
   }
 
@@ -67,5 +69,21 @@ export class SpendingSagaFactory {
 
   private static *deleteSpendingWatcher() {
     yield takeEvery(SPENDING_ACTION_TYPES.DELETE_SPENDING, SpendingSagaFactory.deleteSpendingWorker)
+  }
+
+  private static *editSpendingWorker({payload}: EditSpendingAction) {
+    try {
+      const spending: Spending = yield call(
+        SpendingApiService.editSpending,
+        payload,
+      )
+      yield put(spendingEdited(spending))
+    } catch (error) {
+      yield put(callError(getError(error)))
+    }
+  }
+
+  private static *editSpendingWatcher() {
+    yield takeEvery(SPENDING_ACTION_TYPES.EDIT_SPENDING, SpendingSagaFactory.editSpendingWorker)
   }
 }

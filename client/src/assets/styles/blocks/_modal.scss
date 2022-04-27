@@ -1,0 +1,13 @@
+.modal {
+  display: flex;
+  justify-content: center;
+
+  &__box {
+    overflow: auto;
+    margin-top: rem(65px);
+    padding: rem(20px);
+    outline: none;
+    border-radius: rem(5px);
+    background-color: var(--background-color);
+  }
+}

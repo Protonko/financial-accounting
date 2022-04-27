@@ -22,4 +22,7 @@ export const localizationRu: Localization = {
   create: 'Создать',
   edit: 'Редактировать',
   delete: 'Удалить',
+  amount: 'Сумма',
+  date: 'Дата',
+  category: 'Категория',
 }

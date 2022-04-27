@@ -25,7 +25,7 @@ const maskMap = {
 
 export const DatePicker: FC<Props> = memo(({value, setValue, lang, name}) => {
   const handleChange = (value: string | null) => {
-    const date = value ?? new Date().toISOString() // TODO: fix date
+    const date = value ?? new Date().toISOString()
 
     setValue(date, name)
   }

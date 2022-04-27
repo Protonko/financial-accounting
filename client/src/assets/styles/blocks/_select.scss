@@ -1,0 +1,28 @@
+.select {
+  &__label {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  & &__area {
+    width: 100%;
+    margin-top: rem(5px);
+    border-radius: rem(8px);
+    background-color: var(--grey-color);
+
+    & > div {
+      padding: rem(24px) rem(32px);
+    }
+
+    &:hover {
+      background-color: var(--light-grey);
+    }
+
+    fieldset {
+      font-size: rem($font-size-base);
+      color: var(--primary-color);
+      outline: none;
+      border: none;
+    }
+  }
+}
