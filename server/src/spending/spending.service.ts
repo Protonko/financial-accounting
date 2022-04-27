@@ -8,6 +8,7 @@ import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 import {Spending} from './entities/spending'
 import {CategoryService} from '../category/category.service'
+import {UpdateSpendingDto} from './dto/update-spending.dto';
 
 @Injectable()
 export class SpendingService {
@@ -52,6 +53,11 @@ export class SpendingService {
       ...createSpendingDto,
       userId,
     })
+    return this.spendingRepository.findOne(id, {relations: ['category']})
+  }
+
+  async update(updateSpendingDto: UpdateSpendingDto, id: number) {
+    await this.spendingRepository.update(id, updateSpendingDto)
     return this.spendingRepository.findOne(id, {relations: ['category']})
   }
 }

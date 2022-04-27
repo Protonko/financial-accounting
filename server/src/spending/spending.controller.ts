@@ -46,8 +46,8 @@ export class SpendingController {
   @Put(':id')
   update(
     @Body() updateSpendingDto: UpdateSpendingDto,
-    @Param('id') id: string,
+    @Param('id') id: number,
   ) {
-    return JSON.stringify(updateSpendingDto) + id
+    return this.spendingService.update(updateSpendingDto, id)
   }
 }
