@@ -12,6 +12,7 @@
 
     & > div {
       padding: rem(24px) rem(32px);
+      color: var(--primary-color);
     }
 
     &:hover {
@@ -20,7 +21,6 @@
 
     fieldset {
       font-size: rem($font-size-base);
-      color: var(--primary-color);
       outline: none;
       border: none;
     }
