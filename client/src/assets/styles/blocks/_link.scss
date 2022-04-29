@@ -2,6 +2,7 @@
     font-size: rem($font-size-base);
     transition-duration: $transition-duration;
     transition-property: color;
+    cursor: pointer;
     color: var(--brand-color);
 
     &:hover {

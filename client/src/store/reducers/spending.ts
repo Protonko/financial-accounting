@@ -4,10 +4,14 @@ import {AllSpendingActions, SPENDING_ACTION_TYPES} from 'store/actions/model'
 
 export interface InitialState {
   spending: Spending[] | null,
+  offset: number,
+  count: number,
 }
 
 export const initialState: InitialState = {
-  spending: null
+  spending: null,
+  offset: 0,
+  count: 0,
 }
 
 const reducers = (state = initialState, action: AllSpendingActions): InitialState => {
@@ -18,13 +22,22 @@ const reducers = (state = initialState, action: AllSpendingActions): InitialStat
         ...action.payload.spending,
       }
 
+    case SPENDING_ACTION_TYPES.LOAD_SPENDING:
+      return {
+        ...state,
+        offset: action.payload.offset,
+      }
+
     case SPENDING_ACTION_TYPES.SET_SPENDING_DATA:
       return {
-        spending: action.payload,
+        ...state,
+        spending: action.payload.data,
+        count: action.payload.count
       }
 
     case SPENDING_ACTION_TYPES.SPENDING_CREATED:
       return {
+        ...state,
         spending: [...(state.spending ?? []), action.payload]
       }
 

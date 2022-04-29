@@ -25,4 +25,5 @@ export const localizationEn: Localization = {
   amount: 'Amount',
   date: 'Date',
   category: 'Category',
+  showMore: 'Show more',
 }

@@ -1,5 +1,10 @@
 import type {Category} from './category'
 
+export interface SpendingPage {
+  data: Spending[],
+  count: number,
+}
+
 export interface Spending {
   amount: number,
   category: Category,
@@ -9,7 +14,8 @@ export interface Spending {
 }
 
 export interface SpendingFilters {
-  page: number,
+  offset: number,
+  size: number
   accessToken?: string,
 }
 

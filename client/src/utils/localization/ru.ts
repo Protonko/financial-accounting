@@ -25,4 +25,5 @@ export const localizationRu: Localization = {
   amount: 'Сумма',
   date: 'Дата',
   category: 'Категория',
+  showMore: 'Показать еще',
 }

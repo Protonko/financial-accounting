@@ -2,14 +2,15 @@ import type {RootState} from '@store/reducers'
 import type {Spending} from 'model'
 import {FC, useCallback, useState} from 'react'
 import {useSelector} from 'react-redux'
+import Link from 'next/link'
 import {Modal, Box} from '@mui/material'
 import {EditSpendingForm, Spending as SpendingComponent} from 'components'
 import {useLocalization} from 'hooks'
 import {APP_LANG} from 'utils'
 
 export const SpendingList: FC = () => {
-  const {spending} = useSelector((state: RootState) => state.spending)
-  const {lang} = useLocalization()
+  const {spending, count} = useSelector((state: RootState) => state.spending)
+  const {lang, localization} = useLocalization()
   const [selectedSpending, setSelectedSpending] = useState<Spending>()
 
   const closeModal = useCallback(() => setSelectedSpending(undefined), [])
@@ -21,6 +22,18 @@ export const SpendingList: FC = () => {
       setSelectedSpending(selectedSpending)
     }
   }, [])
+
+  const renderShowMoreButton = () => {
+    if (spending && spending.length < count) {
+      return (
+        <Link href="/expenses/list">
+          <a className="spending-list__button link">{localization.showMore}</a>
+        </Link>
+      )
+    }
+
+    return null
+  }
 
   const renderSpending = (spending: Spending) => {
     const date = new Date(spending.date).toLocaleDateString(lang)
@@ -60,10 +73,13 @@ export const SpendingList: FC = () => {
 
   if (spending) {
     return (
-      <>
-        <ul className="spending-list list list--reset">
+      <div className="spending-list">
+        <ul className="spending-list__items list list--reset">
           {spending.map(renderSpending)}
         </ul>
+
+        {renderShowMoreButton()}
+
         <Modal
           className="spending-list__modal modal"
           open={!!selectedSpending}
@@ -73,7 +89,7 @@ export const SpendingList: FC = () => {
             {renderEditSpendingForm()}
           </Box>
         </Modal>
-      </>
+      </div>
     )
   }
 

@@ -1,4 +1,4 @@
-import type {Spending} from 'model'
+import type {Spending, SpendingPage} from 'model'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
 import {callError, setSpendingData, spendingCreated, spendingDeleted, spendingEdited} from 'store/actions'
 import {
@@ -24,12 +24,13 @@ export class SpendingSagaFactory {
   private static *loadSpendingWorker({payload}: LoadSpendingAction) {
     try {
       const cookie = payload.accessToken ? {'cookie': payload.accessToken} : undefined
-      const spending: Spending[] = yield call(
+      const spendingPage: SpendingPage = yield call(
         SpendingApiService.loadSpending,
-        payload.page,
+        payload.offset,
+        payload.size,
         cookie,
       )
-      yield put(setSpendingData(spending))
+      yield put(setSpendingData(spendingPage))
     } catch (error) {
       yield put(callError(getError(error)))
     }

@@ -28,5 +28,6 @@ export type LocalizationKeys =
   | 'amount'
   | 'date'
   | 'category'
+  | 'showMore'
 
 export type Localization = Record<LocalizationKeys, string>

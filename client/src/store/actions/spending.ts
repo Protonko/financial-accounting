@@ -1,4 +1,4 @@
-import type {CreateSpendingBody, Spending, SpendingFilters, UpdateSpendingBody} from 'model'
+import type {CreateSpendingBody, Spending, SpendingFilters, SpendingPage, UpdateSpendingBody} from 'model'
 import {
   SPENDING_ACTION_TYPES,
   CreateSpendingAction,
@@ -16,7 +16,7 @@ export const loadSpending = (payload: SpendingFilters): LoadSpendingAction => ({
   payload,
 })
 
-export const setSpendingData = (payload: Spending[]): SetSpendingDataAction => ({
+export const setSpendingData = (payload: SpendingPage): SetSpendingDataAction => ({
   type: SPENDING_ACTION_TYPES.SET_SPENDING_DATA,
   payload,
 })

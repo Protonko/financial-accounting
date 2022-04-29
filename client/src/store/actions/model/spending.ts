@@ -1,5 +1,5 @@
 import type {AnyAction} from 'redux'
-import type {CreateSpendingBody, Spending, SpendingFilters, UpdateSpendingBody} from 'model'
+import type {CreateSpendingBody, Spending, SpendingFilters, SpendingPage, UpdateSpendingBody} from 'model'
 import type {HydrateAction} from './hydrate'
 
 export enum SPENDING_ACTION_TYPES {
@@ -20,7 +20,7 @@ export interface LoadSpendingAction extends AnyAction {
 
 export interface SetSpendingDataAction extends AnyAction {
   type: SPENDING_ACTION_TYPES.SET_SPENDING_DATA,
-  payload: Spending[],
+  payload: SpendingPage,
 }
 
 export interface CreateSpendingAction extends AnyAction {
