@@ -8,6 +8,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common'
@@ -22,8 +23,15 @@ export class SpendingController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  getAll(@Req() request: Express.Request) {
-    return this.spendingService.getAllByUserId(request.user.id)
+  getAll(
+    @Req() request: Express.Request,
+    @Query() query: {offset: number; size: number},
+  ) {
+    return this.spendingService.getAllByUserId(
+      request.user.id,
+      query.offset,
+      query.size,
+    )
   }
 
   @UseGuards(JwtAuthGuard)

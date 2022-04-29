@@ -22,11 +22,18 @@ export class SpendingService {
     return this.spendingRepository.findOne(id)
   }
 
-  getAllByUserId(userId: number) {
-    return this.spendingRepository.find({
+  async getAllByUserId(userId: number, offset: number, size: number) {
+    const [data, count] = await this.spendingRepository.findAndCount({
       where: {userId},
+      take: size,
+      skip: offset,
       relations: ['category'],
     })
+
+    return {
+      data,
+      count,
+    }
   }
 
   async deleteById(id: string, userId: number) {
