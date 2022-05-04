@@ -35,6 +35,19 @@ export class SpendingController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('/grouped-by-date')
+  getSpendingGroupedByDate(
+    @Req() request: Express.Request,
+    @Query() query: {offset: number; size: number},
+  ) {
+    return this.spendingService.getSpendingGroupedByDate(
+      request.user.id,
+      query.offset,
+      query.size,
+    )
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Post('/create')
   @HttpCode(HttpStatus.CREATED)
   create(
