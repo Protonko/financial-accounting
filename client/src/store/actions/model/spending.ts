@@ -1,10 +1,20 @@
 import type {AnyAction} from 'redux'
-import type {CreateSpendingBody, Spending, SpendingFilters, SpendingPage, UpdateSpendingBody} from 'model'
+import type {
+  CreateSpendingBody,
+  Spending,
+  SpendingFilters,
+  SpendingGroupedByDatePage,
+  SpendingPage,
+  UpdateSpendingBody,
+} from 'model'
 import type {HydrateAction} from './hydrate'
 
 export enum SPENDING_ACTION_TYPES {
   LOAD_SPENDING = 'LOAD_SPENDING',
   SET_SPENDING_DATA = 'SET_SPENDING_DATA',
+  LOAD_SPENDING_GROUPED_BY_DATE = 'LOAD_SPENDING_GROUPED_BY_DATE',
+  SET_SPENDING_GROUPED_BY_DATE_DATA = 'SET_SPENDING_GROUPED_BY_DATE_DATA',
+  RESET_SPENDING_GROUPED_BY_DATE = 'RESET_SPENDING_GROUPED_BY_DATE',
   CREATE_SPENDING = 'CREATE_SPENDING',
   SPENDING_CREATED = 'SPENDING_CREATED',
   DELETE_SPENDING = 'DELETE_SPENDING',
@@ -21,6 +31,20 @@ export interface LoadSpendingAction extends AnyAction {
 export interface SetSpendingDataAction extends AnyAction {
   type: SPENDING_ACTION_TYPES.SET_SPENDING_DATA,
   payload: SpendingPage,
+}
+
+export interface LoadSpendingGroupedByDateAction extends AnyAction {
+  type: SPENDING_ACTION_TYPES.LOAD_SPENDING_GROUPED_BY_DATE,
+  payload: SpendingFilters,
+}
+
+export interface SetSpendingGroupedByDateDataAction extends AnyAction {
+  type: SPENDING_ACTION_TYPES.SET_SPENDING_GROUPED_BY_DATE_DATA,
+  payload: SpendingGroupedByDatePage,
+}
+
+export interface ResetSpendingGroupedByDateAction extends AnyAction {
+  type: SPENDING_ACTION_TYPES.RESET_SPENDING_GROUPED_BY_DATE,
 }
 
 export interface CreateSpendingAction extends AnyAction {
@@ -56,6 +80,9 @@ export interface SpendingEditedAction extends AnyAction {
 export type AllSpendingActions =
   | LoadSpendingAction
   | SetSpendingDataAction
+  | LoadSpendingGroupedByDateAction
+  | SetSpendingGroupedByDateDataAction
+  | ResetSpendingGroupedByDateAction
   | CreateSpendingAction
   | SpendingCreatedAction
   | DeleteSpendingAction

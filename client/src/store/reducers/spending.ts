@@ -1,17 +1,19 @@
-import type {Spending} from 'model'
+import type {Spending, SpendingGroupedByDate} from 'model'
 import {HYDRATE} from 'next-redux-wrapper'
 import {AllSpendingActions, SPENDING_ACTION_TYPES} from 'store/actions/model'
 
 export interface InitialState {
   spending: Spending[] | null,
-  offset: number,
+  spendingGroupedByDate: SpendingGroupedByDate | null,
   count: number,
+  countGroupedByDate: number,
 }
 
 export const initialState: InitialState = {
   spending: null,
-  offset: 0,
+  spendingGroupedByDate: null,
   count: 0,
+  countGroupedByDate: 0,
 }
 
 const reducers = (state = initialState, action: AllSpendingActions): InitialState => {
@@ -22,18 +24,27 @@ const reducers = (state = initialState, action: AllSpendingActions): InitialStat
         ...action.payload.spending,
       }
 
-    case SPENDING_ACTION_TYPES.LOAD_SPENDING:
-      return {
-        ...state,
-        offset: action.payload.offset,
-      }
-
     case SPENDING_ACTION_TYPES.SET_SPENDING_DATA:
       return {
         ...state,
         spending: action.payload.data,
         count: action.payload.count
       }
+
+    case SPENDING_ACTION_TYPES.SET_SPENDING_GROUPED_BY_DATE_DATA:
+      return {
+        ...state,
+        spendingGroupedByDate: action.payload.data,
+        countGroupedByDate: action.payload.count,
+      }
+
+    case SPENDING_ACTION_TYPES.RESET_SPENDING_GROUPED_BY_DATE:
+      return {
+        ...state,
+        spendingGroupedByDate: null,
+        countGroupedByDate: 0,
+      }
+
 
     case SPENDING_ACTION_TYPES.SPENDING_CREATED:
       return {

@@ -24,13 +24,13 @@ export const getServerSideProps = storeWrapper.getServerSideProps(async ({store,
 
 const ExpensesList = () => {
   const router = useRouter()
-  const {spending, offset} = useSelector((state: RootState) => state.spending)
+  const {spending} = useSelector((state: RootState) => state.spending)
   const scrollIndicator = useRef<HTMLDivElement>(null)
   const observer = useRef(new IntersectionObserver(() => console.log('GET')))
 
   const pushQueryParamsToHistory = () => {
     if (!(router.query.offset && router.query.size)) {
-      router.query.offset ??= offset.toString()
+      router.query.offset ??= '0'
       router.query.size ??= PAGE_SIZE.toString()
       router.push(router)
     }
