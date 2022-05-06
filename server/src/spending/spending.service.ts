@@ -9,6 +9,7 @@ import {Repository} from 'typeorm'
 import {Spending} from './entities/spending'
 import {CategoryService} from '../category/category.service'
 import {UpdateSpendingDto} from './dto/update-spending.dto'
+import {LOCAL_DATE_REGEXP} from '../static/regexps'
 
 @Injectable()
 export class SpendingService {
@@ -25,6 +26,7 @@ export class SpendingService {
   async getAllByUserId(userId: number, offset: number, size: number) {
     const [data, count] = await this.spendingRepository.findAndCount({
       where: {userId},
+      order: {date: 'DESC'},
       take: size,
       skip: offset,
       relations: ['category'],
@@ -33,19 +35,6 @@ export class SpendingService {
     return {
       data,
       count,
-    }
-  }
-
-  async getSpendingGroupedByDate(userId: number, offset: number, size: number) {
-    const spending = await this.getAllByUserId(userId, offset, size)
-    const spendingGroupedByDate = spending.data.reduce((acc, current) => {
-      acc[current.date].push(current)
-      return acc
-    }, {} as Record<string, Spending[]>)
-
-    return {
-      data: spendingGroupedByDate,
-      count: spending.count,
     }
   }
 
@@ -65,6 +54,10 @@ export class SpendingService {
       createSpendingDto.categoryId,
     )
 
+    if (!LOCAL_DATE_REGEXP.test(createSpendingDto.date)) {
+      throw new BadRequestException('Incorrect date format.')
+    }
+
     if (!category) {
       throw new BadRequestException('Incorrect category id.')
     }
@@ -78,6 +71,11 @@ export class SpendingService {
 
   async update(updateSpendingDto: UpdateSpendingDto, id: number) {
     await this.spendingRepository.update(id, updateSpendingDto)
+
+    if (!LOCAL_DATE_REGEXP.test(updateSpendingDto.date)) {
+      throw new BadRequestException('Incorrect date format.')
+    }
+
     return this.spendingRepository.findOne(id, {relations: ['category']})
   }
 }
