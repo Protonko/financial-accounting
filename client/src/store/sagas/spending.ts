@@ -1,9 +1,8 @@
-import type {Spending, SpendingGroupedByDatePage, SpendingPage} from 'model'
+import type {Spending, SpendingPage} from 'model'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
 import {
   callError,
   setSpendingData,
-  setSpendingGroupedByDateData,
   spendingCreated,
   spendingDeleted,
   spendingEdited,
@@ -13,7 +12,6 @@ import {
   DeleteSpendingAction,
   EditSpendingAction,
   LoadSpendingAction,
-  LoadSpendingGroupedByDateAction,
   SPENDING_ACTION_TYPES,
 } from 'store/actions/model'
 import {getError} from 'utils'
@@ -23,7 +21,6 @@ export class SpendingSagaFactory {
   static create() {
     return [
       SpendingSagaFactory.loadSpendingWatcher(),
-      SpendingSagaFactory.loadSpendingGroupedByDateWatcher(),
       SpendingSagaFactory.createSpendingWatcher(),
       SpendingSagaFactory.deleteSpendingWatcher(),
       SpendingSagaFactory.editSpendingWatcher(),
@@ -59,25 +56,6 @@ export class SpendingSagaFactory {
     } catch (error) {
       yield put(callError(getError(error)))
     }
-  }
-
-  private static *loadSpendingGroupedByDateWorker({payload}: LoadSpendingGroupedByDateAction) {
-    try {
-      const cookie = payload.accessToken ? {'cookie': payload.accessToken} : undefined
-      const spendingGroupedByDatePage: SpendingGroupedByDatePage = yield call(
-        SpendingApiService.loadSpendingGroupedByDate,
-        payload.offset,
-        payload.size,
-        cookie,
-      )
-      yield put(setSpendingGroupedByDateData(spendingGroupedByDatePage))
-    } catch (error) {
-      yield put(callError(getError(error)))
-    }
-  }
-
-  private static *loadSpendingGroupedByDateWatcher() {
-    yield takeEvery(SPENDING_ACTION_TYPES.LOAD_SPENDING_GROUPED_BY_DATE, SpendingSagaFactory.loadSpendingGroupedByDateWorker)
   }
 
   private static *createSpendingWatcher() {

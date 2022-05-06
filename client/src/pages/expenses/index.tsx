@@ -4,7 +4,7 @@ import {END} from 'redux-saga'
 import {SagaStore, storeWrapper} from '@store/index'
 import {getUserInfo, loadCategories, loadSpending} from '@store/actions'
 import {CookieHandlerSSR} from '@utils/index'
-import {MainLayout} from '@layouts/index'
+import {MainLayout} from 'layouts'
 import {SpendingList, CreateSpendingForm} from '@components/index'
 import {PAGE_SIZE} from '@constants'
 

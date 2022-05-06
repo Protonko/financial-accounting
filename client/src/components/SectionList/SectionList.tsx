@@ -1,4 +1,4 @@
-import type {ReactNode, ElementType} from 'react'
+import {useEffect, useRef, ReactNode, ElementType} from 'react'
 import classNames from 'classnames'
 import {CircularProgress} from '@mui/material'
 
@@ -7,13 +7,9 @@ interface Section<T> {
   data: T[],
 }
 
-// return Object.entries(spendingRecord).map(elem => ({
-//   date: elem[0],
-//   spending: elem[1],
-// }))
 interface Props<T> {
-  className: string,
-  keyExtractor: <U>(item: U, index: number) => string,
+  className?: string,
+  keyExtractor: (item: T, index: number) => string,
   loading: boolean,
   renderSectionHeader: (section: Section<T>) => ReactNode,
   renderItem: (value: T, index: number, array: T[]) => ReactNode,
@@ -33,6 +29,20 @@ export const SectionList = <T extends any>({
   onEndReached,
 }: Props<T>) => {
   const sectionListClassNames = classNames('section-list', {[className ?? '']: !!className})
+  const scrollIndicator = useRef<HTMLDivElement>(null)
+  const observer = useRef(new IntersectionObserver(onEndReached))
+
+  const createObserver = () => {
+    if (scrollIndicator.current) {
+      observer.current.observe(scrollIndicator.current)
+    }
+  }
+
+  useEffect(() => {
+    createObserver()
+
+    return () => observer.current.disconnect()
+  }, [])
 
   const renderSectionItem = (value: T, index: number, array: T[]) => {
     return (
@@ -42,15 +52,15 @@ export const SectionList = <T extends any>({
     )
   }
 
-  const renderSection = (data: Section<T>, index: number) => {
+  const renderSection = (data: Section<T>) => {
     if (data.data.length) {
       return (
-        <li className="section-list__section-item" key={keyExtractor(data, index)}>
+        <li className="section-list__section-item" key={data.title}>
           <div className="section-list__section-item-header">
             {renderSectionHeader(data)}
           </div>
           <div className="section-list__section-item-data">
-            <ul className="section-list__items">
+            <ul className="section-list__items list list--reset">
               {data.data.map(renderSectionItem)}
             </ul>
           </div>
@@ -64,15 +74,15 @@ export const SectionList = <T extends any>({
   const renderLoader = () => {
     if (loading) {
       return <CircularProgress color="inherit" />
+    } else {
+      return <div ref={scrollIndicator} />
     }
-
-    return null
   }
 
   if (sections.length) {
     return (
       <div className={sectionListClassNames}>
-        <ul className="section-list__sections">
+        <ul className="section-list__sections list list--reset">
           {sections.map(renderSection)}
         </ul>
 

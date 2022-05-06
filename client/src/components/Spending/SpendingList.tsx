@@ -1,27 +1,17 @@
-import type {RootState} from '@store/reducers'
+import type {FC} from 'react'
 import type {Spending} from 'model'
-import {FC, useCallback, useState} from 'react'
+import type {RootState} from '@store/reducers'
 import {useSelector} from 'react-redux'
 import Link from 'next/link'
-import {Modal, Box} from '@mui/material'
-import {EditSpendingForm, Spending as SpendingComponent} from 'components'
-import {useLocalization} from 'hooks'
+import {SpendingEditModal, Spending as SpendingComponent} from 'components'
 import {APP_LANG} from 'utils'
+import {useLocalization} from 'hooks'
+import {useEditSpending} from './hooks'
 
 export const SpendingList: FC = () => {
   const {spending, count} = useSelector((state: RootState) => state.spending)
   const {lang, localization} = useLocalization()
-  const [selectedSpending, setSelectedSpending] = useState<Spending>()
-
-  const closeModal = useCallback(() => setSelectedSpending(undefined), [])
-
-  const prepareToEdit = useCallback((id: number) => {
-    const selectedSpending = spending?.find(spending => spending.id === id)
-
-    if (selectedSpending) {
-      setSelectedSpending(selectedSpending)
-    }
-  }, [])
+  const {selectedSpending, closeModal, prepareToEdit} = useEditSpending(spending ?? [])
 
   const renderShowMoreButton = () => {
     if (spending && spending.length < count) {
@@ -54,41 +44,16 @@ export const SpendingList: FC = () => {
     )
   }
 
-  const renderEditSpendingForm = () => {
-    if (selectedSpending) {
-      return (
-        <EditSpendingForm
-          amount={selectedSpending.amount.toString()}
-          categoryId={selectedSpending.category.id}
-          date={selectedSpending.date}
-          description={selectedSpending.description ?? ''}
-          id={selectedSpending.id}
-          onSubmit={closeModal}
-        />
-      )
-    }
-
-    return null
-  }
-
   if (spending) {
     return (
       <div className="spending-list">
-        <ul className="spending-list__items list list--reset">
-          {spending.map(renderSpending)}
-        </ul>
+        <SpendingEditModal selectedSpending={selectedSpending} closeModal={closeModal}>
+          <ul className="spending-list__items list list--reset">
+            {spending.map(renderSpending)}
+          </ul>
 
-        {renderShowMoreButton()}
-
-        <Modal
-          className="spending-list__modal modal"
-          open={!!selectedSpending}
-          onClose={closeModal}
-        >
-          <Box className="spending-list__modal-box modal__box">
-            {renderEditSpendingForm()}
-          </Box>
-        </Modal>
+          {renderShowMoreButton()}
+        </SpendingEditModal>
       </div>
     )
   }

@@ -2,7 +2,6 @@ import type {
   CreateSpendingBody,
   Spending,
   SpendingFilters,
-  SpendingGroupedByDatePage,
   SpendingPage,
   UpdateSpendingBody,
 } from 'model'
@@ -12,31 +11,14 @@ import {
   DeleteSpendingAction,
   EditSpendingAction,
   LoadSpendingAction,
-  LoadSpendingGroupedByDateAction,
   SetSpendingDataAction,
-  SetSpendingGroupedByDateDataAction,
   SpendingCreatedAction,
   SpendingDeletedAction,
   SpendingEditedAction,
-  ResetSpendingGroupedByDateAction,
 } from './model'
 
 export const loadSpending = (payload: SpendingFilters): LoadSpendingAction => ({
   type: SPENDING_ACTION_TYPES.LOAD_SPENDING,
-  payload,
-})
-
-export const loadSpendingGroupedByDate = (payload: SpendingFilters): LoadSpendingGroupedByDateAction => ({
-  type: SPENDING_ACTION_TYPES.LOAD_SPENDING_GROUPED_BY_DATE,
-  payload,
-})
-
-export const resetSpendingGroupedByDate = (): ResetSpendingGroupedByDateAction => ({
-  type: SPENDING_ACTION_TYPES.RESET_SPENDING_GROUPED_BY_DATE,
-})
-
-export const setSpendingGroupedByDateData = (payload: SpendingGroupedByDatePage): SetSpendingGroupedByDateDataAction => ({
-  type: SPENDING_ACTION_TYPES.SET_SPENDING_GROUPED_BY_DATE_DATA,
   payload,
 })
 

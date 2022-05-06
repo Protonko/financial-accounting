@@ -2,6 +2,7 @@ import type {RootState} from '@store/reducers'
 import {useCallback, useState, ChangeEvent, useMemo, FormEventHandler} from 'react'
 import {useSelector} from 'react-redux'
 import {ButtonUnstyled} from '@mui/material'
+import {getLocalDate} from 'utils'
 import {ICONS_MAP, useActions, useLocalization} from 'hooks'
 import {DatePicker, Calculator, Input, CategoriesList} from 'components'
 
@@ -15,7 +16,7 @@ interface SpendingState {
 const initialState: SpendingState = {
   amount: '0',
   description: '',
-  date: new Date().toISOString(),
+  date: getLocalDate(new Date()),
   category: undefined,
 }
 
@@ -24,6 +25,7 @@ export const CreateSpendingForm = () => {
   const {createSpending} = useActions()
   const {categories} = useSelector((state: RootState) => state.categories)
   const [spending, setSpending] = useState<SpendingState>(initialState)
+  const maxDate = useMemo(() => new Date(), [])
 
   const handleChange = useCallback((value: string, name: string) => {
     setSpending(prev => ({...prev, [name]: value}))
@@ -50,7 +52,11 @@ export const CreateSpendingForm = () => {
     event.preventDefault()
 
     if (canSubmit) {
-      createSpending({...spending, amount: parseFloat(spending.amount), categoryId: spending.category!})
+      createSpending({
+        ...spending,
+        amount: parseFloat(spending.amount),
+        categoryId: spending.category!,
+      })
       setSpending(initialState)
     }
   }
@@ -77,7 +83,7 @@ export const CreateSpendingForm = () => {
           placeholder={localization.comment}
           className="expenses__input"
         />
-        <DatePicker value={spending.date} name="date" setValue={handleChange} lang={lang} />
+        <DatePicker value={spending.date} name="date" setValue={handleChange} lang={lang} maxDate={maxDate} />
         <div className="create-spending-form__categories">
           <CategoriesList selectedCategory={spending.category} onSelectCategory={handleSelectCategory} />
         </div>

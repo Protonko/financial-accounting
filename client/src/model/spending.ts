@@ -5,11 +5,6 @@ export interface SpendingPage {
   count: number,
 }
 
-export interface SpendingGroupedByDatePage {
-  data: SpendingGroupedByDate,
-  count: number,
-}
-
 export interface Spending {
   amount: number,
   category: Category,
@@ -17,8 +12,6 @@ export interface Spending {
   date: string,
   id: number,
 }
-
-export type SpendingGroupedByDate = Record<string, Spending[]>
 
 export interface SpendingFilters {
   offset: number,

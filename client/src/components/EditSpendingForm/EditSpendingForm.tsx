@@ -1,5 +1,5 @@
 import type {RootState} from '@store/reducers'
-import {ChangeEvent, FC, useCallback, useState} from 'react'
+import {ChangeEvent, FC, useCallback, useMemo, useState} from 'react'
 import {useSelector} from 'react-redux'
 import {ButtonUnstyled} from '@mui/material'
 import {APP_LANG} from 'utils'
@@ -24,6 +24,7 @@ export const EditSpendingForm: FC<Props> = ({
   id,
   onSubmit,
 }) => {
+  const maxDate = useMemo(() => new Date(), [])
   const {lang, localization} = useLocalization()
   const {editSpending} = useActions()
   const categoriesValues = useSelector((state: RootState) => {
@@ -92,7 +93,7 @@ export const EditSpendingForm: FC<Props> = ({
           />
           <label className="edit-spending-form__label">
             <span className="edit-spending-form__label-text">{localization.date}</span>
-            <DatePicker value={spending.date} name="date" setValue={handleChange} lang={lang} />
+            <DatePicker value={spending.date} name="date" setValue={handleChange} lang={lang} maxDate={maxDate} />
           </label>
           <Select
             label={localization.category}

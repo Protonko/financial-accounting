@@ -5,12 +5,15 @@ import {TextField, TextFieldProps} from '@mui/material'
 import ruLocale from 'date-fns/locale/ru'
 import enLocale from 'date-fns/locale/en-US'
 import {APP_LANG} from 'utils'
+import {getLocalDate} from '@utils/getLocalDate';
 
 interface Props {
   value: string,
   name: string,
   setValue: (value: string, name: string) => void,
-  lang: APP_LANG
+  lang: APP_LANG,
+  minDate?: Date,
+  maxDate?: Date,
 }
 
 const localeMap = {
@@ -23,9 +26,9 @@ const maskMap = {
   RU: '__.__.____',
 }
 
-export const DatePicker: FC<Props> = memo(({value, setValue, lang, name}) => {
-  const handleChange = (value: string | null) => {
-    const date = value ?? new Date().toISOString()
+export const DatePicker: FC<Props> = memo(({value, setValue, lang, name, minDate, maxDate}) => {
+  const handleChange = (value: Date | null) => {
+    const date = value ? getLocalDate(value) : getLocalDate(new Date())
 
     setValue(date, name)
   }
@@ -38,11 +41,13 @@ export const DatePicker: FC<Props> = memo(({value, setValue, lang, name}) => {
 
   return (
     <LocalizationProvider dateAdapter={DateAdapter} locale={localeMap[lang]}>
-      <DatePickerMUI
+      <DatePickerMUI<Date>
         mask={maskMap[lang]}
         value={value}
         onChange={handleChange}
         renderInput={renderInput}
+        minDate={minDate}
+        maxDate={maxDate}
       />
     </LocalizationProvider>
   )
