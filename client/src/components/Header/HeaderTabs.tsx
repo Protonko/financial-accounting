@@ -9,12 +9,16 @@ export const HeaderTabs: FC = () => {
   const {localization} = useLocalization()
   const [value] = useState(HeaderPathMapper.mapPathToTabValue(pathname))
 
+  const navigate = (value: string) => {
+    push({pathname: '/' + value})
+  }
+
   const tabs: Tab[] = [
     {label: localization.expenses, value: TABS.EXPENSES},
     {label: localization.reports, value: TABS.REPORTS},
   ]
 
   return (
-    <Tabs tabs={tabs} value={value} setValue={push} />
+    <Tabs tabs={tabs} value={value} setValue={navigate} />
   )
 }

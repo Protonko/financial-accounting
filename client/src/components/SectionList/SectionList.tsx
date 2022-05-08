@@ -11,7 +11,7 @@ interface Props<T> {
   className?: string,
   keyExtractor: (item: T, index: number) => string,
   loading: boolean,
-  renderSectionHeader: (section: Section<T>) => ReactNode,
+  renderSectionHeader: (title: Section<T>) => ReactNode,
   renderItem: (value: T, index: number, array: T[]) => ReactNode,
   sections: Section<T>[],
   ListEmptyComponent: ElementType,

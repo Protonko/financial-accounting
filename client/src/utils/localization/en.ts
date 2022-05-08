@@ -26,4 +26,5 @@ export const localizationEn: Localization = {
   date: 'Date',
   category: 'Category',
   showMore: 'Show more',
+  noSpending: 'No spending',
 }

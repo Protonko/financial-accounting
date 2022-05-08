@@ -2,9 +2,11 @@ import type {Spending} from 'model'
 import type {RootState} from '@store/reducers'
 import {useCallback} from 'react'
 import {useSelector} from 'react-redux'
-import {SectionList, Spending as SpendingComponent, SpendingEditModal} from 'components'
-import {APP_LANG} from 'utils'
-import {useLocalization} from 'hooks'
+import {useRouter} from 'next/router'
+import {PAGE_SIZE_LARGE} from '@constants'
+import {SpendingSectionHeader, EmptySpendingList, SectionList, Spending as SpendingComponent, SpendingEditModal} from 'components'
+import {APP_LANG, getPaginationParams} from 'utils'
+import {useActions, useLocalization} from 'hooks'
 import {useEditSpending} from './hooks'
 
 const mapSpendingGroupedByDateToSection = (state: RootState) => {
@@ -30,9 +32,18 @@ const mapSpendingGroupedByDateToSection = (state: RootState) => {
 
 export const SpendingGroupedByDateList = () => {
   const {lang} = useLocalization()
+  const router = useRouter()
+  const {loadSpending} = useActions()
   const spendingSection = useSelector(mapSpendingGroupedByDateToSection)
-  const {spending} = useSelector((state: RootState) => state.spending)
+  const {spending, loading} = useSelector((state: RootState) => state.spending)
   const {selectedSpending, closeModal, prepareToEdit} = useEditSpending(spending ?? [])
+
+  const getSpending = () => {
+    loadSpending({
+      offset: (getPaginationParams(router.query.offset) ?? 0) + PAGE_SIZE_LARGE,
+      size: getPaginationParams(router.query.size) ?? PAGE_SIZE_LARGE
+    })
+  }
 
   const renderItem = useCallback(({category, description, ...item}: Spending) => {
     const categoryTitle = lang === APP_LANG.RU ? category.titleRus : category.titleEng
@@ -42,17 +53,24 @@ export const SpendingGroupedByDateList = () => {
     )
   }, [spendingSection, lang])
 
+  const renderSectionHeader = useCallback(section => <SpendingSectionHeader dateString={section.title} />, [spendingSection, lang])
+
   const keyExtractor = useCallback(item => item.id.toString(), [])
 
   return (
     <SpendingEditModal selectedSpending={selectedSpending} closeModal={closeModal}>
       <SectionList<Spending>
-        ListEmptyComponent={() => <div>123</div>}
+        className="spending-grouped-by-date-list"
+        ListEmptyComponent={EmptySpendingList}
         keyExtractor={keyExtractor}
-        loading={false}
-        onEndReached={() => {}}
+        loading={loading}
+        onEndReached={() => {
+          // TODO: FIX
+          console.log(123)
+          getSpending()
+        }}
         renderItem={renderItem}
-        renderSectionHeader={() => <div>Header</div>}
+        renderSectionHeader={renderSectionHeader}
         sections={spendingSection}
       />
     </SpendingEditModal>

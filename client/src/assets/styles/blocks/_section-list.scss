@@ -1,0 +1,19 @@
+.section-list {
+  &__section-item-header {
+    margin-bottom: rem(10px);
+    padding: rem(5px);
+
+  }
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    gap: rem(30px);
+  }
+
+  &__items {
+    display: grid;
+    gap: rem(10px);
+    width: 100%;
+  }
+}
