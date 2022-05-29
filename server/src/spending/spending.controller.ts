@@ -35,7 +35,7 @@ export class SpendingController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('/create')
+  @Post()
   @HttpCode(HttpStatus.CREATED)
   create(
     @Req() request: Express.Request,

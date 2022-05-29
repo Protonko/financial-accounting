@@ -22,7 +22,7 @@ export class UserController {
     return request.user && this.authService.login(request.user, response)
   }
 
-  @Post('create')
+  @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto)
   }
