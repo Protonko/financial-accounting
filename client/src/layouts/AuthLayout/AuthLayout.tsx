@@ -1,4 +1,4 @@
-import {FC} from 'react'
+import type {FC} from 'react'
 import {Header} from 'components'
 
 export const AuthLayout: FC = ({children}) => {

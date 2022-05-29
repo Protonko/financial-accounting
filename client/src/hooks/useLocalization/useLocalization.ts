@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router'
-import {APP_LANG, localizationObject} from 'utils'
+import {APP_LANG, localizationObject} from '@utils/index'
 
 export const useLocalization = () => {
   const {locale, defaultLocale} = useRouter()

@@ -1,5 +1,5 @@
 export * from 'components/AuthForm'
-export * from '@components/Header'
+export * from 'components/Header'
 export * from 'components/Input'
 export * from 'components/Select'
 export * from 'components/Options'

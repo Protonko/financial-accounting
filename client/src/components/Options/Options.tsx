@@ -1,4 +1,4 @@
-import {memo, FC} from 'react';
+import {memo, FC} from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {APP_LANG} from 'utils'
