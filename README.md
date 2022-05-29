@@ -1,6 +1,5 @@
 # Financial accounting
 TODO:
-- Delete spending
-- Update spending
-- Pagination
+- PWA
 - Reports
+- Tests
