@@ -16,4 +16,10 @@
     gap: rem(10px);
     width: 100%;
   }
+  
+  &__loader {
+    @include margin-vertical(10px);
+
+    text-align: center;
+  }
 }

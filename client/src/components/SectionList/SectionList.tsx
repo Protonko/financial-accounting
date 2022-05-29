@@ -16,6 +16,7 @@ interface Props<T> {
   sections: Section<T>[],
   ListEmptyComponent: ElementType,
   onEndReached: () => void,
+  shouldLoadData: boolean,
 }
 
 export const SectionList = <T extends any>({
@@ -27,17 +28,18 @@ export const SectionList = <T extends any>({
   renderSectionHeader,
   ListEmptyComponent,
   onEndReached,
+  shouldLoadData
 }: Props<T>) => {
   const sectionListClassNames = classNames('section-list', {[className ?? '']: !!className})
   const scrollIndicator = useRef<HTMLDivElement>(null)
 
-  const handleEndReached = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+  const handleEndReached = (entries: IntersectionObserverEntry[]) => {
     if (entries[0].isIntersecting) {
-
+      onEndReached()
     }
   }
 
-  const observer = useRef(new IntersectionObserver(onEndReached))
+  const observer = useRef(new IntersectionObserver(handleEndReached))
 
   const createObserver = () => {
     if (scrollIndicator.current) {
@@ -49,7 +51,7 @@ export const SectionList = <T extends any>({
     createObserver()
 
     return () => observer.current.disconnect()
-  }, []) // TODO: Change deps?
+  }, [scrollIndicator.current])
 
   const renderSectionItem = (value: T, index: number, array: T[]) => {
     return (
@@ -80,9 +82,15 @@ export const SectionList = <T extends any>({
 
   const renderLoader = () => {
     if (loading) {
-      return <CircularProgress color="inherit" />
-    } else {
+      return (
+        <div className="section-list__loader">
+          <CircularProgress color="inherit" />
+        </div>
+      )
+    } else if (shouldLoadData) {
       return <div ref={scrollIndicator} />
+    } else {
+      return null
     }
   }
 

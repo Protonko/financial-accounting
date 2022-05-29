@@ -7,7 +7,7 @@ export class SpendingApiService {
   }
 
   static createSpending(body: CreateSpendingBody) {
-    return ApiService.post<CreateSpendingBody, Spending>('spending/create', body)
+    return ApiService.post<CreateSpendingBody, Spending>('spending', body)
   }
 
   static deleteSpending(id: number) {

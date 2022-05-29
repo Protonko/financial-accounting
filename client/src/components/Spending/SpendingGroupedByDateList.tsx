@@ -1,12 +1,12 @@
 import type {Spending} from 'model'
 import type {RootState} from '@store/reducers'
-import {useCallback, useEffect} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
-import {useRouter} from 'next/router'
 import {SpendingSectionHeader, EmptySpendingList, SectionList, Spending as SpendingComponent, SpendingEditModal} from 'components'
-import {APP_LANG, getPaginationParams} from 'utils'
+import {APP_LANG} from 'utils'
 import {useActions, useLocalization} from 'hooks'
 import {useEditSpending} from './hooks'
+import {PAGE_SIZE} from '@constants'
 
 const mapSpendingGroupedByDateToSection = (state: RootState) => {
   if (!state.spending.spending) {
@@ -31,22 +31,24 @@ const mapSpendingGroupedByDateToSection = (state: RootState) => {
 
 export const SpendingGroupedByDateList = () => {
   const {lang} = useLocalization()
-  const router = useRouter()
   const {loadSpending} = useActions()
   const spendingSection = useSelector(mapSpendingGroupedByDateToSection)
-  const {spending, loading} = useSelector((state: RootState) => state.spending)
+  const {spending, loading, count} = useSelector((state: RootState) => state.spending)
   const {selectedSpending, closeModal, prepareToEdit} = useEditSpending(spending ?? [])
+  const [page, setPage] = useState(0)
 
   useEffect(() => {
-    const page = getPaginationParams(router.query.page)
+    if (page) { // Prevent load page 0 twice
+      loadSpending({
+        offset: page * PAGE_SIZE,
+        size: PAGE_SIZE,
+      })
+    }
+  }, [page])
 
-    // if (page) { // Prevent load page 0 twice
-    //   loadSpending({
-    //     offset: page * PAGE_SIZE,
-    //     size: PAGE_SIZE,
-    //   })
-    // }
-  }, [router.query.page])
+  const onEndReached = () => {
+    setPage(page => page + 1)
+  }
 
   const renderItem = useCallback(({category, description, ...item}: Spending) => {
     const categoryTitle = lang === APP_LANG.RU ? category.titleRus : category.titleEng
@@ -62,20 +64,17 @@ export const SpendingGroupedByDateList = () => {
 
   return (
     <SpendingEditModal selectedSpending={selectedSpending} closeModal={closeModal}>
+      {page}
       <SectionList<Spending>
         className="spending-grouped-by-date-list"
         ListEmptyComponent={EmptySpendingList}
         keyExtractor={keyExtractor}
         loading={loading}
-        onEndReached={() => {
-          // TODO: FIX
-          const page = getPaginationParams(router.query.page) ?? 0
-          router.push({query: {page: page + 1}}, undefined, {shallow: true})
-          // getSpending()
-        }}
+        onEndReached={onEndReached}
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
         sections={spendingSection}
+        shouldLoadData={page * PAGE_SIZE <= count}
       />
     </SpendingEditModal>
   )

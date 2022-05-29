@@ -7,7 +7,7 @@ export class UserApiService {
   }
 
   static create(body: AuthBody) {
-    return ApiService.post<AuthBody, UserData>('user/create', body)
+    return ApiService.post<AuthBody, UserData>('user', body)
   }
 
   static getUserInfo(headers?: Record<string, string>) {
