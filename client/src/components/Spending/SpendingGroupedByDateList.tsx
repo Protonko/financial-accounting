@@ -46,9 +46,9 @@ export const SpendingGroupedByDateList = () => {
     }
   }, [page])
 
-  const onEndReached = () => {
+  const onEndReached = useCallback(() => {
     setPage(page => page + 1)
-  }
+  }, [])
 
   const renderItem = useCallback(({category, description, ...item}: Spending) => {
     const categoryTitle = lang === APP_LANG.RU ? category.titleRus : category.titleEng
@@ -64,7 +64,6 @@ export const SpendingGroupedByDateList = () => {
 
   return (
     <SpendingEditModal selectedSpending={selectedSpending} closeModal={closeModal}>
-      {page}
       <SectionList<Spending>
         className="spending-grouped-by-date-list"
         ListEmptyComponent={EmptySpendingList}

@@ -1,6 +1,7 @@
 import {useEffect, useRef, ReactNode, ElementType} from 'react'
 import classNames from 'classnames'
 import {CircularProgress} from '@mui/material'
+import {genericMemo} from 'utils'
 
 interface Section<T> {
   title: string,
@@ -19,7 +20,7 @@ interface Props<T> {
   shouldLoadData: boolean,
 }
 
-export const SectionList = <T extends any>({
+export const SectionList = genericMemo(<T,>({
   className,
   keyExtractor,
   loading,
@@ -51,7 +52,7 @@ export const SectionList = <T extends any>({
     createObserver()
 
     return () => observer.current.disconnect()
-  }, [scrollIndicator.current])
+  }, [])
 
   const renderSectionItem = (value: T, index: number, array: T[]) => {
     return (
@@ -107,4 +108,4 @@ export const SectionList = <T extends any>({
   }
 
   return <ListEmptyComponent />
-}
+})
