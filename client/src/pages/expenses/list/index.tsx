@@ -12,9 +12,10 @@ import {loadCategories, loadSpending} from '@store/actions'
 export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req, query}) => {
   const cookieHandler = new CookieHandlerSSR(req)
   const accessToken = cookieHandler.setCookie('access_token', cookieHandler.getCookie('access_token'), {HttpOnly: true})
+  const page = getPaginationParams(query.page) ?? 0
   const filters: SpendingFilters = {
-    offset: getPaginationParams(query.offset) ?? 0,
-    size: getPaginationParams(query.size) ?? PAGE_SIZE,
+    offset: page * PAGE_SIZE,
+    size: PAGE_SIZE * (page || 1),
     accessToken
   }
   store.dispatch(loadSpending(filters))
@@ -27,10 +28,8 @@ const ExpensesList = () => {
   const router = useRouter()
 
   useEffect(() => {
-    if (!(router.query.offset && router.query.size)) {
-      router.query.offset ??= '0'
-      router.query.size ??= PAGE_SIZE.toString()
-      router.push(router)
+    if (!(router.query.page)) {
+      router.push({query: {page: 0}})
     }
   }, [])
 

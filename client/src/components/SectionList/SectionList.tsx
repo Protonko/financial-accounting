@@ -30,6 +30,13 @@ export const SectionList = <T extends any>({
 }: Props<T>) => {
   const sectionListClassNames = classNames('section-list', {[className ?? '']: !!className})
   const scrollIndicator = useRef<HTMLDivElement>(null)
+
+  const handleEndReached = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+    if (entries[0].isIntersecting) {
+
+    }
+  }
+
   const observer = useRef(new IntersectionObserver(onEndReached))
 
   const createObserver = () => {
@@ -42,7 +49,7 @@ export const SectionList = <T extends any>({
     createObserver()
 
     return () => observer.current.disconnect()
-  }, [])
+  }, []) // TODO: Change deps?
 
   const renderSectionItem = (value: T, index: number, array: T[]) => {
     return (
