@@ -2,7 +2,12 @@ import type {RootState} from '@store/reducers'
 import {useEffect, FC, useState} from 'react'
 import {useRouter} from 'next/router'
 import {useSelector} from 'react-redux'
-import {useActions} from '@hooks/useActions'
+import {useActions} from 'hooks'
+import {CircularProgress} from '@mui/material'
+
+const Loader = () => {
+  return <div className="loader"><CircularProgress className="loader__progress" color="inherit" /></div>
+}
 
 export const RouteGuard: FC = ({children}) => {
   const router = useRouter()
@@ -45,5 +50,5 @@ export const RouteGuard: FC = ({children}) => {
     }
   }, [id, email])
 
-  return hasAccess ? <>{children}</> : <span>loading...</span> // TODO: Fix loading
+  return hasAccess ? <>{children}</> : <Loader />
 }
