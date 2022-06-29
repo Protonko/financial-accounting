@@ -26,5 +26,7 @@ export const localizationRu: Localization = {
   date: 'Дата',
   category: 'Категория',
   showMore: 'Показать еще',
-  noSpending: 'Нет трат'
+  noSpending: 'Нет трат',
+  eng: 'Англ',
+  rus: 'Рус',
 }

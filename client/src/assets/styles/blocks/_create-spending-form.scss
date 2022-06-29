@@ -2,15 +2,27 @@
   display: flex;
   gap: rem(20px);
 
+  @media #{$screen-max-sm} {
+    flex-direction: column-reverse;
+  }
+
   &__col {
     gap: rem(20px);
 
     &--sm {
       flex-basis: 40%;
+
+      @media #{$screen-max-sm} {
+        flex-basis: auto;
+      }
     }
 
     &--lg {
       flex-basis: 60%;
+
+      @media #{$screen-max-sm} {
+        flex-basis: auto;
+      }
     }
   }
 

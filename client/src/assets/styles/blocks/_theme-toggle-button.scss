@@ -10,10 +10,18 @@
     border: rem(2px) solid var(--light-grey);
     background-color: transparent;
 
+    @media #{$screen-max-sm} {
+        @include square(32px);
+    }
+
     &__container {
         @include square(52px);
 
         position: relative;
+
+        @media #{$screen-max-sm} {
+            @include square(32px);
+        }
     }
 
     &__icon {
@@ -28,6 +36,10 @@
         margin: auto;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: $transition-duration-long;
+
+        @media #{$screen-max-sm} {
+            @include square(18px);
+        }
 
         &--crescent {
             right: -130px;

@@ -38,6 +38,13 @@ img:-moz-broken {
     max-width: rem(1010px);
     min-width: rem(1010px);
     margin: 0 auto;
+
+    @media #{$screen-max-sm} {
+        width: 100%;
+        max-width: rem(540px);
+        min-width: auto;
+        margin: 0 rem(5px);
+    }
 }
 
 #__next {

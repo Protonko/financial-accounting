@@ -3,6 +3,10 @@
 
     &:not(:last-child) {
         margin-bottom: rem(24px);
+
+        @media #{$screen-max-sm} {
+            margin-bottom: rem(12px);
+        }
     }
 
     &__label {
@@ -16,6 +20,10 @@
         border-radius: rem(8px);
         background-color: var(--grey-color);
 
+        @media #{$screen-max-sm} {
+            margin-top: rem(12px);
+        }
+
         &:hover {
             background-color: var(--light-grey);
         }
@@ -24,6 +32,11 @@
             font-size: rem($font-size-base);
             padding: rem(24px) rem(32px);
             color: var(--primary-color);
+
+            @media #{$screen-max-sm} {
+                font-size: rem($font-size-extra-small);
+                padding: rem(12px) rem(16px);
+            }
         }
     }
 

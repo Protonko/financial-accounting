@@ -1,6 +1,17 @@
 .tabs {
+  @media #{$screen-max-sm} {
+    min-height: rem(32px);
+  }
+
   &__button {
     color: var(--text-color);
+
+    @media #{$screen-max-sm} {
+      font-size: rem($font-size-extra-small);
+      min-width: rem(75px);
+      min-height: rem(32px);
+      padding: 0;
+    }
 
     // Reset MUI animations
     * {

@@ -1,3 +1,4 @@
+// Colors
 $white: #FFFFFF;
 $black: #000000;
 $shark: #1F2028;
@@ -32,7 +33,18 @@ $flamingo: #F56C2C;
 $jaffa: #ED943B;
 $brightTurquoise: #2CF1F5;
 
-//fonts
+// Screen sizes
+$screen-min-sm: "(min-width: 576px)";
+$screen-min-md: "(min-width: 768px)";
+$screen-min-lg: "(min-width: 992px)";
+$screen-min-xl: "(min-width: 1200px)";
+
+$screen-max-sm: "(max-width: 576px)";
+$screen-max-md: "(max-width: 768px)";
+$screen-max-lg: "(max-width: 992px)";
+$screen-max-xl: "(max-width: 1200px)";
+
+// Fonts
 $font-family: 'Roboto', sans-serif;
 
 $font-size-extra-small: 12px;

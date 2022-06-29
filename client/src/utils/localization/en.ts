@@ -27,4 +27,6 @@ export const localizationEn: Localization = {
   category: 'Category',
   showMore: 'Show more',
   noSpending: 'No spending',
+  eng: 'Eng',
+  rus: 'Rus',
 }

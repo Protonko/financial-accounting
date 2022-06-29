@@ -30,5 +30,7 @@ export type LocalizationKeys =
   | 'category'
   | 'showMore'
   | 'noSpending'
+  | 'eng'
+  | 'rus'
 
 export type Localization = Record<LocalizationKeys, string>

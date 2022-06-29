@@ -18,6 +18,10 @@
     font-size: rem($font-size-base);
     padding: rem(24px) rem(32px);
     color: var(--primary-color);
+
+    @media #{$screen-max-sm} {
+      padding: rem(12px) rem(16px);
+    }
   }
 
   & button {

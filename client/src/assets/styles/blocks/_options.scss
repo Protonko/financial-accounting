@@ -3,6 +3,10 @@
 .options {
     $verticalGutter: 30px;
 
+    @media #{$screen-max-sm} {
+        $verticalGutter: 10px;
+    }
+
     &__list {
         @include margin-horizontal(math.div(-$verticalGutter, 2));
 
@@ -26,5 +30,17 @@
     &__link {
         color: var(--text-color);
         text-decoration: none;
+
+        &::after {
+            content: attr(data-text);
+
+            @media #{$screen-max-sm} {
+                content: attr(data-text-short);
+            }
+        }
+
+        @media #{$screen-max-sm} {
+            font-size: rem($font-size-extra-small);
+        }
     }
 }

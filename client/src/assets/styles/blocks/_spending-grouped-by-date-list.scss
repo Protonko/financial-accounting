@@ -2,5 +2,9 @@
   .section-list__items {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    @media #{$screen-max-sm} {
+      grid-template-columns: 1fr;
+    }
   }
 }

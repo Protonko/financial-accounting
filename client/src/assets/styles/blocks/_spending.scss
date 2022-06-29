@@ -67,6 +67,10 @@
     display: none;
     cursor: pointer;
 
+    @media #{$screen-max-sm} {
+      display: block;
+    }
+
     &-icon {
       @include square(15px);
     }
