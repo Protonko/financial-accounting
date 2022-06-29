@@ -4,7 +4,7 @@
     &:not(:last-child) {
         margin-bottom: rem(24px);
 
-        @media #{$screen-max-sm} {
+        @media #{$screen-max-md} {
             margin-bottom: rem(12px);
         }
     }
@@ -20,8 +20,12 @@
         border-radius: rem(8px);
         background-color: var(--grey-color);
 
-        @media #{$screen-max-sm} {
+        @media #{$screen-max-md} {
             margin-top: rem(12px);
+        }
+
+        @media #{$screen-min-md} and #{$screen-max-lg} {
+            margin-top: rem(16px);
         }
 
         &:hover {
@@ -33,9 +37,13 @@
             padding: rem(24px) rem(32px);
             color: var(--primary-color);
 
-            @media #{$screen-max-sm} {
+            @media #{$screen-max-md} {
                 font-size: rem($font-size-extra-small);
                 padding: rem(12px) rem(16px);
+            }
+
+            @media #{$screen-min-md} and #{$screen-max-lg} {
+                padding: rem(16px) rem(20px);
             }
         }
     }

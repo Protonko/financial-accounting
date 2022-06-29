@@ -10,7 +10,7 @@
     border: rem(2px) solid var(--light-grey);
     background-color: transparent;
 
-    @media #{$screen-max-sm} {
+    @media #{$screen-max-md} {
         @include square(32px);
     }
 
@@ -19,7 +19,7 @@
 
         position: relative;
 
-        @media #{$screen-max-sm} {
+        @media #{$screen-max-md} {
             @include square(32px);
         }
     }
@@ -37,7 +37,7 @@
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: $transition-duration-long;
 
-        @media #{$screen-max-sm} {
+        @media #{$screen-max-md} {
             @include square(18px);
         }
 

@@ -3,7 +3,7 @@
 .options {
     $verticalGutter: 30px;
 
-    @media #{$screen-max-sm} {
+    @media #{$screen-max-md} {
         $verticalGutter: 10px;
     }
 
@@ -34,12 +34,12 @@
         &::after {
             content: attr(data-text);
 
-            @media #{$screen-max-sm} {
+            @media #{$screen-max-md} {
                 content: attr(data-text-short);
             }
         }
 
-        @media #{$screen-max-sm} {
+        @media #{$screen-max-md} {
             font-size: rem($font-size-extra-small);
         }
     }

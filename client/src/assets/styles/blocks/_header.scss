@@ -22,7 +22,7 @@
 
             margin-right: rem(10px);
 
-            @media #{$screen-max-sm} {
+            @media #{$screen-max-md} {
                 @include square(35px);
             }
 

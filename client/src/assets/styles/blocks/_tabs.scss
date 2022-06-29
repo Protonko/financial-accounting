@@ -1,12 +1,12 @@
 .tabs {
-  @media #{$screen-max-sm} {
+  @media #{$screen-max-md} {
     min-height: rem(32px);
   }
 
   &__button {
     color: var(--text-color);
 
-    @media #{$screen-max-sm} {
+    @media #{$screen-max-md} {
       font-size: rem($font-size-extra-small);
       min-width: rem(75px);
       min-height: rem(32px);

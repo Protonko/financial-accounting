@@ -5,7 +5,7 @@
     gap: rem(10px);
     width: 100%;
 
-    @media #{$screen-max-sm} {
+    @media #{$screen-max-md} {
       grid-template-columns: 1fr;
     }
   }

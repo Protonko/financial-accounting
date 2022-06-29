@@ -14,8 +14,12 @@
       padding: rem(24px) rem(32px);
       color: var(--primary-color);
 
-      @media #{$screen-max-sm} {
+      @media #{$screen-max-md} {
         padding: rem(12px) rem(16px);
+      }
+
+      @media #{$screen-min-md} and #{$screen-max-lg} {
+        padding: rem(16px) rem(20px);
       }
     }
 

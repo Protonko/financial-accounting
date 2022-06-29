@@ -11,5 +11,13 @@
     outline: none;
     border-radius: rem(5px);
     background-color: var(--background-color);
+
+    @media #{$screen-max-md} {
+      margin-top: rem(20px);
+    }
+
+    @media #{$screen-min-md} and #{$screen-max-lg} {
+      margin-top: rem(30px);
+    }
   }
 }

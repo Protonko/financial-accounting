@@ -7,6 +7,10 @@
 
   &__content {
     font-size: rem($font-size-extra-large);
+
+    @media #{$screen-min-md} and #{$screen-max-lg} {
+      font-size: rem($font-size-large);
+    }
   }
 
   &__icon {

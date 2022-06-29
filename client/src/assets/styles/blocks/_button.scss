@@ -9,9 +9,13 @@
     border-radius: rem(8px);
     background-color: var(--brand-color);
 
-    @media #{$screen-max-sm} {
+    @media #{$screen-max-md} {
         padding: rem(12px);
         border-radius: rem(4px);
+    }
+
+    @media #{$screen-min-md} and #{$screen-max-lg} {
+        padding: rem(16px);
     }
 
     &:hover {
@@ -45,7 +49,7 @@
             height: 100%;
             padding: rem(10px);
 
-            @media #{$screen-max-sm} {
+            @media #{$screen-max-md} {
                 padding: rem(5px);
             }
         }

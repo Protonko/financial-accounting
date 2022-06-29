@@ -2,7 +2,7 @@
   display: flex;
   gap: rem(20px);
 
-  @media #{$screen-max-sm} {
+  @media #{$screen-max-md} {
     flex-direction: column-reverse;
   }
 
@@ -12,7 +12,7 @@
     &--sm {
       flex-basis: 40%;
 
-      @media #{$screen-max-sm} {
+      @media #{$screen-max-md} {
         flex-basis: auto;
       }
     }
@@ -20,7 +20,7 @@
     &--lg {
       flex-basis: 60%;
 
-      @media #{$screen-max-sm} {
+      @media #{$screen-max-md} {
         flex-basis: auto;
       }
     }
