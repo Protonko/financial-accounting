@@ -12,7 +12,7 @@ export const useEditSpending = (spending: Spending[]) => {
     if (selectedSpending) {
       setSelectedSpending(selectedSpending)
     }
-  }, [])
+  }, [spending])
 
   return {selectedSpending, closeModal, prepareToEdit}
 }
