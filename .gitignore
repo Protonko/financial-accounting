@@ -25,9 +25,11 @@ lerna-debug.log*
 /server/dist
 
 # client
+**/public/workbox-*.js
+**/public/sw.js
+**/public/fallback-*.js
 /client/node_modules
 /client/.next
-/client/public
 /client/coverage
 /client/.next/
 /client/out/
