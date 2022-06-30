@@ -22,7 +22,9 @@ module.exports = withPWA({
   },
   pwa: {
     dest: 'public',
-    runtimeCaching,
+    fallbacks: {
+      image: '/static/images/fallback.png'
+    }
   },
   async redirects() {
     return [
