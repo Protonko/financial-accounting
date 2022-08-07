@@ -1,6 +1,10 @@
 const isObject = (object: Record<string, any>) => object && typeof object === 'object'
 
 export const isEqual = (obj1: Record<string, any>, obj2: Record<string, any>) => {
+  if (obj1 === obj2) {
+    return true
+  }
+
   const keys1 = Object.keys(obj1)
   const keys2 = Object.keys(obj2)
 
