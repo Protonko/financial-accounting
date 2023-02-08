@@ -30,6 +30,8 @@ export type LocalizationKeys =
   | 'category'
   | 'showMore'
   | 'noSpending'
+  | 'startDate'
+  | 'endDate'
   | 'eng'
   | 'rus'
 

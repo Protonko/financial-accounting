@@ -1,3 +1,5 @@
 export * from './useLocalization'
 export * from './useActions'
 export * from './useCategoriesIcons'
+export * from './useDrawPieChart'
+export * from './useMappedReportByCategoriesData'

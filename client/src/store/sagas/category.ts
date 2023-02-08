@@ -2,8 +2,8 @@ import type {Category} from 'model'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
 import {CATEGORY_ACTION_TYPES, LoadCategoriesAction} from 'store/actions/model'
 import {callError, setCategoriesData} from '@store/actions'
-import {getError} from '@utils/getError'
-import {CategoryApiService} from '@services/CategoryApiService'
+import {getError} from 'utils'
+import {CategoryApiService} from 'services'
 
 export class CategorySagaFactory {
   static create() {

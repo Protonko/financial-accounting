@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common'
 import {CreateSpendingDto} from './dto/create-spending.dto'
 import {InjectRepository} from '@nestjs/typeorm'
-import {Repository} from 'typeorm'
+import {Between, Repository} from 'typeorm'
 import {Spending} from './entities/spending'
 import {CategoryService} from '../category/category.service'
 import {UpdateSpendingDto} from './dto/update-spending.dto'
@@ -36,6 +36,23 @@ export class SpendingService {
       data,
       count,
     }
+  }
+
+  async getAllByUserIdAndDate(
+    userId: number,
+    startDate: string,
+    endDate: string,
+  ) {
+    const data = await this.spendingRepository.find({
+      where: {
+        userId,
+        date: Between(startDate, endDate),
+      },
+      order: {date: 'DESC'},
+      relations: ['category'],
+    })
+
+    return {data}
   }
 
   async deleteById(id: string, userId: number) {

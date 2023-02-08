@@ -1,0 +1,13 @@
+.report-filters {
+  display: flex;
+  align-items: center;
+  margin-bottom: rem(24px);
+
+   &__label {
+     align-items: flex-start;
+
+     &:first-child {
+       margin-left: 0;
+     }
+   }
+}

@@ -1,5 +1,6 @@
 import type {AnyAction} from 'redux'
 import type {Category} from 'model'
+import {HydrateAction} from '@store/actions/model'
 
 export enum CATEGORY_ACTION_TYPES {
   LOAD_CATEGORIES = 'LOAD_CATEGORIES',
@@ -19,3 +20,4 @@ export interface SetCategoriesDataAction extends AnyAction {
 export type AllCategoriesActions =
   | LoadCategoriesAction
   | SetCategoriesDataAction
+  | HydrateAction
