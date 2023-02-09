@@ -1,18 +1,37 @@
 import type {NextPage} from 'next'
+import type {ReportByCategoriesFilters} from 'model'
 import {END} from 'redux-saga'
 import {SagaStore, storeWrapper} from 'store'
 import {getUserInfo, loadCategories, loadReportByCategories} from '@store/actions'
 import {MainLayout} from 'layouts'
-import {CookieHandlerSSR} from 'utils'
-import {ReportByCategoriesFilters} from 'model'
-import {ReportChart, ReportFilters} from 'components'
+import {CookieHandlerSSR, DateUtils, getQueryParam} from 'utils'
+import {ReportChart, ReportFilters, ReportListInfo} from 'components'
 
-export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req}) => {
+interface Props {
+  startDate: string,
+  endDate: string,
+}
+
+export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req, query}) => {
   const cookieHandler = new CookieHandlerSSR(req)
   const accessToken = cookieHandler.setCookie('access_token', cookieHandler.getCookie('access_token'), {HttpOnly: true})
+  const startDateQueryParam = getQueryParam(query.startDate)
+  const endDateQueryParam = getQueryParam(query.endDate)
+
+  let startDate = DateUtils.getFirstLocalDateOfMonth()
+  let endDate = DateUtils.getLastLocalDateOfMonth()
+
+  if (startDateQueryParam && DateUtils.validateLocalDate(startDateQueryParam)) {
+    startDate = startDateQueryParam
+  }
+
+  if (endDateQueryParam && DateUtils.validateLocalDate(endDateQueryParam)) {
+    endDate = endDateQueryParam
+  }
+
   const filters: ReportByCategoriesFilters = {
-    startDate: '2022-01-01',
-    endDate: '2022-05-05',
+    startDate,
+    endDate,
     accessToken
   }
   store.dispatch(getUserInfo(accessToken))
@@ -20,13 +39,23 @@ export const getServerSideProps = storeWrapper.getServerSideProps(async ({store,
   store.dispatch(loadCategories(accessToken))
   store.dispatch(END)
   await (store as SagaStore).sagaTask?.toPromise()
+
+  return {
+    props: {
+      startDate,
+      endDate,
+    },
+  };
 })
 
-const Reports: NextPage = () => {
+const Reports: NextPage<Props> = ({startDate, endDate}) => {
   return (
     <MainLayout>
-      <ReportFilters startDate="2022-01-01" endDate="2022-05-05" />
-      <ReportChart />
+      <ReportFilters startDate={startDate} endDate={endDate} />
+      <div className="reports">
+        <ReportChart />
+        <ReportListInfo />
+      </div>
     </MainLayout>
   )
 }

@@ -2,7 +2,7 @@ import type {RootState} from '@store/reducers'
 import {useCallback, useState, ChangeEvent, useMemo, FormEventHandler} from 'react'
 import {useSelector} from 'react-redux'
 import {ButtonUnstyled} from '@mui/material'
-import {getLocalDate} from 'utils'
+import {DateUtils} from 'utils'
 import {ICONS_MAP, useActions, useLocalization} from 'hooks'
 import {DatePicker, Calculator, Input, CategoriesList} from 'components'
 
@@ -16,7 +16,7 @@ interface SpendingState {
 const initialState: SpendingState = {
   amount: '0',
   description: '',
-  date: getLocalDate(new Date()),
+  date: DateUtils.getLocalDate(new Date()),
   category: undefined,
 }
 

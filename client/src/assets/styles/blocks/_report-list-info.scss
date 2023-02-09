@@ -1,0 +1,14 @@
+.report-list-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: rem(10px);
+  width: 100%;
+
+  @media #{$screen-max-lg} {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media #{$screen-max-md} {
+    grid-template-columns: 1fr;
+  }
+}

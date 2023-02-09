@@ -1,4 +1,5 @@
 export const PAGE_SIZE = 10
+export const LOCAL_DATE_REGEXP = /^\d{4}-\d{2}-\d{2}$/
 
 export const COLORS = {
   persianGreen: '#00A287',

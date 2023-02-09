@@ -6,7 +6,7 @@ export const MainLayout: FC = ({children}) => {
     <>
       <Header renderTabs={() => <HeaderTabs />} />
 
-      <main className="main main--auth">
+      <main className="main">
         <div className="container">
           {children}
         </div>

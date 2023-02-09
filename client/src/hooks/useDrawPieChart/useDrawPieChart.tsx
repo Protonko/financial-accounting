@@ -32,9 +32,10 @@ const PIE_CHART_COLORS = [
 ]
 
 
-export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartData[], height: number) => {
+export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartData[]) => {
   let svg: d3.Selection<Element, ChartData, null, undefined>
   let width = 0
+  let height = 0
 
   const colors = d3.scaleOrdinal(PIE_CHART_COLORS)
 
@@ -90,6 +91,7 @@ export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartDat
     if (svgRef.current) {
       svg = d3.select<Element, ChartData>(svgRef.current)
       width = parseFloat(svg.style('width'))
+      height = parseFloat(svg.style('width'))
 
       destroyChart()
       drawPieChart()
