@@ -1,11 +1,14 @@
 import * as d3 from 'd3'
 import {RefObject, useCallback, useEffect} from 'react'
 import {COLORS} from '@constants'
+import {APP_LANG} from 'utils'
 
 export interface ChartData {
   name: string,
   value: number
 }
+
+const MAX_SECTIONS_WITH_TEXT = 4
 
 const PIE_CHART_COLORS = [
   COLORS.persianGreen,
@@ -31,19 +34,18 @@ const PIE_CHART_COLORS = [
   COLORS.burntSienna,
 ]
 
-
-export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartData[]) => {
+export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartData[], lang: APP_LANG) => {
   let svg: d3.Selection<Element, ChartData, null, undefined>
   let width = 0
   let height = 0
+
+  const totalSum = d3.sum(data, ({value}) => value)
 
   const colors = d3.scaleOrdinal(PIE_CHART_COLORS)
 
   const drawSegments = () => d3.arc<d3.PieArcDatum<ChartData>>()
     .innerRadius(0)
     .outerRadius(width / 2)
-    .padAngle(.05)
-    .padRadius(50)
 
   const drawSections = (formattedData: d3.PieArcDatum<ChartData>[]) => {
     svg
@@ -53,23 +55,82 @@ export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartDat
       .enter()
       .append('path')
       .attr('d', drawSegments())
-      .attr('fill', d => colors(d.data.value.toString()))
+      .attr('fill', value => colors(value.data.value.toString()))
   }
 
   const drawText = (formattedData: d3.PieArcDatum<ChartData>[]) => {
+    const slicedData = formattedData.slice(0, MAX_SECTIONS_WITH_TEXT)
     return d3
       .select('g')
       .selectAll('text')
-      .data(formattedData)
+      .data(slicedData)
       .enter()
       .append('text')
-      .each(function (d) {
-        const center = drawSegments().centroid(d)
-        d3.select(this)
-          .attr('x', center[0])
-          .attr('y', center[1])
-          .text(d.data.name)
+      .text((value) => {
+        if (value.value / totalSum > .1) {
+          return value.data.name
+        }
+        return null
       })
+      .attr('transform', value => `translate(${drawSegments().centroid(value)})`)
+      .style('text-anchor', 'middle')
+      .style('font-size', 17)
+  }
+
+  const drawTooltip = (g: d3.Selection<SVGGElement, ChartData, null, undefined>, value: number) => {
+    if (!value) {
+      g.style('display', 'none')
+      return;
+    }
+
+    g.style('display', null)
+      .style('pointer-events', 'none')
+      .style('font', '10px sans-serif')
+
+    const path = g
+      .selectAll('path')
+      .data([null])
+      .join('path')
+      .attr('fill', COLORS.white)
+      .attr('stroke', COLORS.shark)
+
+    const text = g
+      .selectAll('text')
+      .data([null])
+      .join('text')
+      .call(text =>
+        text
+          .selectAll('tspan')
+          .data(value.toString().split(/\n/))
+          .join('tspan')
+          .attr('x', 0)
+          .attr('y', (_, i) => `${i * 1.1}em`)
+          .style('font-weight', (_, i) => i ? null : 'bold')
+          .text(value => value)
+      )
+
+    const {y, width, height} = (text.node() as SVGSVGElement).getBBox()
+
+    text.attr('transform', `translate(${-width / 2},${15 - y})`)
+    path.attr('d', `M${-width / 2 - 10},5H-5l5,-5l5,5H${width / 2 + 10}v${height + 20}h-${width + 20}z`)
+  }
+
+  const createTooltip = () => {
+    const tooltip = svg.append('g')
+
+    const moveListener = (event: MouseEvent, chartData: d3.PieArcDatum<ChartData>) => {
+      tooltip
+        .attr('transform', `translate(${event.offsetX}, ${event.offsetY})`)
+        .call(drawTooltip, `
+          ${chartData.data.name}\n
+          ${new Intl.NumberFormat(lang).format(chartData.value)}
+          ${((chartData.value / totalSum) * 100).toFixed(1)}%
+        `)
+    }
+
+    svg.selectAll<Element, d3.PieArcDatum<ChartData>>('path').on('touchmove mousemove', moveListener)
+    svg.selectAll<Element, d3.PieArcDatum<ChartData>>('text').on('touchmove mousemove', moveListener)
+    svg.on('touched mouseleave', () => tooltip.call(drawTooltip, null))
   }
 
   const drawPieChart = () => {
@@ -77,9 +138,10 @@ export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartDat
       .attr('width', width)
       .attr('height', height)
 
-    const formattedData = d3.pie<ChartData>().sort(null).value(d => d.value)(data)
+    const formattedData = d3.pie<ChartData>().value(({value}) => value)(data.sort((prev, next) => next.value - prev.value))
     drawSections(formattedData)
     drawText(formattedData)
+    createTooltip()
   }
 
 

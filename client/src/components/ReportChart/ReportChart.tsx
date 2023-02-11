@@ -1,10 +1,12 @@
 import {VFC, useRef} from 'react'
-import {useMappedReportByCategoriesData, useDrawPieChart} from 'hooks'
+import {useMappedReportByCategoriesData, useDrawPieChart, useLocalization} from 'hooks'
 
 export const ReportChart: VFC = () => {
   const svgRef = useRef<SVGSVGElement>(null)
   const chartData = useMappedReportByCategoriesData()
-  useDrawPieChart(svgRef, chartData)
+  const {lang} = useLocalization()
+
+  useDrawPieChart(svgRef, chartData, lang)
 
   return (
     <article className="report-chart">

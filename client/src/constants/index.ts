@@ -23,4 +23,6 @@ export const COLORS = {
   denim: '#0D66DB',
   harlequin: '#25DB0D',
   burntSienna: '#E65E51',
+  white: '#FFFFFF',
+  shark: '#1F2028'
 }

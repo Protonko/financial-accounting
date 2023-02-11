@@ -10,7 +10,11 @@ import {User} from '../../user/entities/user.entity'
 
 @Entity('spending')
 export class Spending {
-  @Column()
+  @Column({
+    name: 'amount',
+    type: 'float',
+    default: 0.0,
+  })
   amount: number
 
   @ManyToOne(() => Category)

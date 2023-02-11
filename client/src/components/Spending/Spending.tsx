@@ -25,7 +25,7 @@ export const Spending: FC<Props> = memo(({
 }) => {
   const getIcon = useCategoriesIcons()
   const popupState = usePopupState({ variant: 'popover', popupId: 'demoMenu' })
-  const {localization} = useLocalization()
+  const {localization, lang} = useLocalization()
   const {deleteSpending: deleteSpendingAction} = useActions()
 
   const deleteSpending = () => {
@@ -62,7 +62,9 @@ export const Spending: FC<Props> = memo(({
 
         <div className="spending__col">
           <div className="spending__data">
-            <span className="spending__data-text spending__data-text--price">{amount}</span>
+            <span className="spending__data-text spending__data-text--price">
+              {new Intl.NumberFormat(lang).format(amount)}
+            </span>
             <span className="spending__data-text">{date}</span>
           </div>
         </div>
