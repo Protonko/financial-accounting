@@ -152,6 +152,9 @@ export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartDat
   const render = useCallback(() => {
     if (svgRef.current) {
       svg = d3.select<Element, ChartData>(svgRef.current)
+      svg
+        .attr('width', '100%')
+        .attr('height', '100%')
       width = parseFloat(svg.style('width'))
       height = parseFloat(svg.style('width'))
 
@@ -159,6 +162,8 @@ export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartDat
       drawPieChart()
     }
   }, [])
+
+  window.addEventListener('resize', render)
 
   useEffect(() => {
     render()
