@@ -1,3 +1,7 @@
 .report-chart {
   width: 50%;
+
+  @media #{$screen-max-sm} {
+    width: 98%;
+  }
 }
