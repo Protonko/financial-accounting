@@ -163,7 +163,11 @@ export const useDrawPieChart = (svgRef: RefObject<SVGSVGElement>, data: ChartDat
     }
   }, [])
 
-  window.addEventListener('resize', render)
+  useEffect(() => {
+    window.addEventListener('resize', render)
+
+    return () => window.removeEventListener('resize', render)
+  }, [])
 
   useEffect(() => {
     render()
