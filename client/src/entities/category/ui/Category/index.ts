@@ -1,0 +1,1 @@
+export {Category as CategoryComponent} from './Category'

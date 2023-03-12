@@ -1,4 +1,4 @@
-import {insertValueToString} from 'utils'
+import {insertValueToString} from '../insertValueToString'
 
 describe('insertValueToString', () => {
   let stringWithBraces: string

@@ -1,4 +1,4 @@
-import {APP_LANG, localizationRu, localizationEn} from 'utils'
+import {APP_LANG, localizationRu, localizationEn} from '@utils/index'
 
 export const localizationObject = {
   [APP_LANG.RU]: localizationRu,

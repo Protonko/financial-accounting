@@ -1,4 +1,4 @@
-import {isEqual} from '../index'
+import {isEqual} from '../isEqual'
 
 describe('isEqual', () => {
   const emptyObject1 = {}
