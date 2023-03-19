@@ -1,4 +1,4 @@
-import {ApiService} from 'services'
+import {ApiService} from 'shared'
 
 export class DeleteSpendingApiService {
   static deleteSpending(id: number) {

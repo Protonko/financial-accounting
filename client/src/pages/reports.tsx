@@ -3,7 +3,7 @@ import {END} from 'redux-saga'
 import {SagaStore, storeWrapper} from 'app'
 import {MainLayout} from 'layouts'
 import {Report} from 'widgets'
-import {getUserInfo, loadCategories, loadReportByCategories, ReportByCategoriesFilters} from 'entities'
+import {getUserInfo, loadCategories, loadReportByCategories, ReportByCategoriesFilters} from '_entities'
 import {CookieHandlerSSR, DateUtils, getQueryParam} from 'shared'
 
 interface Props {

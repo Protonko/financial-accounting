@@ -3,7 +3,7 @@ import {
   Spending,
   CreateSpendingAction,
   SPENDING_ACTION_TYPES,
-} from 'entities'
+} from '_entities'
 import {getError, callError} from 'shared'
 import {spendingCreated,} from '../actionCreators'
 import {CreateSpendingApiService} from '../../api'

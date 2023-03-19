@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import {useLogin} from 'features'
-import {AuthForm} from 'entities'
+import {AuthForm} from '_entities'
 import {useLocalization} from 'shared'
 
 export const Auth = () => {

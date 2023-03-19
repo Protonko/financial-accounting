@@ -1,5 +1,5 @@
 import type {FC} from 'react'
-import type {Spending} from 'entities'
+import type {Spending} from '_entities'
 import {Box, Modal} from '@mui/material'
 import {EditSpendingForm} from '../EditSpendingForm'
 

@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState, VFC} from 'react'
 import {useSelector} from 'react-redux'
 import {useLocalization, APP_LANG, SectionList, PAGE_SIZE} from 'shared'
-import {Spending, SpendingReducer, SpendingCard} from 'entities'
+import {Spending, SpendingReducer, SpendingCard} from '_entities'
 import {useEditSpending, SpendingEditModal, useDeleteSpending} from 'features'
 import {SpendingSectionHeader} from '../SpendingSectionHeader'
 import {EmptySpendingList} from '../EmptySpendingList'

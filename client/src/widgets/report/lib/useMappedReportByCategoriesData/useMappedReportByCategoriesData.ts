@@ -1,4 +1,4 @@
-import type {ReportReducer, CategoryReducer} from 'entities'
+import type {ReportReducer, CategoryReducer} from '_entities'
 import {useSelector} from 'react-redux'
 import {useLocalization, APP_LANG} from 'shared'
 

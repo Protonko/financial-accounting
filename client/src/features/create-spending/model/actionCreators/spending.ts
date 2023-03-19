@@ -4,7 +4,7 @@ import {
   CreateSpendingAction,
   SPENDING_ACTION_TYPES,
   SpendingCreatedAction,
-} from 'entities'
+} from '_entities'
 
 export const createSpending = (payload: CreateSpendingBody): CreateSpendingAction => ({
   type: SPENDING_ACTION_TYPES.CREATE_SPENDING,

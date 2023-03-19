@@ -1,4 +1,4 @@
-import type {CategoryReducer} from 'entities'
+import type {CategoryReducer} from '_entities'
 import {ChangeEvent, FC, useCallback, useMemo, useState} from 'react'
 import {useSelector} from 'react-redux'
 import {ButtonUnstyled} from '@mui/material'

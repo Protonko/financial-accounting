@@ -1,7 +1,7 @@
 import {useEffect, useRef, ReactNode, ElementType} from 'react'
 import classNames from 'classnames'
 import {CircularProgress} from '@mui/material'
-import {genericMemo} from 'utils'
+import {genericMemo} from '../../lib'
 
 interface Section<T> {
   title: string,

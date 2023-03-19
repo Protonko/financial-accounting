@@ -4,7 +4,7 @@ import {SagaStore, storeWrapper} from 'app'
 import {MainLayout} from 'layouts'
 import {SpendingList} from 'widgets'
 import {CreateSpendingForm} from 'features'
-import {getUserInfo, loadCategories, loadSpending, SpendingFilters} from 'entities'
+import {getUserInfo, loadCategories, loadSpending, SpendingFilters} from '_entities'
 import {CookieHandlerSSR, PAGE_SIZE} from 'shared'
 
 export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req}) => {

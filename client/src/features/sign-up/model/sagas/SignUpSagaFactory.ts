@@ -1,5 +1,5 @@
 import {call, put, takeEvery} from '@redux-saga/core/effects'
-import {setUserData, AUTH_ACTION_TYPES, UserApiService, SignUpAction, UserData} from 'entities'
+import {setUserData, AUTH_ACTION_TYPES, UserApiService, SignUpAction, UserData} from '_entities'
 import {getError, callError} from 'shared'
 import {SignUpApiService} from '../../api'
 

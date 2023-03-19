@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import {RefObject, useCallback, useEffect} from 'react'
-import {COLORS} from '@constants'
-import {APP_LANG} from 'utils'
+import {COLORS} from '../../constants'
+import {APP_LANG} from '../useLocalization'
 
 export interface ChartData {
   name: string,

@@ -11,7 +11,7 @@ import {
   LoadCategorySagaFactory,
   GetUserInfoSagaFactory,
   ReportSagaFactory,
-} from 'entities'
+} from '_entities'
 import {ErrorSagaFactory} from 'shared'
 
 export function* rootWatcher() {

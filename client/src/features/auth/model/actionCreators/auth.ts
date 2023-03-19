@@ -1,4 +1,4 @@
-import {AUTH_ACTION_TYPES, ErrorLoginAction, LoginAction, AuthBody} from 'entities'
+import {AUTH_ACTION_TYPES, ErrorLoginAction, LoginAction, AuthBody} from '_entities'
 
 export const login = (payload: AuthBody): LoginAction => ({
   type: AUTH_ACTION_TYPES.LOGIN,

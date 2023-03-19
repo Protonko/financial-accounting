@@ -1,4 +1,4 @@
-import {LOCAL_DATE_REGEXP} from '@constants'
+import {LOCAL_DATE_REGEXP} from '../../constants'
 
 export class DateUtils {
   static getLocalDate(date: Date) {

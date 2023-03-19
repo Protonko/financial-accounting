@@ -2,7 +2,7 @@ import {useCallback, useState, ChangeEvent, useMemo, FormEventHandler} from 'rea
 import {useSelector} from 'react-redux'
 import {ButtonUnstyled} from '@mui/material'
 import {DateUtils, ICONS_MAP, useLocalization, DatePicker, Input} from 'shared'
-import {CategoriesList, Calculator, CategoryReducer} from 'entities'
+import {CategoriesList, Calculator, CategoryReducer} from '_entities'
 import {useActions} from '../../lib'
 
 interface SpendingState {

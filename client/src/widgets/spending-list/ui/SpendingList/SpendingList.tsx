@@ -2,7 +2,7 @@ import type {FC} from 'react'
 import {useSelector} from 'react-redux'
 import Link from 'next/link'
 import {SpendingEditModal, useDeleteSpending, useEditSpending} from 'features'
-import {SpendingCard, Spending, SpendingReducer} from 'entities'
+import {SpendingCard, Spending, SpendingReducer} from '_entities'
 import {useLocalization, APP_LANG} from 'shared'
 import {useCallback} from 'react'
 

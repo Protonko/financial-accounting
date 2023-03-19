@@ -1,5 +1,5 @@
 import type {VFC} from 'react'
-import {ReportChart, ReportFilters, ReportListInfo} from 'entities'
+import {ReportChart, ReportFilters, ReportListInfo} from '_entities'
 import {useMappedReportByCategoriesData} from '../../lib'
 
 interface Props {

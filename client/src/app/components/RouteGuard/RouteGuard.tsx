@@ -2,7 +2,7 @@ import {useEffect, FC, useState} from 'react'
 import {useRouter} from 'next/router'
 import {useSelector} from 'react-redux'
 import {CircularProgress} from '@mui/material'
-import {AuthReducer, useGetUserInfo} from 'entities'
+import {AuthReducer, useGetUserInfo} from '_entities'
 
 const Loader = () => {
   return <div className="loader"><CircularProgress className="loader__progress" color="inherit" /></div>

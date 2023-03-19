@@ -1,4 +1,4 @@
-import type {AuthBody, UserData} from 'entities'
+import type {AuthBody, UserData} from '_entities'
 import {ApiService} from 'shared'
 
 export class SignUpApiService {

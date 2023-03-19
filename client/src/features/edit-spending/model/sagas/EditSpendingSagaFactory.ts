@@ -1,6 +1,6 @@
 import {call, put, takeEvery} from '@redux-saga/core/effects'
 import {getError, callError} from 'shared'
-import {SPENDING_ACTION_TYPES, EditSpendingAction, Spending} from 'entities'
+import {SPENDING_ACTION_TYPES, EditSpendingAction, Spending} from '_entities'
 import {spendingEdited} from '../actionCreators'
 import {EditSpendingApiService} from '../../api'
 

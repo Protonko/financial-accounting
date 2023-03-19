@@ -1,5 +1,5 @@
 import {call, put, takeEvery} from '@redux-saga/core/effects'
-import {DeleteSpendingAction, SPENDING_ACTION_TYPES} from 'entities'
+import {DeleteSpendingAction, SPENDING_ACTION_TYPES} from '_entities'
 import {getError, callError} from 'shared'
 import {spendingDeleted} from '../actionCreators'
 import {DeleteSpendingApiService} from '../../api'

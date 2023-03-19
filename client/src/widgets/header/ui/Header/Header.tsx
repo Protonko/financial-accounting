@@ -1,8 +1,7 @@
 import type {FC} from 'react'
 import Link from 'next/Link'
 import logo from '@assets/icons/logo.png'
-import {Options} from 'components'
-import {useLocalization} from 'hooks'
+import {Options, useLocalization} from 'shared'
 import {HeaderTabs} from './HeaderTabs'
 
 interface Props {

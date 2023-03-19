@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {authReducer, categoryReducer, spendingReducer, reportReducer} from 'entities'
+import {authReducer, categoryReducer, spendingReducer, reportReducer} from '_entities'
 import {errorReducer} from 'shared'
 
 export const rootReducer = combineReducers({

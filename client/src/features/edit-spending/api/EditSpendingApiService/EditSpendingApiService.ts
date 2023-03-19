@@ -1,4 +1,4 @@
-import type {Spending, UpdateSpendingBody} from 'entities'
+import type {Spending, UpdateSpendingBody} from '_entities'
 import {ApiService} from 'shared'
 
 export class EditSpendingApiService {

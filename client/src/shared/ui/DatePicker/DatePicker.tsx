@@ -4,7 +4,7 @@ import DateAdapter from '@mui/lab/AdapterDateFns'
 import {TextField, TextFieldProps} from '@mui/material'
 import ruLocale from 'date-fns/locale/ru'
 import enLocale from 'date-fns/locale/en-US'
-import {APP_LANG, DateUtils} from 'utils'
+import {APP_LANG, DateUtils} from '../../lib'
 
 interface Props {
   value: string,

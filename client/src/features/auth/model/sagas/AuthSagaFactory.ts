@@ -1,6 +1,6 @@
 import type {SagaIterator} from 'redux-saga'
 import {call, put, takeEvery} from '@redux-saga/core/effects'
-import {setUserData, AUTH_ACTION_TYPES, LoginAction, UserData, UserApiService} from 'entities'
+import {setUserData, AUTH_ACTION_TYPES, LoginAction, UserData, UserApiService} from '_entities'
 import {getError, callError} from 'shared'
 
 export class AuthSagaFactory {

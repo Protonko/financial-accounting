@@ -3,7 +3,7 @@ import {SagaStore, storeWrapper} from 'app'
 import {MainLayout} from 'layouts'
 import {SpendingGroupedByDateList} from 'widgets'
 import {PAGE_SIZE, CookieHandlerSSR} from 'shared'
-import {loadCategories, loadSpending, SpendingFilters} from 'entities'
+import {loadCategories, loadSpending, SpendingFilters} from '_entities'
 
 export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req}) => {
   const cookieHandler = new CookieHandlerSSR(req)

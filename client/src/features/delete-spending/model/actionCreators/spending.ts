@@ -1,4 +1,4 @@
-import {DeleteSpendingAction, SPENDING_ACTION_TYPES, SpendingDeletedAction} from 'entities'
+import {DeleteSpendingAction, SPENDING_ACTION_TYPES, SpendingDeletedAction} from '_entities'
 
 export const deleteSpending = (payload: number): DeleteSpendingAction => ({
   type: SPENDING_ACTION_TYPES.DELETE_SPENDING,

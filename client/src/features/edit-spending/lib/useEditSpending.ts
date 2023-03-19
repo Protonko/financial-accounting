@@ -1,4 +1,4 @@
-import type {Spending} from 'entities'
+import type {Spending} from '_entities'
 import {useCallback, useState} from 'react'
 
 export const useEditSpending = (spending: Spending[]) => {
