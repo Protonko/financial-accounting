@@ -1,9 +1,9 @@
+import type {AuthBody} from '_entities'
 import {useState, ChangeEvent, VFC} from 'react'
 import * as yup from 'yup'
 import {useFormik} from 'formik'
 import {ButtonUnstyled} from '@mui/material'
 import {Input, useLocalization, insertValueToString} from 'shared'
-import {AuthBody} from '_entities'
 
 interface Props {
   buttonName: string,

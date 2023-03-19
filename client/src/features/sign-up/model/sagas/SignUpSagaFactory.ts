@@ -1,7 +1,8 @@
 import {call, put, takeEvery} from '@redux-saga/core/effects'
-import {setUserData, AUTH_ACTION_TYPES, UserApiService, SignUpAction, UserData} from '_entities'
+import {AUTH_ACTION_TYPES, SignUpAction} from '_entities'
 import {getError, callError} from 'shared'
 import {SignUpApiService} from '../../api'
+import {login} from '../../../auth'
 
 export class SignUpSagaFactory {
   static create() {
@@ -9,15 +10,11 @@ export class SignUpSagaFactory {
   }
   private static *signUpWorker({payload}: SignUpAction) {
     try {
-      const userData: UserData = yield call(
+      yield call(
         SignUpApiService.create,
         payload,
       )
-      yield call(
-        UserApiService.login,
-        payload,
-      )
-      yield put(setUserData(userData))
+      yield put(login(payload))
     } catch (error) {
       yield put(callError(getError(error)))
     }
