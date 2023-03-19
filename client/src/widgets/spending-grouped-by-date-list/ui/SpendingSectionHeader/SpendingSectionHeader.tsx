@@ -1,5 +1,5 @@
 import {memo} from 'react'
-import {useLocalization} from 'hooks'
+import {useLocalization} from 'shared'
 
 interface Props {
   dateString: string

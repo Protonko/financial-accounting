@@ -1,10 +1,9 @@
 import type {FC} from 'react'
 import {useSelector} from 'react-redux'
 import Link from 'next/link'
-import {SpendingEditModal, useDeleteSpending} from 'features'
+import {SpendingEditModal, useDeleteSpending, useEditSpending} from 'features'
 import {SpendingCard, Spending, SpendingReducer} from 'entities'
 import {useLocalization, APP_LANG} from 'shared'
-import {useEditSpending} from '../../lib'
 import {useCallback} from 'react'
 
 export const SpendingList: FC = () => {
