@@ -1,10 +1,10 @@
 import type {FC} from 'react'
-import {Header, HeaderTabs} from 'components'
+import {Header} from 'widgets'
 
 export const MainLayout: FC = ({children}) => {
   return (
     <>
-      <Header renderTabs={() => <HeaderTabs />} />
+      <Header withTabs />
 
       <main className="main">
         <div className="container">

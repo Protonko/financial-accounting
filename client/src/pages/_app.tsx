@@ -2,9 +2,8 @@ import type {AppProps} from 'next/app'
 import Head from 'next/head'
 import {ThemeProvider} from 'next-themes'
 import '@assets/styles/style.scss'
-import {APP_THEME} from 'model'
-import {storeWrapper} from 'store'
-import {ErrorBoundary, RouteGuard} from 'components'
+import {storeWrapper, ErrorBoundary, RouteGuard} from 'app'
+import {APP_THEME} from 'shared'
 
 const App = ({Component, pageProps}: AppProps) => {
   return (
