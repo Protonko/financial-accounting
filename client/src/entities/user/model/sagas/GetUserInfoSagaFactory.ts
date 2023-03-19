@@ -4,7 +4,7 @@ import {call, put, takeEvery} from '@redux-saga/core/effects'
 import {getError, callError} from 'shared'
 import {AUTH_ACTION_TYPES, GetUserInfoAction} from '../actions'
 import {setUserData} from '../actionCreators'
-import {GetUserInfoApiService} from '../../api'
+import {UserApiService} from '../../api'
 
 export class GetUserInfoSagaFactory {
   static create() {
@@ -14,7 +14,7 @@ export class GetUserInfoSagaFactory {
     try {
       const cookie = payload ? {'cookie': payload} : undefined
       const userData: UserData = yield call(
-        GetUserInfoApiService.getUserInfo,
+        UserApiService.getUserInfo,
         cookie
       )
       yield put(setUserData(userData))

@@ -1,2 +1,2 @@
-export * as actions from './actionCreators'
+export * as editSpendingActions from './actionCreators'
 export * from './sagas'
