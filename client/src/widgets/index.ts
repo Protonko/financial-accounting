@@ -1,6 +1,6 @@
 export * from './auth'
 export * from './report'
-export * from './signUp'
+export * from './sign-up'
 export * from './spending-grouped-by-date-list'
 export * from './spending-list'
 export * from './header'
