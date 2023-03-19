@@ -1,5 +1,5 @@
 import type {FC} from 'react'
-import {Header} from 'components'
+import {Header} from 'widgets'
 
 export const AuthLayout: FC = ({children}) => {
   return (

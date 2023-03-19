@@ -11,7 +11,7 @@ export const initialState: InitialState = {
   errorMessage: null,
 }
 
-const reducers = (state = initialState, action: AllErrorActions): InitialState => {
+export const errorReducer = (state = initialState, action: AllErrorActions): InitialState => {
   switch (action.type) {
     case HYDRATE:
       return {
@@ -31,5 +31,3 @@ const reducers = (state = initialState, action: AllErrorActions): InitialState =
       return initialState
   }
 }
-
-export default reducers

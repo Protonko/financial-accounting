@@ -1,12 +1,11 @@
 import type {NextPage} from 'next'
-import type {SpendingFilters} from 'model'
 import {END} from 'redux-saga'
-import {SagaStore, storeWrapper} from 'store'
-import {getUserInfo, loadCategories, loadSpending} from '@store/actions'
-import {CookieHandlerSSR} from 'utils'
+import {SagaStore, storeWrapper} from 'app'
 import {MainLayout} from 'layouts'
-import {SpendingList, CreateSpendingForm} from 'components'
-import {PAGE_SIZE} from '@constants'
+import {SpendingList} from 'widgets'
+import {CreateSpendingForm} from 'features'
+import {getUserInfo, loadCategories, loadSpending, SpendingFilters} from 'entities'
+import {CookieHandlerSSR, PAGE_SIZE} from 'shared'
 
 export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req}) => {
   const cookieHandler = new CookieHandlerSSR(req)

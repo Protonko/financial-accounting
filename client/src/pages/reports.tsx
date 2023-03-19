@@ -1,11 +1,10 @@
 import type {NextPage} from 'next'
-import type {ReportByCategoriesFilters} from 'model'
 import {END} from 'redux-saga'
-import {SagaStore, storeWrapper} from 'store'
-import {getUserInfo, loadCategories, loadReportByCategories} from '@store/actions'
+import {SagaStore, storeWrapper} from 'app'
 import {MainLayout} from 'layouts'
-import {CookieHandlerSSR, DateUtils, getQueryParam} from 'utils'
-import {ReportChart, ReportFilters, ReportListInfo} from 'components'
+import {Report} from 'widgets'
+import {getUserInfo, loadCategories, loadReportByCategories, ReportByCategoriesFilters} from 'entities'
+import {CookieHandlerSSR, DateUtils, getQueryParam} from 'shared'
 
 interface Props {
   startDate: string,
@@ -51,11 +50,7 @@ export const getServerSideProps = storeWrapper.getServerSideProps(async ({store,
 const Reports: NextPage<Props> = ({startDate, endDate}) => {
   return (
     <MainLayout>
-      <ReportFilters startDate={startDate} endDate={endDate} />
-      <div className="reports">
-        <ReportChart />
-        <ReportListInfo />
-      </div>
+      <Report startDate={startDate} endDate={endDate} />
     </MainLayout>
   )
 }

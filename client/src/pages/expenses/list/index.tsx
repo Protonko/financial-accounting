@@ -1,11 +1,9 @@
-import type {SpendingFilters} from 'model'
 import {END} from 'redux-saga'
-import {SagaStore, storeWrapper} from 'store'
-import {CookieHandlerSSR} from 'utils'
-import {PAGE_SIZE} from '@constants'
+import {SagaStore, storeWrapper} from 'app'
 import {MainLayout} from 'layouts'
-import {SpendingGroupedByDateList} from 'components'
-import {loadCategories, loadSpending} from '@store/actions'
+import {SpendingGroupedByDateList} from 'widgets'
+import {PAGE_SIZE, CookieHandlerSSR} from 'shared'
+import {loadCategories, loadSpending, SpendingFilters} from 'entities'
 
 export const getServerSideProps = storeWrapper.getServerSideProps(async ({store, req}) => {
   const cookieHandler = new CookieHandlerSSR(req)
