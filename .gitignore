@@ -41,3 +41,4 @@ lerna-debug.log*
 /client.vercel
 /client/.pnp
 /client/.pnp.js
+/client/.env.local
