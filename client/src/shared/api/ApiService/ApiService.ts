@@ -1,16 +1,17 @@
 import axios, {AxiosError, AxiosResponse} from 'axios'
 
 export class ApiService {
-  private static baseUrl = 'http://localhost:3000/' // TODO: move to .env
+  private static baseUrl = process.env.API_ENDPOINT
   private static api = axios.create({
     baseURL: ApiService.baseUrl,
     timeout: 2000,
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:3001', // TODO: move to .env
+      'Access-Control-Allow-Origin': process.env.CORS ?? false,
     },
     withCredentials: true,
   })
+
 
   private static handleResult = <T>(
     promise: Promise<AxiosResponse<T>>,

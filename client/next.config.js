@@ -7,6 +7,10 @@ module.exports = withPWA({
   sassOptions: {
     includePaths: [path.join(__dirname, 'assets/styles')],
   },
+  env: {
+    API_ENDPOINT: process.env.API_ENDPOINT,
+    CORS: process.env.CORS,
+  },
   i18n: {
     locales: ['EN', 'RU'],
     defaultLocale: 'RU',

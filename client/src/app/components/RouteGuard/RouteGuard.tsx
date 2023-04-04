@@ -22,7 +22,8 @@ export const RouteGuard: FC = ({children}) => {
     const slug = path.split('/').slice(-1)[0]
 
     if (authorized && authPaths.includes(slug)) {
-      const destinationPath = path.includes('auth') ? 'expenses' : router.asPath
+      const hasPath = !(path.includes('auth') || path.includes('sign-up'))
+      const destinationPath = hasPath ? router.asPath : 'expenses'
       router.push(destinationPath)
     } else if (!authorized && !authPaths.includes(slug)) {
       router.push({pathname: '/auth'})

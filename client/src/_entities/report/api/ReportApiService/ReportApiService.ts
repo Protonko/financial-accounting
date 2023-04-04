@@ -3,6 +3,6 @@ import {ApiService} from 'shared'
 
 export class ReportApiService {
   static loadReportByCategories(startDate: string, endDate: string, headers?: Record<string, string>) {
-    return ApiService.get<ReportByCategory[]>(`report/by-categories?startDate=${startDate}&endDate=${endDate}`, headers)
+    return ApiService.get<ReportByCategory[]>(`/report/by-categories?startDate=${startDate}&endDate=${endDate}`, headers)
   }
 }

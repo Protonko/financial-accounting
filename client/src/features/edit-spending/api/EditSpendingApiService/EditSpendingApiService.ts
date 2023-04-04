@@ -3,6 +3,6 @@ import {ApiService} from 'shared'
 
 export class EditSpendingApiService {
   static editSpending(body: UpdateSpendingBody) {
-    return ApiService.put<UpdateSpendingBody, Spending>(`spending/${body.id}`, body)
+    return ApiService.put<UpdateSpendingBody, Spending>(`/spending/${body.id}`, body)
   }
 }

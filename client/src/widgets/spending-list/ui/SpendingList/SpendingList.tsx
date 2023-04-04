@@ -11,7 +11,6 @@ export const SpendingList: FC = () => {
   const {lang, localization} = useLocalization()
   const {selectedSpending, closeModal, prepareToEdit} = useEditSpending(spending ?? [])
   const deleteSpending = useDeleteSpending()
-  // TODO: Check useCallback
   const deleteSpendingCallback = useCallback(deleteSpending, [deleteSpending])
 
   const renderShowMoreButton = () => {
