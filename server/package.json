@@ -1,10 +1,9 @@
 {
   "name": "server",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "1.0.0",
+  "author": "Egor Ermolaev<probegrofanston@gmail.com>",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "ISC",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",

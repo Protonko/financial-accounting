@@ -1,6 +1,6 @@
 import type {AnyAction} from 'redux'
-import type {Category} from 'model'
 import type {HydrateAction} from 'shared'
+import type {Category} from '../types'
 
 export enum CATEGORY_ACTION_TYPES {
   LOAD_CATEGORIES = 'LOAD_CATEGORIES',

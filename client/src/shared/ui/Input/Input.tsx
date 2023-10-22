@@ -1,4 +1,3 @@
-import type {InputTypes} from 'model'
 import {memo, VFC, ChangeEvent} from 'react'
 import classNames from 'classnames'
 import {FilledInput, FormControlLabel} from '@mui/material'
@@ -8,7 +7,7 @@ interface Props {
   name: string,
   label: string,
   placeholder: string,
-  type?: InputTypes,
+  type?: string,
   className?: string,
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void,
   error?: boolean | string,

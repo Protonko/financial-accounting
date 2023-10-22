@@ -1,0 +1,10 @@
+{
+  "name": "financial-accounting",
+  "version": "1.0.0",
+  "description": "Application for personal finance accounting.",
+  "scripts": {
+    "start": "npm --prefix client run dev & npm --prefix server run start"
+  },
+  "author": "Egor Ermolaev<probegrofanston@gmail.com>",
+  "license": "ISC"
+}

@@ -1,5 +1,8 @@
 {
   "name": "client",
+  "version": "1.0.0",
+  "author": "Egor Ermolaev<probegrofanston@gmail.com>",
+  "license": "ISC",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",

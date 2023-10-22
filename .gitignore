@@ -26,6 +26,7 @@ lerna-debug.log*
 
 # client
 **/public/workbox-*.js
+**/public/worker-development.js
 **/public/sw.js
 **/public/fallback-*.js
 /client/node_modules
@@ -34,6 +35,7 @@ lerna-debug.log*
 /client/.next/
 /client/out/
 /client/build
+**/*/.env
 /client.env.local
 /client.env.development.local
 /client.env.test.local
@@ -41,4 +43,3 @@ lerna-debug.log*
 /client.vercel
 /client/.pnp
 /client/.pnp.js
-/client/.env.local

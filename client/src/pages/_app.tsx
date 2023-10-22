@@ -38,8 +38,6 @@ const App = ({Component, pageProps}: AppProps) => {
         <meta property='og:title' content='Financial accounting' />
         <meta property='og:description' content='Handy app to track your finance' />
         <meta property='og:site_name' content='Financial accounting' />
-        {/*<meta property='og:url' content='https://yourdomain.com' />*/}
-        {/*<meta property='og:image' content='https://yourdomain.com/icons/apple-touch-icon.png' />*/}
       </Head>
       <ErrorBoundary>
         <ThemeProvider themes={Object.values(APP_THEME)}>

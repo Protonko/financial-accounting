@@ -1,5 +1,5 @@
-import type {Spending} from 'model'
 import {HYDRATE} from 'next-redux-wrapper'
+import type {Spending} from '../types'
 import {AllSpendingActions, SPENDING_ACTION_TYPES} from '../actions'
 
 interface InitialState {
